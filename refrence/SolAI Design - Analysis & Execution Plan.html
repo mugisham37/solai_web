@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SolAI — Design Analysis & Execution Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0B0D12;
+    --surface: #11141B;
+    --surface-2: #161A22;
+    --border: #1F2430;
+    --text: #F2F4F7;
+    --text-muted: #98A2B3;
+    --text-subtle: #667085;
+    --brand: #5B7CFF;
+    --brand-soft: #1B2240;
+    --success: #34D399;
+    --warning: #FFB547;
+    --danger: #F97066;
+    --accent-gold: #D4A055;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 0;
+  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* Layout */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+  .hero { padding: 80px 24px 48px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
+  .hero h1 span { color: var(--brand); }
+  .hero p { color: var(--text-muted); font-size: 17px; max-width: 680px; }
+
+  h2 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 56px 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--text); }
+  h4 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: var(--brand); text-transform: uppercase; letter-spacing: 0.06em; }
+  p, li { font-size: 15px; color: var(--text-muted); }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 20px; margin-bottom: 16px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 16px 0; }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag-brand { background: var(--brand-soft); color: var(--brand); }
+  .tag-success { background: rgba(52,211,153,.12); color: var(--success); }
+  .tag-warning { background: rgba(255,181,71,.12); color: var(--warning); }
+  .tag-danger { background: rgba(249,112,102,.12); color: var(--danger); }
+  .tag-gold { background: rgba(212,160,85,.12); color: var(--accent-gold); }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { text-align: left; padding: 10px 12px; background: var(--surface-2); color: var(--text-subtle); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+  tr:hover td { background: var(--surface); }
+
+  /* Phase block */
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+  .phase-1::before { background: var(--brand); }
+  .phase-2::before { background: var(--success); }
+  .phase-3::before { background: var(--warning); }
+  .phase-4::before { background: var(--accent-gold); }
+  .phase-5::before { background: var(--danger); }
+  .phase-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-subtle); margin-bottom: 4px; }
+  .phase h3 { margin-top: 0; }
+
+  /* Checklist */
+  .check { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+  .check-icon { width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+  .check-icon.done { background: rgba(52,211,153,.15); color: var(--success); }
+  .check-icon.todo { background: var(--surface-2); color: var(--text-subtle); border: 1px solid var(--border); }
+
+  /* Flow card */
+  .flow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .flow-card .flow-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-subtle); }
+  .flow-card h4 { margin: 4px 0 8px; color: var(--text); text-transform: none; letter-spacing: -0.01em; font-size: 16px; }
+  .flow-card .screen-count { font-size: 13px; color: var(--text-subtle); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  /* Mood palette */
+  .palette { display: flex; gap: 4px; margin: 12px 0; }
+  .swatch { width: 48px; height: 48px; border-radius: 8px; border: 1px solid var(--border); }
+
+  .toc { columns: 2; column-gap: 32px; }
+  .toc li { break-inside: avoid; }
+  @media (max-width: 640px) { .toc { columns: 1; } .card-grid { grid-template-columns: 1fr; } }
+
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--surface-2); padding: 2px 6px; border-radius: 4px; color: var(--brand); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="mono" style="font-size:12px; color:var(--text-subtle); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.08em;">Design Analysis & Execution Plan · v1.0</p>
+  <h1>SolAI <span>Design System</span> & Production Build Plan</h1>
+  <p>A comprehensive analysis of the project documentation, design prompt, inspiration references, and 68 Stitch HTML files — distilled into a phased execution plan for building 13 flows (~70 screens) at production quality.</p>
+</div>
+
+<div class="container">
+
+<!-- ============================================ -->
+<h2>1. Inspiration Image Analysis</h2>
+
+<p>All 6 attached images come from <strong>RevenueBase</strong> — a B2B data infrastructure product. They establish a clear visual direction that aligns well with SolAI's "finance-grade, trustworthy" mandate.</p>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>Colour Temperature</h4>
+    <p><strong>Deep navy-blue background</strong> (~<code>#0A1222</code>) — not pure black. Surfaces use slightly lighter navy layers. This is cooler and more corporate than the Stitch files' <code>#0a1421</code> but in the same family.</p>
+    <div class="palette">
+      <div class="swatch" style="background:#0A1222;"></div>
+      <div class="swatch" style="background:#111827;"></div>
+      <div class="swatch" style="background:#1B2540;"></div>
+      <div class="swatch" style="background:#FFB547;"></div>
+      <div class="swatch" style="background:#34D399;"></div>
+      <div class="swatch" style="background:#F97066;"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h4>Typography & Rhythm</h4>
+    <p><strong>Mix of serif-italic for emotional headlines</strong> + clean sans-serif for body. Section labels use <strong>uppercase monospace tracking</strong> (e.g., "B2B DATA INFRASTRUCTURE", "PLATFORM"). Numbers are large and confident. The SolAI design tokens specify Inter + JetBrains Mono — we'll use JetBrains Mono for labels where RevenueBase uses uppercase spaced type.</p>
+  </div>
+  <div class="card">
+    <h4>Layout Patterns</h4>
+    <ul>
+      <li><strong>Split hero</strong> — left text, right visual (layered diagrams)</li>
+      <li><strong>Comparison tables</strong> — "Without / With" side-by-side with checkmarks/crosses, coloured bottom accent bars</li>
+      <li><strong>Numbered FAQ accordions</strong> with gold accent underlines</li>
+      <li><strong>Pricing columns</strong> with tabbed toggles (Data feeds / API credits)</li>
+      <li><strong>Logo grid</strong> with "Testimonial" badges</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>Accent Strategy</h4>
+    <p><strong>Gold/amber</strong> as a warm accent against navy (testimonial badges, accent lines, bottom bars). <strong>Teal/green</strong> for success. <strong>Red/coral</strong> for negatives. Brand blue is restrained — used for links and CTA borders, not splashed everywhere. This is exactly the token set in DESIGN.md: <code>--brand</code> blue, <code>--success</code> green, <code>--warning</code> amber, <code>--danger</code> red.</p>
+  </div>
+  <div class="card">
+    <h4>Density & Spacing</h4>
+    <p><strong>Generous vertical spacing</strong> between sections. Text is given room to breathe. Cards use thin 1px borders on dark backgrounds, not shadows. Content sits within a centred max-width container (~1200px). Fine grid-dot backgrounds add subtle texture.</p>
+  </div>
+  <div class="card">
+    <h4>Trust Signals</h4>
+    <p>Large stat callouts (e.g., "1B+ verification signals/month"). Numbered items. Comparison tables make confidence tangible. No flashy animations — calm authority. This maps perfectly to SolAI's "Why?" popover system and budget envelope bars.</p>
+  </div>
+</div>
+
+<h3>Design Direction Summary</h3>
+<p>The final SolAI design will use: <strong>deep navy backgrounds</strong> (#0B0D12 per DESIGN.md), <strong>1px bordered cards</strong> (no heavy shadows), <strong>uppercase monospace section labels</strong>, <strong>restrained blue accent</strong> with amber/gold as a warm secondary, <strong>generous vertical rhythm</strong>, and <strong>tabular numerals in JetBrains Mono for all financial data</strong>. The overall feel: a calm, finance-grade command centre — not a startup toy.</p>
+
+<hr class="divider"/>
+
+<!-- ============================================ -->
+<h2>2. Stitch Reference Audit</h2>
+
+<p>The <code>kl/</code> folder contains <strong>68 HTML files</strong> covering all 13 flows. Each is a standalone Tailwind-based dark-mode page with Material Symbols icons.</p>
+
+<h3>What Works (Keep)</h3>
+<ul>
+  <li><strong>Comprehensive screen coverage</strong> — nearly every screen from the sitemap has a file</li>
+  <li><strong>Colour base</strong> — <code>#0a1421</code> navy is close to the locked <code>#0B0D12</code>; good starting point</li>
+  <li><strong>Information architecture</strong> — the content grouping and nav structure is sound</li>
+  <li><strong>Blueprint dot-grid background</strong> on dashboard — a nice subtle texture</li>
+  <li><strong>Material Symbols icons</strong> are functional (we'll swap to Lucide per spec)</li>
+</ul>
+
+<h3>What's Weak (Fix)</h3>
+<ul>
+  <li><strong>No light mode</strong> — every file is dark-only; spec requires dark + light parity</li>
+  <li><strong>No responsive design</strong> — all files are desktop-only; no mobile/tablet breakpoints</li>
+  <li><strong>No state coverage</strong> — missing empty, loading, error, partial, permission states</li>
+  <li><strong>No WhyPopover component</strong> — the spec's signature interaction is absent</li>
+  <li><strong>No working interactions</strong> — static HTML, no toggles, no popovers, no tab switching</li>
+  <li><strong>Inconsistent token usage</strong> — Material Design 3 colour system instead of locked DESIGN.md tokens</li>
+  <li><strong>Material Symbols instead of Lucide</strong> — needs full icon swap</li>
+  <li><strong>No accessibility</strong> — missing focus rings, ARIA labels, semantic HTML, contrast compliance</li>
+  <li><strong>Lorem-style content</strong> — some screens use placeholder data instead of the required seed content</li>
+  <li><strong>No consent banners, no multi-language rotation</strong></li>
+</ul>
+
+<h3>Coverage Map</h3>
+
+<table>
+  <thead>
+    <tr><th>Flow</th><th>Stitch Files</th><th>Coverage</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Flow 1 — Marketing</td><td>solai_landing_page, solai_pricing, solai_features_deep_dive, solai_africa_regional_landing, demo_request_legal_hub</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 2 — Auth</td><td>sign_up, sign_in, verify_email, reset_password, 2fa_security</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 3 — Onboarding</td><td>welcome_onboarding, connect_accounts, setup_rails, configure_engine, review_launch</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 4 — Dashboard</td><td>dashboard_home, ai_copilot, ai_copilot_dashboard, decision_logic, welcome_dashboard, notifications_dashboard</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 5 — Campaigns</td><td>campaigns_list, campaign_detail, ad_sets_creatives, creative_detail, manual_override</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 6 — Conversations</td><td>unified_inbox, conversation_thread, whatsapp_inbox, generate_payment_link, human_hand_off</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 7 — Orders</td><td>orders_list, order_detail, handoff_health, failed_delivery, refund_dispute</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 8 — Audit</td><td>audit_timeline, decision_detail, audit_search, optimization_suggestion</td><td><span class="tag tag-warning">Partial</span> Missing Copilot fullscreen</td></tr>
+    <tr><td>Flow 9 — Safety</td><td>safety_dashboard, pending_approval, anomaly_detail, fraud_alert, spend_caps</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 10 — Reports</td><td>reports_overview, performance_report, attribution_report, compliance_export, report_builder</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 11A — Settings Account</td><td>account_profile, team_management, notifications, localisation, sessions_security</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 11B — Settings Ops</td><td>integrations_hub, billing, compliance_data, api_keys_webhooks, admin_audit_export</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 12 — Settlement</td><td>settlement_statements, statement_detail, initiate_dispute, dispute_thread, performance_pricing_setup</td><td><span class="tag tag-success">Full</span></td></tr>
+    <tr><td>Flow 13 — Cross-cutting</td><td>empty_states, loading_skeletons, error_states, maintenance_status, onboarding_banners</td><td><span class="tag tag-success">Full</span></td></tr>
+  </tbody>
+</table>
+
+<hr class="divider"/>
+
+<!-- ============================================ -->
+<h2>3. Locked Design System Tokens</h2>
+
+<p>These are the non-negotiable tokens from DESIGN.md that every screen must use.</p>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>Colours (Dark Default)</h4>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; font-size:13px;">
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#0B0D12;border:1px solid var(--border);"></div><code>--bg</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#11141B;border:1px solid var(--border);"></div><code>--surface</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#161A22;border:1px solid var(--border);"></div><code>--surface-2</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#1F2430;border:1px solid var(--border);"></div><code>--border</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#5B7CFF;"></div><code>--brand</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#34D399;"></div><code>--success</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#FFB547;"></div><code>--warning</code></div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:24px;border-radius:4px;background:#F97066;"></div><code>--danger</code></div>
+    </div>
+  </div>
+  <div class="card">
+    <h4>Typography</h4>
+    <ul>
+      <li><strong>Inter</strong> — all UI text</li>
+      <li><strong>JetBrains Mono</strong> — money, hashes, IDs, section labels</li>
+      <li>Scale: display 40→56, h1 28→36, h2 22→28, h3 18→22, body 14→15, small 12→13</li>
+      <li>Tabular numerals on all financial data</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>Spacing & Radius</h4>
+    <ul>
+      <li>Steps: 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 56, 80</li>
+      <li>Cards: <code>--r-lg</code> 14px</li>
+      <li>Inputs/buttons: <code>--r-md</code> 10px</li>
+      <li>Elevation: 1px borders (dark), subtle shadows (light)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>Layout Grid</h4>
+    <ul>
+      <li>App shell: 240px sidebar (64px collapsed), 56px topbar</li>
+      <li>12-col content, 24px gutters</li>
+      <li>Breakpoints: xs 0, sm 480, md 768, lg 1024, xl 1280, 2xl 1536</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ============================================ -->
+<h2>4. Custom Components to Build</h2>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>WhyPopover</h4>
+    <p>The product's signature. A small "Why?" trigger on every auto-decided number. Opens a 240–360px popover with: headline, input bullets, agent + run ID, "Open full decision" link. Focus-trapped, Escape to close.</p>
+    <span class="tag tag-danger">Critical Path</span>
+  </div>
+  <div class="card">
+    <h4>MoneyDisplay</h4>
+    <p>Currency + amount + minor unit alignment. Tabular numerals. Optional "of cap" suffix. MoMo/Airtel tag. No fake .00 on zero-decimal currencies (RWF, KES).</p>
+    <span class="tag tag-danger">Critical Path</span>
+  </div>
+  <div class="card">
+    <h4>AgentActivityRow</h4>
+    <p>Live status row for each of the 5 agents. Avatar, name, current task, runtime, health pill, WhyPopover. States: running, idle, paused, errored.</p>
+    <span class="tag tag-brand">Dashboard</span>
+  </div>
+  <div class="card">
+    <h4>BudgetEnvelopeBar</h4>
+    <p>Three-tier nested bars: Swarm → Agent → Task. Spend vs cap with MoneyDisplay. Colour by cap state. WhyPopover on hover/focus.</p>
+    <span class="tag tag-brand">Safety + Dashboard</span>
+  </div>
+  <div class="card">
+    <h4>ConsentBanner</h4>
+    <p>Region-aware: GDPR (EU), Rwanda DPL (RW), POPIA (ZA). Proof export (JSON-LD). Never blocks page invisibly. Screen-reader announceable.</p>
+    <span class="tag tag-warning">Compliance</span>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ============================================ -->
+<h2>5. Execution Plan — 5 Phases, 17 Iterations</h2>
+
+<p>Each iteration produces a <strong>production-ready HTML artifact</strong> — dark + light, responsive (375/768/1024/1280/1536), all states, working interactions, WCAG AA, seed content. One flow per iteration in Phase 3.</p>
+
+<!-- PHASE 1 -->
+<div class="phase phase-1">
+  <div class="phase-num">PHASE 1</div>
+  <h3>Foundation — Design System & Tokens</h3>
+  <p style="color:var(--text-muted); margin-bottom:16px;">Lock the visual contract before any screen work begins.</p>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 1</div>
+    <h4>00-design-system.html — Living Style Guide</h4>
+    <p class="screen-count" style="margin-bottom:8px;">Deliverable: Single HTML artifact</p>
+    <ul>
+      <li><strong>Token preview</strong> — all colours (dark + light side-by-side), type scale, spacing ruler, radius samples, elevation</li>
+      <li><strong>Primitive gallery</strong> — Button (5 variants × 4 states), Input, Textarea, Select, Tabs, Tooltip, Popover, Modal, Sheet, Toast, Banner, Card, KPIStat, DataTable, Timeline, Avatar, Badge, Tag, Stepper, Progress, Switch, Checkbox, Radio, Skeleton, EmptyState, Breadcrumb, Pagination, CommandPalette</li>
+      <li><strong>Custom components</strong> — WhyPopover, MoneyDisplay, AgentActivityRow, BudgetEnvelopeBar, ConsentBanner</li>
+      <li><strong>Working theme toggle + viewport switcher</strong></li>
+      <li><strong>Self-audit checklist</strong></li>
+    </ul>
+    <span class="tag tag-brand">~800 lines</span> <span class="tag tag-gold">Foundation</span>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase phase-2">
+  <div class="phase-num">PHASE 2</div>
+  <h3>Public-Facing — Marketing + Auth + Onboarding</h3>
+  <p style="color:var(--text-muted); margin-bottom:16px;">The seller's first impression. Must be flawless.</p>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 2</div>
+    <h4>Flow 1 — Public Marketing Site</h4>
+    <p class="screen-count">5 screens: Landing · Pricing · Features · For Africa · Demo/Contact + Legal</p>
+    <ul>
+      <li>Hero with split layout (text left, abstract visual right) — inspired by RevenueBase but original</li>
+      <li>"Why?" showcase fragment with live WhyPopover</li>
+      <li>Africa block: MoMo + Airtel + WhatsApp, 4-language toggle</li>
+      <li>Pricing: two cards (Subscription + Performance) with currency switcher (US$, RWF, KES, NGN, ZAR, EUR)</li>
+      <li>Compliance strip, testimonials with initial-avatars (African seller names)</li>
+      <li>Numbered FAQ accordions with accent underlines (per RevenueBase pattern)</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span> <span class="tag tag-gold">High Impact</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 3</div>
+    <h4>Flow 2 — Authentication</h4>
+    <p class="screen-count">5 screens: Sign up · Sign in · Email verify · Password reset · 2FA setup</p>
+    <ul>
+      <li>Desktop: 60/40 split (form + "what happens next" panel)</li>
+      <li>Region-aware consent (GDPR/Rwanda DPL)</li>
+      <li>Passkey + magic-link + password options</li>
+      <li>2FA with downloadable recovery codes + "I've saved these" gate</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 4</div>
+    <h4>Flow 3 — Onboarding Wizard</h4>
+    <p class="screen-count">5 screens: Welcome · Connect accounts · Payment rails · Product/audience/budget · Review & launch</p>
+    <ul>
+      <li>5-step Stepper, save-and-resume, live budget preview</li>
+      <li>OAuth status pills with real seller names</li>
+      <li>Final consent line with explicit cap authorisation</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase phase-3">
+  <div class="phase-num">PHASE 3</div>
+  <h3>Core App — Dashboard, Campaigns, Conversations, Orders</h3>
+  <p style="color:var(--text-muted); margin-bottom:16px;">The heart of the product. Where sellers live daily.</p>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 5</div>
+    <h4>Flow 4 — App Shell + Dashboard + Copilot</h4>
+    <p class="screen-count">5 screens: Dashboard home · Copilot sidebar · Copilot collapsed · "Why?" overlay · Empty state</p>
+    <ul>
+      <li>240px sidebar with collapse to 64px rail → top-sheet on mobile</li>
+      <li>6 KPI cards with WhyPopover + sparklines</li>
+      <li>"What SolAI did for you today" timeline (8 cols) + "Needs your eyes" rail (4 cols)</li>
+      <li>Notifications drawer (right sheet, 3 tabs)</li>
+      <li>All 5 agent status rows</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span> <span class="tag tag-danger">Complex</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 6</div>
+    <h4>Flow 5 — Campaigns</h4>
+    <p class="screen-count">5 screens: List · Detail · Ad sets/creatives · Creative detail · Manual override</p>
+    <ul>
+      <li>DataTable with sticky header, status pills, MoneyDisplay with cap meter</li>
+      <li>Why-rail on detail page</li>
+      <li>Override modal with projected impact + reason required</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 7</div>
+    <h4>Flow 6 — Conversations Inbox</h4>
+    <p class="screen-count">5 screens: Unified inbox · Thread · Channel filter · Payment link composer · Handoff modal</p>
+    <ul>
+      <li>Three-column desktop → single column mobile</li>
+      <li>Per-message WhyPopover on SolAI messages</li>
+      <li>Payment-link cards with Sent/Viewed/Paid status</li>
+      <li>Slash-commands in composer</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span> <span class="tag tag-danger">Complex</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 8</div>
+    <h4>Flow 7 — Orders & Handoff</h4>
+    <p class="screen-count">5 screens: Orders list · Detail · Handoff status · Retry/failed · Refund/dispute</p>
+    <ul>
+      <li>Multi-currency MoneyDisplay, payment-rail badges, source-channel badges</li>
+      <li>Signed webhook ID (mono), retry status per destination</li>
+      <li>Mobile-money settlement notes (~24h)</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase phase-4">
+  <div class="phase-num">PHASE 4</div>
+  <h3>Intelligence & Safety — Audit, Safety, Reports, Settings</h3>
+  <p style="color:var(--text-muted); margin-bottom:16px;">Trust infrastructure. The "glass cockpit."</p>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 9</div>
+    <h4>Flow 8 — Audit Log + Copilot Fullscreen</h4>
+    <p class="screen-count">5 screens: Timeline · Decision detail · Copilot fullscreen · Suggestion · Cmd-K search</p>
+    <ul>
+      <li>Filter chips (agent, event type, time, target)</li>
+      <li>Decision detail: inputs → reasoning → action → result → hash chain + "Verify chain"</li>
+      <li>Generative-UI cards (recommendation with Apply, mini chart, comparison table)</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span> <span class="tag tag-danger">Complex</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 10</div>
+    <h4>Flow 9 — Safety Center</h4>
+    <p class="screen-count">5 screens: Safety dashboard · Pending approval · Anomaly detail · Fraud alert · Spend cap config</p>
+    <ul>
+      <li>Three nested BudgetEnvelopeBar (Swarm/Agent/Task)</li>
+      <li>Approval gate with projected effect + 2h expiry timer</li>
+      <li>Live-preview meters as cap sliders move</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 11</div>
+    <h4>Flow 10 — Reports & Analytics</h4>
+    <p class="screen-count">5 screens: Overview · Performance · Attribution · Compliance export · Custom builder</p>
+    <ul>
+      <li>WhyPopover annotations on chart spikes</li>
+      <li>Compliance export: signed JSON-LD + hash + signature</li>
+      <li>Drag-and-drop builder (desktop) / 3-step wizard (mobile)</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 12</div>
+    <h4>Flow 11A — Settings · Account</h4>
+    <p class="screen-count">5 screens: Profile · Team · Notifications · Localisation · Sessions/Security</p>
+    <ul>
+      <li>Role management: Owner, Admin, Operator, Read-only, Compliance</li>
+      <li>"Send a test" per notification channel</li>
+      <li>Live locale preview, passkey management</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 13</div>
+    <h4>Flow 11B — Settings · Ops</h4>
+    <p class="screen-count">5 screens: Integrations · Billing · Compliance/data · API keys · Audit export</p>
+    <ul>
+      <li>4-section integrations hub (ads, payments, chat, commerce)</li>
+      <li>Subscription/Performance/Hybrid billing</li>
+      <li>API key rotation, webhook signing secret reveal-once</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 14</div>
+    <h4>Flow 12 — Performance-Pricing Settlement</h4>
+    <p class="screen-count">5 screens: Statements list · Detail (signed) · Dispute init · Dispute thread · Opt-in</p>
+    <ul>
+      <li>Audit chain: campaign → ad → conversation → payment webhook, all signed</li>
+      <li>"Audit-grade" stamp prominent</li>
+      <li>Opt-in slider example ("If your campaigns produced US$10k…")</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 15</div>
+    <h4>Flow 13 — Cross-Cutting States</h4>
+    <p class="screen-count">5 screens: Empty states · Loading skeletons · Error states · Maintenance · Onboarding banners</p>
+    <ul>
+      <li>Skeletons match final shapes (never generic spinners)</li>
+      <li>Error: plain-English cause + recovery action + "copy diagnostic ID"</li>
+      <li>Status page: health by component (API, agents, MCP, payments, chat, reports)</li>
+    </ul>
+    <span class="tag tag-success">5 screens</span>
+  </div>
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase phase-5">
+  <div class="phase-num">PHASE 5</div>
+  <h3>Extraction & Handoff</h3>
+  <p style="color:var(--text-muted); margin-bottom:16px;">Package everything for engineering.</p>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 16</div>
+    <h4>99-component-library.html — Component Extraction</h4>
+    <p class="screen-count">Every recurring component, all variants/states, props docs, shadcn mapping</p>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-num">ITERATION 17</div>
+    <h4>tokens.json + HANDOFF.md — Production Handoff</h4>
+    <p class="screen-count">Style-Dictionary tokens, npm packages, Tailwind config, folder structure, a11y regression list, i18n setup, performance budget</p>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ============================================ -->
+<h2>6. Per-Screen Requirements Checklist</h2>
+
+<p>Every screen in every iteration must satisfy ALL of these before being marked complete:</p>
+
+<div class="card">
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size:14px;">
+    <div class="check"><div class="check-icon todo">☐</div><span>Dark + Light theme parity</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>5 viewports: 375 / 768 / 1024 / 1280 / 1536</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>All states: default, empty, loading, error, success</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Contrast ≥ 4.5:1 (body), ≥ 3:1 (large text)</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Visible focus rings on every interactive</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Semantic HTML (button, nav, main, dialog)</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>All form fields: label + helper + error</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Status = icon + label, never colour alone</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>prefers-reduced-motion honoured</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Seed content from spec (no lorem)</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>All tokens from DESIGN.md (no off-palette)</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>WhyPopover on every auto-decided element</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Lucide icons (not Material Symbols)</span></div>
+    <div class="check"><div class="check-icon todo">☐</div><span>Multi-language rotation (en/fr/rw/sw)</span></div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ============================================ -->
+<h2>7. Execution Order & Priority</h2>
+
+<table>
+  <thead><tr><th>#</th><th>Iteration</th><th>Complexity</th><th>Priority</th><th>Screens</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">01</td><td><strong>Design System</strong></td><td><span class="tag tag-danger">High</span></td><td><span class="tag tag-danger">P0</span></td><td>—</td></tr>
+    <tr><td class="mono">02</td><td><strong>Flow 1 — Marketing</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-danger">P0</span></td><td>5</td></tr>
+    <tr><td class="mono">03</td><td><strong>Flow 2 — Auth</strong></td><td><span class="tag tag-success">Low</span></td><td><span class="tag tag-danger">P0</span></td><td>5</td></tr>
+    <tr><td class="mono">04</td><td><strong>Flow 3 — Onboarding</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-danger">P0</span></td><td>5</td></tr>
+    <tr><td class="mono">05</td><td><strong>Flow 4 — Dashboard</strong></td><td><span class="tag tag-danger">High</span></td><td><span class="tag tag-danger">P0</span></td><td>5</td></tr>
+    <tr><td class="mono">06</td><td><strong>Flow 5 — Campaigns</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-brand">P1</span></td><td>5</td></tr>
+    <tr><td class="mono">07</td><td><strong>Flow 6 — Conversations</strong></td><td><span class="tag tag-danger">High</span></td><td><span class="tag tag-danger">P0</span></td><td>5</td></tr>
+    <tr><td class="mono">08</td><td><strong>Flow 7 — Orders</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-brand">P1</span></td><td>5</td></tr>
+    <tr><td class="mono">09</td><td><strong>Flow 8 — Audit</strong></td><td><span class="tag tag-danger">High</span></td><td><span class="tag tag-brand">P1</span></td><td>5</td></tr>
+    <tr><td class="mono">10</td><td><strong>Flow 9 — Safety</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-brand">P1</span></td><td>5</td></tr>
+    <tr><td class="mono">11</td><td><strong>Flow 10 — Reports</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-gold">P2</span></td><td>5</td></tr>
+    <tr><td class="mono">12</td><td><strong>Flow 11A — Settings Acct</strong></td><td><span class="tag tag-success">Low</span></td><td><span class="tag tag-gold">P2</span></td><td>5</td></tr>
+    <tr><td class="mono">13</td><td><strong>Flow 11B — Settings Ops</strong></td><td><span class="tag tag-success">Low</span></td><td><span class="tag tag-gold">P2</span></td><td>5</td></tr>
+    <tr><td class="mono">14</td><td><strong>Flow 12 — Settlement</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-gold">P2</span></td><td>5</td></tr>
+    <tr><td class="mono">15</td><td><strong>Flow 13 — Cross-cutting</strong></td><td><span class="tag tag-success">Low</span></td><td><span class="tag tag-brand">P1</span></td><td>5</td></tr>
+    <tr><td class="mono">16</td><td><strong>Component Library</strong></td><td><span class="tag tag-warning">Medium</span></td><td><span class="tag tag-gold">P2</span></td><td>—</td></tr>
+    <tr><td class="mono">17</td><td><strong>Handoff Pack</strong></td><td><span class="tag tag-success">Low</span></td><td><span class="tag tag-gold">P2</span></td><td>—</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="4" style="font-weight:600; color:var(--text);">Total</td><td style="font-weight:600; color:var(--text);">~70 screens</td></tr>
+  </tfoot>
+</table>
+
+<hr class="divider"/>
+
+<h2>8. Key Design Decisions (Locked In)</h2>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>1. Dark-first, RevenueBase-inspired</h4>
+    <p>Deep navy <code>#0B0D12</code> background. 1px bordered cards (no heavy shadows in dark). Uppercase mono section labels. Gold/amber as warm accent. Blue restrained to primary actions.</p>
+  </div>
+  <div class="card">
+    <h4>2. Sidebar App Shell</h4>
+    <p>240px sidebar → 64px rail at 1024 → top-sheet drawer under 768. 56px topbar. All app screens (Flows 4–12) share this shell.</p>
+  </div>
+  <div class="card">
+    <h4>3. WhyPopover is First-Class</h4>
+    <p>Every KPI, every auto-decision, every agent action gets a "Why?" trigger. It's not a tooltip — it's a popover with focus trap, keyboard support, and a link to the full audit trail.</p>
+  </div>
+  <div class="card">
+    <h4>4. Africa = Peer, Not Add-On</h4>
+    <p>MoMo and Airtel sit next to Stripe in every payment flow. RWF and KES currencies are as prominent as USD. WhatsApp is the primary sales channel, not a secondary.</p>
+  </div>
+  <div class="card">
+    <h4>5. Lucide Icons Only</h4>
+    <p>Replace all Material Symbols from Stitch with Lucide (1.5px stroke, 16/20/24px). No emoji in product UI.</p>
+  </div>
+  <div class="card">
+    <h4>6. Motion: Calm, Not Flashy</h4>
+    <p>120–200ms transitions, ease <code>cubic-bezier(.2,.8,.2,1)</code>. No spring physics. All animations honour prefers-reduced-motion.</p>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<h2>9. Next Step</h2>
+
+<div class="card" style="border-color: var(--brand); background: var(--brand-soft);">
+  <h3 style="margin-top:0; color:var(--brand);">Ready to Begin — Iteration 1: Design System</h3>
+  <p style="color:var(--text);">The plan is locked. Say <strong>"Begin Iteration 1"</strong> and I'll produce the <code>00-design-system.html</code> living style guide with every token, every primitive, every custom component, in dark + light, at three viewports.</p>
+  <p style="color:var(--text);">Or, if you'd prefer to jump directly to a specific flow (e.g., "Begin Flow 1 — Marketing"), say the word. I recommend starting with the design system to lock the visual contract first.</p>
+</div>
+
+</div>
+
+</body>
+</html>
