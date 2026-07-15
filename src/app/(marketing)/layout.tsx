@@ -1,16 +1,16 @@
-import { Footer } from "@/components/organisms/marketing/footer";
-import { Navbar } from "@/components/organisms/marketing/navbar";
+import { MarketingNav } from "@/components/organisms/MarketingNav";
+import { MarketingFooter } from "@/components/organisms/MarketingFooter";
 
 export default function MarketingLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <>
-      <Navbar />
+      <MarketingNav />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <MarketingFooter />
     </>
   );
 }
