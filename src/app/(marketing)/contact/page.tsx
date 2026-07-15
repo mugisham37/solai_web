@@ -1,23 +1,28 @@
-import { PageHeader } from "@/components/molecules/page-header";
-import { ContactForm } from "@/components/organisms/marketing/contact-form";
-import { ContactInfo } from "@/components/organisms/marketing/contact-info";
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/organisms/PageHeader";
+import { ContactForm } from "@/components/organisms/ContactForm";
+import { ContactInfo } from "@/components/organisms/ContactInfo";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Book a demo, ask a question, or start building immediately. Reach SolAI via email, WhatsApp, or our Kigali office.",
+};
 
 export default function ContactPage() {
   return (
-    <>
+    <div className="min-h-[calc(100vh-56px)]">
       <PageHeader
-        eyebrow="Contact"
+        label="Contact"
         title="Let's talk about your growth."
-        subCopy="Book a demo, ask a question, or start building immediately."
+        description="Book a demo, ask a question, or start building immediately."
       />
-      <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-8 md:py-16">
+      <section className="mx-auto max-w-[1280px] px-4 py-10 md:px-8 md:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.2fr_1fr]">
-          <div className="rounded-lg border border-border bg-surface p-8">
-            <ContactForm />
-          </div>
+          <ContactForm />
           <ContactInfo />
         </div>
       </section>
-    </>
+    </div>
   );
 }
