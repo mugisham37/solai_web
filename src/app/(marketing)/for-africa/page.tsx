@@ -1,23 +1,32 @@
-import { Emphasis } from "@/components/atoms/emphasis";
-import { PageHeader } from "@/components/molecules/page-header";
-import { AfricaGridSection } from "@/components/organisms/marketing/africa-grid-section";
-import { StatsSection } from "@/components/organisms/marketing/stats-section";
-import { AFRICA_STATS } from "@/data/marketing/africa";
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/organisms/PageHeader";
+import { AfricaGrid } from "@/components/organisms/AfricaGrid";
+import { StatsSection } from "@/components/organisms/StatsSection";
+import { africaCards } from "@/lib/data/africa";
+import { africaStats } from "@/lib/data/stats";
+
+export const metadata: Metadata = {
+  title: "For Africa",
+  description:
+    "Built from Africa, for Africa — payment rails, WhatsApp-first commerce, four languages, data residency in AWS af-south-1.",
+};
 
 export default function ForAfricaPage() {
   return (
-    <>
+    <div className="min-h-[calc(100vh-56px)]">
       <PageHeader
-        eyebrow="For Africa"
+        label="For Africa"
         title={
           <>
-            Built <Emphasis>from</Emphasis> Africa, <Emphasis>for</Emphasis> Africa.
+            Built <em>from</em> Africa, <em>for</em> Africa.
           </>
         }
-        subCopy="SolAI is headquartered in Kigali, Rwanda. We understand the infrastructure, the payment rails, the languages, and the opportunity."
+        description="SolAI is headquartered in Kigali, Rwanda. We understand the infrastructure, the payment rails, the languages, and the opportunity."
       />
-      <AfricaGridSection />
-      <StatsSection stats={AFRICA_STATS} />
-    </>
+      <section className="mx-auto max-w-[1280px] px-4 py-10 md:px-8 md:py-16">
+        <AfricaGrid cards={africaCards} />
+      </section>
+      <StatsSection stats={africaStats} />
+    </div>
   );
 }
