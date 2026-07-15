@@ -1,22 +1,44 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { siteConfig } from "@/lib/data/site";
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "SolAI — Autonomous Revenue Engine for E-Commerce",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — Autonomous E-Commerce Revenue Engine`,
+    template: `%s | ${siteConfig.name}`,
+  },
   description:
-    "Upload a product and SolAI runs everything else: ads launch on Meta and Google, leads convert on WhatsApp, orders close via Stripe or Mobile Money. Every decision explained, every cent tracked.",
+    "Upload a product. SolAI runs everything else — ads, WhatsApp sales, payments, and explainable optimisation for African e-commerce sellers.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} — Autonomous E-Commerce Revenue Engine`,
+    description:
+      "Upload a product. SolAI runs everything else — ads, WhatsApp sales, payments, and explainable optimisation.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} — Autonomous E-Commerce Revenue Engine`,
+    description:
+      "Upload a product. SolAI runs everything else — ads, WhatsApp sales, payments, and explainable optimisation.",
+  },
 };
 
 export default function RootLayout({
@@ -30,15 +52,8 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+      <body className="flex min-h-full flex-col font-sans">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
