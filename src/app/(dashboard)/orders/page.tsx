@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { ShoppingBag } from "lucide-react";
 import { EmptyState } from "@/components/molecules/app/EmptyState";
-import { requireOnboardedSession } from "@/lib/auth/require-onboarded-session";
 
 export const metadata: Metadata = {
   title: "Orders",
   description: "Order management — coming soon.",
 };
 
-export default async function OrdersPage() {
-  await requireOnboardedSession();
-
+export default function OrdersPage() {
   return (
     <EmptyState
       icon={ShoppingBag}
