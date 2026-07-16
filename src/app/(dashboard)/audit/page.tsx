@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Clock } from "lucide-react";
 import { EmptyState } from "@/components/molecules/app/EmptyState";
-import { requireOnboardedSession } from "@/lib/auth/require-onboarded-session";
 
 export const metadata: Metadata = {
   title: "Audit Log",
   description: "Workspace audit log — coming soon.",
 };
 
-export default async function AuditPage() {
-  await requireOnboardedSession();
-
+export default function AuditPage() {
   return (
     <EmptyState
       icon={Clock}
