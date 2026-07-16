@@ -9,7 +9,6 @@ import {
   creatives,
   getCampaignById,
 } from "@/lib/data/app/campaigns";
-import { requireOnboardedSession } from "@/lib/auth/require-onboarded-session";
 
 interface CampaignDetailPageProps {
   params: Promise<{ id: string }>;
@@ -32,8 +31,6 @@ export async function generateMetadata({
 export default async function CampaignDetailPage({
   params,
 }: CampaignDetailPageProps) {
-  await requireOnboardedSession();
-
   const { id } = await params;
   const campaign = getCampaignById(id);
 
