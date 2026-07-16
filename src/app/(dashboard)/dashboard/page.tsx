@@ -8,16 +8,13 @@ import {
   performanceData,
   timelineEvents,
 } from "@/lib/data/app/dashboard";
-import { requireOnboardedSession } from "@/lib/auth/require-onboarded-session";
 
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Your SolAI command center — KPIs, agent activity, and performance.",
 };
 
-export default async function DashboardPage() {
-  await requireOnboardedSession();
-
+export default function DashboardPage() {
   return (
     <DashboardHome
       kpis={dashboardKpis}
