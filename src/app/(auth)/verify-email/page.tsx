@@ -1,18 +1,10 @@
-import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+"use client";
+
 import { VerifyEmailForm } from "@/components/organisms/auth/VerifyEmailForm";
-import { getPendingEmailCookie } from "@/lib/auth/pending-email";
+import { useDemoSession } from "@/hooks/use-demo-session";
 
-export const metadata: Metadata = {
-  title: "Verify email",
-  description: "Verify your email address to continue.",
-};
+export default function VerifyEmailPage() {
+  const { session } = useDemoSession();
 
-export default async function VerifyEmailPage() {
-  const email = await getPendingEmailCookie();
-  if (!email) {
-    redirect("/signup");
-  }
-
-  return <VerifyEmailForm email={email} />;
+  return <VerifyEmailForm email={session?.email ?? "you@solai.app"} />;
 }
