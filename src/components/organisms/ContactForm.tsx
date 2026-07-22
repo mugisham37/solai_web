@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { adSpendOptions, platformOptions } from "@/lib/data/contact";
-import { simulateAuthDelay } from "@/lib/demo-auth";
+import { delay } from "@/lib/async-utils";
 import {
   contactFormSchema,
   type ContactFormValues,
@@ -48,7 +48,7 @@ export function ContactForm() {
 
   function onSubmit() {
     startTransition(async () => {
-      await simulateAuthDelay();
+      await delay();
       setSent(true);
     });
   }
