@@ -6,16 +6,25 @@ import { useState } from "react";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { AuthField } from "@/components/molecules/AuthField";
 import { FormErrorBanner } from "@/components/molecules/FormErrorBanner";
-import { useDemoSession } from "@/hooks/use-demo-session";
-import { simulateAuthDelay } from "@/lib/demo-auth";
+import { formatRetryMessage, parseApiError } from "@/lib/api/errors";
+import * as twoFactorService from "@/lib/api/services/twoFactor";
+import { clearChallenge } from "@/lib/api/types";
+import {
+  getPostAuthPath,
+  useSession,
+} from "@/providers/session-provider";
 
 interface RecoveryCodeFormProps {
+  challengeToken: string;
   onBack?: () => void;
 }
 
-export function RecoveryCodeForm({ onBack }: RecoveryCodeFormProps) {
+export function RecoveryCodeForm({
+  challengeToken,
+  onBack,
+}: RecoveryCodeFormProps) {
   const router = useRouter();
-  const { signIn } = useDemoSession();
+  const { setSession } = useSession();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,11 +34,28 @@ export function RecoveryCodeForm({ onBack }: RecoveryCodeFormProps) {
     e.preventDefault();
     setError("");
     setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    setUsed(true);
-    signIn({ email: "you@solai.app", onboardingComplete: true });
-    router.push("/dashboard");
+    try {
+      const session = await twoFactorService.challengeRecovery({
+        challenge_token: challengeToken,
+        code,
+      });
+      clearChallenge();
+      setUsed(true);
+      setSession(session);
+      router.push(getPostAuthPath(session.user));
+    } catch (err) {
+      const apiError = parseApiError(err);
+      if (
+        apiError.code === "auth.challenge_expired" ||
+        apiError.code === "auth.challenge_attempts_exceeded"
+      ) {
+        clearChallenge();
+        router.replace("/login");
+      }
+      setError(formatRetryMessage(apiError));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,7 +64,10 @@ export function RecoveryCodeForm({ onBack }: RecoveryCodeFormProps) {
         Recovery code
       </h1>
       <p className="mt-1.5 mb-4 text-[15px] text-text-muted">
-        Enter one of your backup codes. <strong className="text-text">This code will be permanently consumed on use.</strong>
+        Enter one of your backup codes.{" "}
+        <strong className="text-text">
+          This code will be permanently consumed on use.
+        </strong>
       </p>
 
       <FormErrorBanner message={error} className="mb-4" />
@@ -70,8 +99,8 @@ export function RecoveryCodeForm({ onBack }: RecoveryCodeFormProps) {
       {used ? (
         <p className="mt-4 text-sm text-text-muted">
           Consider regenerating recovery codes in{" "}
-          <Link href="/2fa-setup" className="text-brand">
-            2FA settings
+          <Link href="/settings/profile" className="text-brand">
+            security settings
           </Link>
           .
         </p>
