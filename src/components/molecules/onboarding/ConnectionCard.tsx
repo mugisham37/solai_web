@@ -9,7 +9,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { useState, useTransition } from "react";
-import { simulateAuthDelay } from "@/lib/demo-auth";
+import { delay } from "@/lib/async-utils";
 import { DEMO_CONNECTED_LABELS } from "@/lib/onboarding/constants";
 import type { ConnectionProvider, ConnectionState } from "@/types/onboarding";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,7 @@ export function ConnectionCard({
   function handleConnect() {
     startTransition(async () => {
       onUpdate(provider, { status: "connecting" });
-      await simulateAuthDelay(900);
+      await delay(900);
       const label = DEMO_CONNECTED_LABELS[provider];
       onUpdate(provider, {
         status: "connected",
