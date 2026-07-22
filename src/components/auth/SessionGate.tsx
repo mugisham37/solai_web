@@ -1,36 +1,61 @@
 "use client";
 
 import { useEffect } from "react";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useDemoSession } from "@/hooks/use-demo-session";
+import { useSession } from "@/providers/session-provider";
+
+function SessionLoading() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <Loader2 className="size-6 animate-spin text-text-muted" />
+    </div>
+  );
+}
 
 export function RequireSession({ children }: { children: React.ReactNode }) {
-  const { session, ready } = useDemoSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (ready && !session) {
+    if (status === "unauthenticated") {
       router.replace("/login");
     }
-  }, [ready, session, router]);
+  }, [status, router]);
 
-  if (!ready || !session) return null;
+  if (status === "loading") return <SessionLoading />;
+  if (status === "unauthenticated") return null;
   return <>{children}</>;
 }
 
 export function RequireOnboarded({ children }: { children: React.ReactNode }) {
-  const { session, ready } = useDemoSession();
+  const { user, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (!ready) return;
-    if (!session) {
+    if (status === "unauthenticated") {
       router.replace("/login");
-    } else if (!session.onboardingComplete) {
+      return;
+    }
+    if (status === "authenticated" && user && !user.email_verified) {
+      router.replace("/verify-email");
+      return;
+    }
+    if (status === "authenticated" && user && !user.onboarding_completed) {
       router.replace("/onboarding");
     }
-  }, [ready, session, router]);
+  }, [status, user, router]);
 
-  if (!ready || !session || !session.onboardingComplete) return null;
+  if (status === "loading") return <SessionLoading />;
+
+  if (
+    status === "unauthenticated" ||
+    !user ||
+    !user.email_verified ||
+    !user.onboarding_completed
+  ) {
+    return null;
+  }
+
   return <>{children}</>;
 }
