@@ -19,7 +19,8 @@ import {
 import type { LucideIcon } from "lucide-react";
 import type { WorkspaceInfo } from "@/types/app";
 import { appNavItems } from "@/lib/data/app/nav";
-import { useDemoSession } from "@/hooks/use-demo-session";
+import * as authService from "@/lib/api/services/auth";
+import { useSession } from "@/providers/session-provider";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -51,10 +52,11 @@ export function AppSidebar({
 }: AppSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { signOut } = useDemoSession();
+  const { clearSession } = useSession();
 
-  function handleSignOut() {
-    signOut();
+  async function handleSignOut() {
+    await authService.logout();
+    clearSession();
     router.push("/login");
   }
 
