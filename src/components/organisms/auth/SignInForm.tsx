@@ -2,40 +2,30 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ArrowRight, Fingerprint, Loader2, Mail, Zap } from "lucide-react";
-import { AuthDivider } from "@/components/atoms/AuthDivider";
+import { useState } from "react";
+import { ArrowRight, Loader2, Mail } from "lucide-react";
 import { AuthLayout } from "@/components/organisms/AuthLayout";
 import { AuthField } from "@/components/molecules/AuthField";
 import { FormErrorBanner } from "@/components/molecules/FormErrorBanner";
 import { PasswordField } from "@/components/molecules/PasswordField";
 import { SignInPanel } from "@/components/organisms/auth/panels/SignInPanel";
-import { MagicLinkPending } from "@/components/organisms/auth/MagicLinkPending";
-import { useDemoSession } from "@/hooks/use-demo-session";
-import { simulateAuthDelay } from "@/lib/demo-auth";
+import { formatRetryMessage, parseApiError } from "@/lib/api/errors";
+import * as authService from "@/lib/api/services/auth";
+import { isMfaRequired, storeChallenge } from "@/lib/api/types";
 import { signInSchema } from "@/lib/validations/auth";
+import {
+  getPostAuthPath,
+  useSession,
+} from "@/providers/session-provider";
 
 export function SignInForm() {
   const router = useRouter();
-  const { signIn } = useDemoSession();
+  const { setSession } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [magicSent, setMagicSent] = useState(false);
-  const [passkeyState, setPasskeyState] = useState<
-    "idle" | "waiting" | "unsupported"
-  >("idle");
-
-  useEffect(() => {
-    if (!magicSent) return;
-    const id = window.setTimeout(() => {
-      signIn({ email, onboardingComplete: true });
-      router.push("/dashboard");
-    }, 2200);
-    return () => window.clearTimeout(id);
-  }, [magicSent, email, router, signIn]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,45 +44,26 @@ export function SignInForm() {
     }
 
     setLoading(true);
-    await simulateAuthDelay();
-    signIn({ email: parsed.data.email, onboardingComplete: true });
-    router.push("/dashboard");
-  };
+    try {
+      const response = await authService.login(parsed.data);
+      if (isMfaRequired(response)) {
+        storeChallenge({
+          challengeToken: response.challenge_token,
+          methods: response.methods,
+        });
+        router.push("/two-factor");
+        return;
+      }
 
-  const handleMagicLink = async () => {
-    setError("");
-    if (!email) {
-      setFieldErrors({ email: "Enter a valid email address" });
-      return;
+      setSession(response);
+      router.push(getPostAuthPath(response.user));
+    } catch (err) {
+      const apiError = parseApiError(err);
+      setError(formatRetryMessage(apiError));
+    } finally {
+      setLoading(false);
     }
-    setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    setMagicSent(true);
   };
-
-  const handlePasskey = async () => {
-    setError("");
-    if (!window.PublicKeyCredential) {
-      setPasskeyState("unsupported");
-      return;
-    }
-    setPasskeyState("waiting");
-    setLoading(true);
-    await simulateAuthDelay(900);
-    setLoading(false);
-    setPasskeyState("idle");
-    signIn({ email: email || "you@solai.app", onboardingComplete: true });
-    router.push("/dashboard");
-  };
-
-  if (magicSent) {
-    return (
-      <AuthLayout panel={<SignInPanel />}>
-        <MagicLinkPending email={email} onResend={handleMagicLink} />
-      </AuthLayout>
-    );
-  }
 
   return (
     <AuthLayout panel={<SignInPanel />}>
@@ -144,39 +115,6 @@ export function SignInForm() {
           )}
         </button>
       </form>
-
-      <AuthDivider text="or continue with" />
-
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          type="button"
-          onClick={handlePasskey}
-          disabled={loading || passkeyState === "waiting"}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-surface text-sm text-text-muted transition-colors hover:bg-surface-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-        >
-          <Fingerprint className="size-[18px]" /> Passkey
-        </button>
-        <button
-          type="button"
-          onClick={handleMagicLink}
-          disabled={loading}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-surface text-sm text-text-muted transition-colors hover:bg-surface-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-        >
-          <Zap className="size-[18px]" /> Magic link
-        </button>
-      </div>
-
-      {passkeyState === "waiting" ? (
-        <p className="mt-3 text-center text-sm text-text-muted">
-          Waiting for your device…
-        </p>
-      ) : null}
-      {passkeyState === "unsupported" ? (
-        <p className="mt-3 text-center text-sm text-text-muted">
-          Passkeys aren&apos;t available in this browser. Try email or magic link
-          instead.
-        </p>
-      ) : null}
 
       <p className="mt-6 text-center text-sm text-text-muted">
         Don&apos;t have an account?{" "}
