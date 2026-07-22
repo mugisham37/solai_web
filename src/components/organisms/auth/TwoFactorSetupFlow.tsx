@@ -21,20 +21,16 @@ import { OtpCodeField } from "@/components/molecules/OtpCodeField";
 import { ResendTimer } from "@/components/molecules/ResendTimer";
 import { TwoFactorMethodOption } from "@/components/molecules/TwoFactorMethodOption";
 import { TwoFactorSetupPanel } from "@/components/organisms/auth/panels/TwoFactorSetupPanel";
-import {
-  generateFakeBackupCodes,
-  generateFakeTotpSecret,
-  generateFakeTotpUri,
-  simulateAuthDelay,
-} from "@/lib/demo-auth";
-import { useDemoSession } from "@/hooks/use-demo-session";
+import { formatRetryMessage, parseApiError } from "@/lib/api/errors";
+import * as twoFactorService from "@/lib/api/services/twoFactor";
+import { useSession } from "@/providers/session-provider";
 
 type Method = "app" | "sms";
 type Step = "choose" | "verify-sms" | "codes" | "done";
 
 export function TwoFactorSetupFlow() {
   const router = useRouter();
-  const { session } = useDemoSession();
+  const { user } = useSession();
   const [method, setMethod] = useState<Method>("app");
   const [step, setStep] = useState<Step>("choose");
   const [phone, setPhone] = useState("");
@@ -50,12 +46,19 @@ export function TwoFactorSetupFlow() {
 
   const prepareTotp = useCallback(async () => {
     if (totpPrepared) return;
-    const secret = generateFakeTotpSecret();
-    setTotpUri(generateFakeTotpUri(session?.email ?? "demo@solai.app", secret));
-    setManualSecret(secret);
-    setBackupCodes(generateFakeBackupCodes());
-    setTotpPrepared(true);
-  }, [totpPrepared, session?.email]);
+    setLoading(true);
+    setError("");
+    try {
+      const init = await twoFactorService.initTotp();
+      setTotpUri(init.provisioning_uri);
+      setManualSecret(init.secret);
+      setTotpPrepared(true);
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
+    }
+  }, [totpPrepared]);
 
   const selectAppMethod = () => {
     setMethod("app");
@@ -77,30 +80,44 @@ export function TwoFactorSetupFlow() {
       return;
     }
     setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    setStep("codes");
+    try {
+      const result = await twoFactorService.confirmTotp({ code: totpCode });
+      setBackupCodes(result.recovery_codes);
+      setStep("codes");
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleEnableSms = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    setStep("verify-sms");
+    try {
+      await twoFactorService.initSms({ phone: `+250${phone.replace(/\D/g, "")}` });
+      setStep("verify-sms");
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleVerifySms = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
-    if (backupCodes.length === 0) {
-      setBackupCodes(generateFakeBackupCodes());
+    try {
+      const result = await twoFactorService.confirmSms({ code: smsCode });
+      setBackupCodes(result.recovery_codes);
+      setStep("codes");
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
     }
-    await simulateAuthDelay();
-    setLoading(false);
-    setStep("codes");
   };
 
   const copyCodes = async () => {
@@ -116,6 +133,8 @@ export function TwoFactorSetupFlow() {
     a.click();
     URL.revokeObjectURL(url);
   };
+
+  const nextPath = user?.onboarding_completed ? "/dashboard" : "/onboarding";
 
   return (
     <AuthLayout panel={<TwoFactorSetupPanel />}>
@@ -215,7 +234,7 @@ export function TwoFactorSetupFlow() {
 
           <button
             type="button"
-            onClick={() => router.push("/onboarding")}
+            onClick={() => router.push(nextPath)}
             className="mt-4 w-full text-center text-sm text-text-muted hover:text-text"
           >
             Skip for now, set up later
@@ -238,12 +257,18 @@ export function TwoFactorSetupFlow() {
             disabled={loading}
             className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-brand text-[15px] font-semibold text-white hover:bg-[#4A6BEE] disabled:opacity-60"
           >
-            {loading ? <Loader2 className="size-4 animate-spin" /> : "Verify & enable 2FA"}
+            {loading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              "Verify & enable 2FA"
+            )}
           </button>
           <ResendTimer
             seconds={60}
             onResend={async () => {
-              await simulateAuthDelay();
+              await twoFactorService.resendSms({
+                phone: `+250${phone.replace(/\D/g, "")}`,
+              });
             }}
           />
         </form>
@@ -313,10 +338,10 @@ export function TwoFactorSetupFlow() {
           </p>
           <button
             type="button"
-            onClick={() => router.push("/onboarding")}
+            onClick={() => router.push(nextPath)}
             className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-brand text-[15px] font-semibold text-white hover:bg-[#4A6BEE]"
           >
-            Go to onboarding <ArrowRight className="size-4" />
+            Continue <ArrowRight className="size-4" />
           </button>
         </div>
       )}
