@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Loader2, Mail } from "lucide-react";
 import { AuthLayout } from "@/components/organisms/AuthLayout";
@@ -10,8 +10,10 @@ import { FormErrorBanner } from "@/components/molecules/FormErrorBanner";
 import { PasswordField } from "@/components/molecules/PasswordField";
 import { ResendTimer } from "@/components/molecules/ResendTimer";
 import { ResetPasswordPanel } from "@/components/organisms/auth/panels/ResetPasswordPanel";
-import { simulateAuthDelay } from "@/lib/demo-auth";
-import { resetPasswordSchema } from "@/lib/validations/auth";
+import { ExpiredLinkScreen } from "@/components/organisms/auth/ExpiredLinkScreen";
+import { formatRetryMessage, parseApiError } from "@/lib/api/errors";
+import * as authService from "@/lib/api/services/auth";
+import { emailOnlySchema, resetPasswordSchema } from "@/lib/validations/auth";
 
 type Step = "request" | "sent";
 
@@ -24,14 +26,31 @@ export function ResetPasswordRequestFlow() {
   const handleRequest = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    const parsed = emailOnlySchema.safeParse({ email });
+    if (!parsed.success) {
+      setError("Enter a valid email address");
+      return;
+    }
+
     setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    setStep("sent");
+    try {
+      await authService.forgotPassword({ email: parsed.data.email });
+      setStep("sent");
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleResend = async () => {
-    await simulateAuthDelay();
+    if (!email) return;
+    try {
+      await authService.forgotPassword({ email });
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    }
   };
 
   return (
@@ -42,7 +61,8 @@ export function ResetPasswordRequestFlow() {
             Reset password
           </h1>
           <p className="mt-1.5 mb-6 text-[15px] text-text-muted">
-            Enter the email on your account and we&apos;ll send a reset link.
+            Enter the email on your account and we&apos;ll send a reset link if
+            it exists.
           </p>
           <FormErrorBanner message={error} className="mb-4" />
           <form className="flex flex-col gap-4" onSubmit={handleRequest}>
@@ -60,7 +80,11 @@ export function ResetPasswordRequestFlow() {
               disabled={loading}
               className="inline-flex h-11 w-full items-center justify-center rounded-md bg-brand text-[15px] font-semibold text-white hover:bg-[#4A6BEE] disabled:opacity-60"
             >
-              {loading ? <Loader2 className="size-4 animate-spin" /> : "Send reset link"}
+              {loading ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                "Send reset link"
+              )}
             </button>
           </form>
         </>
@@ -73,8 +97,9 @@ export function ResetPasswordRequestFlow() {
             Check your inbox
           </h1>
           <p className="mt-2 text-[15px] text-text-muted">
-            We sent a reset link to <strong className="text-text">{email}</strong>.
-            It expires in 1 hour.
+            If an account exists for{" "}
+            <strong className="text-text">{email}</strong>, we sent a reset
+            link. It expires in 1 hour.
           </p>
           <ResendTimer
             seconds={60}
@@ -98,11 +123,17 @@ export function ResetPasswordRequestFlow() {
 
 export function ResetPasswordSetForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  if (!token) {
+    return <ExpiredLinkScreen type="reset" />;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,9 +152,17 @@ export function ResetPasswordSetForm() {
     }
 
     setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    router.push("/login");
+    try {
+      await authService.resetPassword({
+        token,
+        password: parsed.data.password,
+      });
+      router.push("/login");
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
