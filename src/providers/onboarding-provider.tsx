@@ -2,7 +2,9 @@
 
 import { createContext, useCallback, useEffect, useMemo, useState } from "react";
 import { createDefaultDraft } from "@/lib/onboarding/defaults";
-import { markOnboardingComplete } from "@/lib/demo-session";
+import { completeOnboarding } from "@/lib/api/services/users";
+import { parseApiError } from "@/lib/api/errors";
+import { useSession } from "@/providers/session-provider";
 import type { OnboardingDraft, OnboardingStepIndex } from "@/types/onboarding";
 
 const DRAFT_STORAGE_KEY = "solai_onboarding_draft";
@@ -40,6 +42,7 @@ export interface OnboardingContextValue {
 export const OnboardingContext = createContext<OnboardingContextValue | null>(null);
 
 export function OnboardingProvider({ children }: { children: React.ReactNode }) {
+  const { updateUser } = useSession();
   const [draft, setDraft] = useState<OnboardingDraft>(() => createDefaultDraft());
   const [ready, setReady] = useState(false);
 
@@ -93,33 +96,25 @@ export function OnboardingProvider({ children }: { children: React.ReactNode }) 
     [updateDraft],
   );
 
-  const launchCampaign = useCallback(() => {
-    return new Promise<OnboardingDraft["launch"]>((resolve) => {
-      window.setTimeout(() => {
-        const failed = Math.random() < 0.1;
-        const launch: OnboardingDraft["launch"] = failed
-          ? {
-              status: "failed",
-              errorReason:
-                "Campaign creation service is temporarily unavailable. Your review data is saved.",
-            }
-          : { status: "success", launchedAt: new Date().toISOString() };
+  const launchCampaign = useCallback(async () => {
+    let launch: OnboardingDraft["launch"];
+    try {
+      const profile = await completeOnboarding();
+      updateUser(profile);
+      launch = { status: "success", launchedAt: new Date().toISOString() };
+    } catch (err) {
+      launch = { status: "failed", errorReason: parseApiError(err).message };
+    }
 
-        updateDraft((prev) => ({
-          ...prev,
-          launch,
-          currentStep: 4,
-          completedAt: failed ? null : new Date().toISOString(),
-        }));
+    updateDraft((prev) => ({
+      ...prev,
+      launch,
+      currentStep: 4,
+      completedAt: launch.status === "success" ? new Date().toISOString() : null,
+    }));
 
-        if (!failed) {
-          markOnboardingComplete();
-        }
-
-        resolve(launch);
-      }, 900);
-    });
-  }, [updateDraft]);
+    return launch;
+  }, [updateDraft, updateUser]);
 
   const value = useMemo<OnboardingContextValue>(
     () => ({
