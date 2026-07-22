@@ -1,14 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Download, Search } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { Loader2, Search } from "lucide-react";
 import type { AuditActor, AuditEvent, EventTone } from "@/types/app";
 import { StatusDot } from "@/components/atoms/app/StatusDot";
 import { FilterPills } from "@/components/molecules/app/FilterPills";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { auditEvents } from "@/lib/data/app/settings";
+import { mapAuditEvent } from "@/lib/api/mappers/audit";
+import * as auditService from "@/lib/api/services/audit";
+import { useSession } from "@/providers/session-provider";
 import { cn } from "@/lib/utils";
 
 type AuditFilter =
@@ -69,8 +72,26 @@ function matchesSearch(event: AuditEvent, query: string) {
 }
 
 export function AuditLogSettings() {
+  const { workspace } = useSession();
   const [filter, setFilter] = useState<AuditFilter>("all");
   const [search, setSearch] = useState("");
+  const [limit, setLimit] = useState(20);
+
+  const auditQuery = useQuery({
+    queryKey: ["audit", workspace?.id, limit],
+    queryFn: () =>
+      auditService.listAudit({
+        limit,
+        offset: 0,
+        workspaceId: workspace?.id,
+      }),
+    enabled: Boolean(workspace?.id),
+  });
+
+  const auditEvents = useMemo(
+    () => (auditQuery.data?.items ?? []).map(mapAuditEvent),
+    [auditQuery.data?.items],
+  );
 
   const counts = useMemo(
     () => ({
@@ -120,16 +141,9 @@ export function AuditLogSettings() {
             Audit log
           </h1>
           <p className="mt-1 text-sm text-text-muted">
-            Every action by every human and agent. Tamper-evident, exportable,
-            kept 13 months.
+            Every action by every human and agent. Tamper-evident, kept 13
+            months.
           </p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Button variant="secondary">Filter</Button>
-          <Button variant="secondary">
-            <Download className="size-4" />
-            Export CSV
-          </Button>
         </div>
       </header>
 
@@ -151,6 +165,11 @@ export function AuditLogSettings() {
       </div>
 
       <section className="overflow-hidden rounded-lg border border-border bg-surface">
+        {auditQuery.isLoading ? (
+          <div className="flex justify-center py-12">
+            <Loader2 className="size-6 animate-spin text-text-muted" />
+          </div>
+        ) : (
         <ul>
           {filtered.map((event, index) => {
             const showDay =
@@ -200,11 +219,21 @@ export function AuditLogSettings() {
             );
           })}
         </ul>
+        )}
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border px-[18px] py-3 text-xs text-text-subtle">
           <span>
-            Showing {filtered.length} of 18,420 events · 13 months retention
+            Showing {filtered.length} of {auditQuery.data?.total ?? 0} events
           </span>
-          <Button variant="link" size="sm" className="h-auto p-0">
+          <Button
+            variant="link"
+            size="sm"
+            className="h-auto p-0"
+            disabled={
+              !auditQuery.data ||
+              limit >= (auditQuery.data.total ?? 0)
+            }
+            onClick={() => setLimit((current) => current + 20)}
+          >
             Load more
           </Button>
         </div>
