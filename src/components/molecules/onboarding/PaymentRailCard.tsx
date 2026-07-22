@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { simulateAuthDelay } from "@/lib/demo-auth";
+import { delay } from "@/lib/async-utils";
 import type { PaymentRail, PaymentRailState } from "@/types/onboarding";
 import { cn } from "@/lib/utils";
 
@@ -50,7 +50,7 @@ export function PaymentRailCard({
       onUpdate(rail, { ...state, enabled: true, status: "connecting" });
 
       if (rail === "stripe") {
-        await simulateAuthDelay(800);
+        await delay(800);
         onUpdate(rail, { enabled: true, status: "connected" });
         return;
       }
@@ -61,7 +61,7 @@ export function PaymentRailCard({
         return;
       }
 
-      await simulateAuthDelay(800);
+      await delay(800);
       onUpdate(rail, {
         enabled: true,
         status: "connected",
