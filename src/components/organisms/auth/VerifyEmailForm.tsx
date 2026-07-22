@@ -8,7 +8,10 @@ import { FormErrorBanner } from "@/components/molecules/FormErrorBanner";
 import { OtpCodeField } from "@/components/molecules/OtpCodeField";
 import { ResendTimer } from "@/components/molecules/ResendTimer";
 import { VerifyEmailPanel } from "@/components/organisms/auth/panels/VerifyEmailPanel";
-import { simulateAuthDelay } from "@/lib/demo-auth";
+import { formatRetryMessage, parseApiError } from "@/lib/api/errors";
+import * as emailService from "@/lib/api/services/email";
+import * as usersService from "@/lib/api/services/users";
+import { getPostAuthPath, useSession } from "@/providers/session-provider";
 
 interface VerifyEmailFormProps {
   email: string;
@@ -16,6 +19,7 @@ interface VerifyEmailFormProps {
 
 export function VerifyEmailForm({ email }: VerifyEmailFormProps) {
   const router = useRouter();
+  const { updateUser } = useSession();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,13 +34,25 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps) {
     }
 
     setLoading(true);
-    await simulateAuthDelay();
-    setLoading(false);
-    router.push("/2fa-setup");
+    try {
+      await emailService.verifyEmail({ code });
+      const profile = await usersService.getProfile();
+      updateUser(profile);
+      router.push(getPostAuthPath(profile));
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleResend = async () => {
-    await simulateAuthDelay();
+    setError("");
+    try {
+      await emailService.sendVerificationCode();
+    } catch (err) {
+      setError(formatRetryMessage(parseApiError(err)));
+    }
   };
 
   return (
@@ -45,7 +61,8 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps) {
         Verify your email
       </h1>
       <p className="mt-1.5 text-[15px] text-text-muted">
-        Enter the 6-digit code we sent to <strong className="text-text">{email}</strong>
+        Enter the 6-digit code we sent to{" "}
+        <strong className="text-text">{email}</strong>
       </p>
 
       <FormErrorBanner message={error} className="mt-4" />
