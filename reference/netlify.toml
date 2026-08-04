@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+# app.js tolerates both "/01-live" and "/01-live.html", but pretty URLs are
+# off so the address bar matches the real filenames.
+[build.processing.html]
+  pretty_urls = false
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
