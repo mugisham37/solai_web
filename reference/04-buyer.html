@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#024241">
+<title>Buyer · storefront and checkout — SolAI</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="stage">
+<div class="frame">
+
+  <div class="chrome">
+    <div class="chrome-phone">9:41 · SolAI</div>
+    <div class="chrome-web">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="url">solai.shop/amara</span>
+      <span style="width:46px"></span>
+    </div>
+  </div>
+
+  <div class="shell">
+    <nav class="sidebar" aria-label="Sections"></nav>
+    <main class="main">
+
+<!-- ============ 13 · STOREFRONT ============ -->
+<section class="screen" id="s13">
+  <div class="phone-bar">
+    <span class="row gap-1"><span class="avatar" style="width:26px;height:26px;font-size:.66rem">AB</span><span class="t">Amara Beads</span></span>
+    <span class="spacer"></span>
+    <span class="chip chip-line"><i data-ic="lock"></i> Secure</span>
+  </div>
+
+  <div class="pad tight">
+    <div class="lay wide-side">
+      <div class="lay-main">
+        <div class="hero-shot s1"><i data-ic="image"></i></div>
+        <div class="cols k4" style="gap:.3rem">
+          <div class="shot s2"></div><div class="shot s3"></div><div class="shot s4"></div><div class="shot s6"></div>
+        </div>
+        <div class="anno">
+          <i data-ic="info"></i>
+          <span><span class="strong">New screen, and it changes shape the most.</span> On a phone this
+          is gallery-then-details, one column. From 1000px it becomes gallery left, buy box right and
+          sticky — the layout a buyer has learned from every other shop they've used.</span>
+        </div>
+      </div>
+
+      <div class="lay-side">
+        <div class="row-between">
+          <div>
+            <p class="h2">Beaded bracelet</p>
+            <p class="tiny">Handmade in Nyamirambo</p>
+          </div>
+          <p class="h2 money">RWF 8,500</p>
+        </div>
+
+        <p class="small">Glass beads strung by hand. Adjustable, fits most wrists. Made to order in any colour — say which one in the chat.</p>
+
+        <div class="card-sea">
+          <div class="row gap-2">
+            <span class="icon-tile sea"><i data-ic="shield"></i></span>
+            <div style="flex:1">
+              <p class="h4" style="color:#2C625C">Amara doesn't get your money yet</p>
+              <p class="tiny" style="color:#2C625C">SolAI holds it until you confirm the bracelet reached you. Not delivered? You're refunded. Disputes answered in <span class="strong">48 hours</span>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="row gap-2">
+            <span class="icon-tile deep"><i data-ic="store"></i></span>
+            <span style="flex:1">
+              <span class="h4" style="display:block">Amara Beads</span>
+              <span class="tiny">Kigali · selling since June</span>
+            </span>
+            <span class="chip chip-live">Verified wallet</span>
+          </div>
+          <hr class="divider" style="margin:.7rem 0">
+          <div class="ledger">
+            <div class="li"><span>Orders delivered</span><span class="strong">3 of 3</span></div>
+            <div class="li"><span>Confirmed by the buyer</span><span class="strong">100%</span></div>
+            <div class="li"><span>Usually ships</span><span class="strong">Same day</span></div>
+          </div>
+          <p class="tiny" style="margin-top:.5rem">A new seller. SolAI holds their money longer until this record grows.</p>
+        </div>
+
+        <button class="btn btn-sun btn-block btn-lg" data-go="14">Buy · RWF 8,500 <i data-ic="arrowR"></i></button>
+        <button class="btn btn-line btn-block"><i data-ic="wa"></i> Ask a question first</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 14 · CHECKOUT ============ -->
+<section class="screen" id="s14">
+  <div class="phone-bar">
+    <button class="icon-btn" data-go="13"><i data-ic="arrowL"></i></button>
+    <span class="t" data-t="pay">Pay</span>
+    <span class="spacer"></span>
+    <span class="chip chip-line"><i data-ic="lock"></i> SolAI</span>
+  </div>
+
+  <div class="pad">
+    <div class="lay">
+      <div class="lay-main">
+        <div class="stack gap-1" data-choice data-reveal="1" role="radiogroup" aria-label="Payment method">
+          <p class="label">How would you like to pay?</p>
+
+          <button class="radio-card" role="radio" aria-checked="true" data-val="mtn">
+            <span class="dot"></span><span class="icon-tile sun"><i data-ic="wallet"></i></span>
+            <span style="flex:1"><span class="h4" style="display:block">MTN Mobile Money</span>
+            <span class="tiny">Approve on your phone · nothing to type</span></span>
+            <span class="chip chip-sun from-md">Most used</span>
+          </button>
+
+          <button class="radio-card" role="radio" aria-checked="false" data-val="airtel">
+            <span class="dot"></span><span class="icon-tile sun"><i data-ic="wallet"></i></span>
+            <span style="flex:1"><span class="h4" style="display:block">Airtel Money</span>
+            <span class="tiny">Approve on your phone</span></span>
+          </button>
+
+          <button class="radio-card" role="radio" aria-checked="false" data-val="cod">
+            <span class="dot"></span><span class="icon-tile"><i data-ic="coins"></i></span>
+            <span style="flex:1"><span class="h4" style="display:block">Cash on delivery</span>
+            <span class="tiny">Pay the courier · still protected</span></span>
+          </button>
+
+          <button class="radio-card" role="radio" aria-checked="false" data-val="card">
+            <span class="dot"></span><span class="icon-tile"><i data-ic="card"></i></span>
+            <span style="flex:1"><span class="h4" style="display:block">Card</span>
+            <span class="tiny">Visa or Mastercard</span></span>
+          </button>
+        </div>
+
+        <div class="field-group" data-when="mtn">
+          <label class="label" data-t="phone_no">Phone number</label>
+          <div class="input-prefix"><span class="px">+250</span><input class="input" value="788 902 771" inputmode="tel"></div>
+          <span class="hint">A prompt arrives in about 5 seconds.</span>
+        </div>
+        <div class="field-group" data-when="airtel" hidden>
+          <label class="label" data-t="phone_no">Phone number</label>
+          <div class="input-prefix"><span class="px">+250</span><input class="input" value="730 118 204" inputmode="tel"></div>
+        </div>
+        <div class="field-group" data-when="card" hidden>
+          <label class="label">Card number</label>
+          <input class="input" placeholder="1234 1234 1234 1234">
+          <span class="hint">Settles in 2–7 days. Mobile money is instant.</span>
+        </div>
+        <div class="note grey" data-when="cod" hidden>The courier collects the cash and it enters the same escrow. Amara is paid after you confirm delivery, not before.</div>
+
+        <div class="anno">
+          <i data-ic="info"></i>
+          <span><span class="strong">Reversed.</span> Mobile money was a small toggle beside Card at the
+          end of the old checkout. Here it's the default and card is fourth — the order matches how
+          this market actually pays.</span>
+        </div>
+      </div>
+
+      <div class="lay-side">
+        <div class="card-soft">
+          <div class="ledger">
+            <div class="li"><span>Beaded bracelet × 1</span><span class="money">8,500</span></div>
+            <div class="li"><span>Moto delivery · Kimironko</span><span class="money">1,200</span></div>
+            <div class="li total"><span data-t="total">Total</span><span class="money">RWF 9,700</span></div>
+          </div>
+        </div>
+
+        <div class="note sea row gap-1"><i data-ic="shield"></i>
+          <span>You're paying <span class="strong">SolAI</span>, not Amara. We release her money once you confirm delivery.</span>
+        </div>
+
+        <button class="btn btn-sun btn-block btn-lg" data-sheet-open="#momo"><span data-t="pay">Pay</span> RWF 9,700</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-bg" id="momo">
+    <div class="sheet">
+      <div class="row-between" style="margin-bottom:.7rem">
+        <p class="h3">On your phone now</p>
+        <button class="icon-btn" data-sheet-close><i data-ic="x"></i></button>
+      </div>
+      <div class="sim">
+        MTN Mobile Money<br><br>
+        Pay <b>RWF 9,700</b> to<br>
+        <b>Amara Beads via SolAI</b><br><br>
+        Enter PIN to approve
+      </div>
+      <p class="tiny" style="margin:.7rem 0">The seller's name is in the prompt. Nobody is paying an anonymous merchant code and wondering where it went.</p>
+      <button class="btn btn-sun btn-block btn-lg" data-go="15">Approve</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 15 · PROTECTED ============ -->
+<section class="screen dark" id="s15">
+  <div class="pad narrow" style="gap:1rem">
+    <div class="center stack gap-1" style="padding-top:.8rem">
+      <span class="icon-tile berry" style="margin:0 auto;background:rgba(188,79,148,.25);color:#F2D3E6"><i data-ic="shield"></i></span>
+      <h1 class="h1 on-dark" style="margin-top:.5rem">Paid. And held.</h1>
+      <p class="small" style="color:var(--on-deep-60)">Amara can see the order. She can't see your money yet.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-node done"><span class="ico"><i data-ic="check"></i></span><span class="lb">You paid</span></div>
+      <div class="flow-node now"><span class="ico"><i data-ic="shield"></i></span><span class="lb">Held</span></div>
+      <div class="flow-node"><span class="ico"><i data-ic="truck"></i></span><span class="lb">On the way</span></div>
+      <div class="flow-node paid"><span class="ico"><i data-ic="wallet"></i></span><span class="lb">She's paid</span></div>
+    </div>
+
+    <div class="card center">
+      <p class="tiny">Give this code to the courier at the door</p>
+      <p class="display" style="font-size:2.6rem;letter-spacing:.14em;margin:.3rem 0">5083</p>
+      <p class="tiny">Only give it once the parcel is in your hands. That is the moment Amara gets paid.</p>
+    </div>
+
+    <div class="card-soft" style="background:rgba(255,255,255,.07)">
+      <div class="rowline" style="padding-top:0">
+        <span class="icon-tile sea"><i data-ic="check"></i></span>
+        <span style="flex:1"><span class="small strong" style="color:var(--on-deep)">Order confirmed</span><br><span class="tiny" style="color:var(--on-deep-30)">14:02</span></span>
+      </div>
+      <div class="rowline">
+        <span class="icon-tile"><i data-ic="truck"></i></span>
+        <span style="flex:1"><span class="small strong" style="color:var(--on-deep)">Courier collecting</span><br><span class="tiny" style="color:var(--on-deep-30)">Tracked from pickup to your door</span></span>
+        <span class="chip chip-live">Live</span>
+      </div>
+      <div class="rowline">
+        <span class="icon-tile"><i data-ic="alert"></i></span>
+        <span style="flex:1"><span class="small strong" style="color:var(--on-deep)">Not delivered by Thursday?</span><br><span class="tiny" style="color:var(--on-deep-30)">Tap here — a human answers within 48 hours</span></span>
+        <button class="btn btn-line btn-sm" data-go="17">Report</button>
+      </div>
+    </div>
+
+    <div class="anno" style="background:rgba(255,255,255,.06);border-color:var(--deep-hair);color:var(--on-deep-60)">
+      <i data-ic="info"></i>
+      <span><span class="strong" style="color:var(--on-deep)">This is the whole product in one screen.</span>
+      A stranger sent money to a person they've never met and isn't nervous. Everything else SolAI
+      does is downstream of that.</span>
+    </div>
+
+    <div class="push stack gap-2">
+      <button class="btn btn-sun btn-block btn-lg" data-go="16">See how support handles it <i data-ic="arrowR"></i></button>
+      <a class="btn btn-line btn-block" href="index.html">Back to the map</a>
+    </div>
+  </div>
+</section>
+
+    </main>
+  </div>
+  <nav class="tabbar" aria-label="Sections"></nav>
+</div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
