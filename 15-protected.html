@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#024241">
+<title>Your order — protected by SolAI</title>
+<meta name="description" content="Your money is held until the item reaches you. Your delivery code is here.">
+<style>
+/* SolAI — screen 15, the buyer's order and protection page. Self-contained. */
+@font-face{font-family:'Bricolage';src:url('assets/fonts/bricolage-grotesque-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Bricolage';src:url('assets/fonts/bricolage-grotesque-latin-800-normal.woff2') format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:'Figtree';src:url('assets/fonts/figtree-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Figtree';src:url('assets/fonts/figtree-latin-500-normal.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Figtree';src:url('assets/fonts/figtree-latin-600-normal.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Figtree';src:url('assets/fonts/figtree-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+:root{
+  --deep:#024241; --mid:#065C5A; --sea:#4A8F87;
+  --paper:#F7F2EE; --paper-2:#EFE7DF; --white:#FFFDFB;
+  --ink:#0B2322; --ink-70:rgba(11,35,34,.70); --ink-45:rgba(11,35,34,.45);
+  --ink-20:rgba(11,35,34,.20); --hair:rgba(11,35,34,.12);
+  --sun:#FF7F5C; --sun-deep:#E8532B; --berry:#BC4F94; --mauve:#A98CC4; --clay:#6E0000;
+  --on-deep:#F2EDE7; --on-deep-60:rgba(242,237,231,.62);
+  --on-deep-30:rgba(242,237,231,.30); --deep-hair:rgba(242,237,231,.16);
+  --r-card:18px; --r-tile:14px;
+  --font-d:'Bricolage','Figtree',system-ui,sans-serif;
+  --font-b:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.2,.8,.3,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#01302F;font-family:var(--font-b);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.app{container-type:inline-size;container-name:app;width:100%;max-width:1240px;margin:0 auto;min-height:100vh;
+     background:var(--paper);display:flex;flex-direction:column;transition:max-width .34s var(--ease)}
+body.w-phone .app{max-width:412px}
+body.w-tablet .app{max-width:840px}
+body.w-desktop .app{max-width:1240px}
+
+.d1{font-family:var(--font-d);font-weight:800;text-transform:uppercase;letter-spacing:-.026em;line-height:.95;margin:0;font-size:1.55rem}
+.d2{font-family:var(--font-d);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin:0;font-size:1.2rem}
+.d3{font-family:var(--font-d);font-weight:700;letter-spacing:-.01em;line-height:1.15;margin:0;font-size:.98rem}
+.h4{font-weight:700;font-size:.92rem;line-height:1.3;margin:0}
+.lede{font-size:.96rem;color:var(--ink-70);margin:0}
+.small{font-size:.85rem;line-height:1.5;color:var(--ink-70);margin:0}
+.tiny{font-size:.74rem;line-height:1.45;color:var(--ink-45);margin:0}
+.strong{font-weight:700;color:var(--ink)}
+.eyebrow{font-family:var(--font-d);font-weight:700;text-transform:uppercase;font-size:.64rem;letter-spacing:.14em;color:var(--sun-deep);margin:0}
+.eyebrow.q{color:var(--ink-45)}
+.money{font-variant-numeric:tabular-nums;font-weight:700}
+.on-dark{color:var(--on-deep)}
+.on-dark .small,.on-dark .lede{color:var(--on-deep-60)}
+.on-dark .tiny{color:var(--on-deep-30)}
+.on-dark .strong{color:var(--on-deep)}
+@container app (min-width:700px){ .d1{font-size:1.95rem} .d2{font-size:1.34rem} }
+
+.row{display:flex;align-items:center;gap:.6rem}
+.between{display:flex;align-items:center;justify-content:space-between;gap:.7rem}
+.stack{display:flex;flex-direction:column}
+.g1{gap:.5rem}.g2{gap:.85rem}.g3{gap:1.25rem}
+.wrapf{flex-wrap:wrap}
+.spacer{flex:1}
+.grid{display:grid;gap:.7rem}
+.c2{grid-template-columns:repeat(2,1fr)}
+.c3,.c4{grid-template-columns:repeat(2,1fr)}
+@container app (min-width:700px){ .c3{grid-template-columns:repeat(3,1fr)} .c4{grid-template-columns:repeat(4,1fr)} }
+.two{display:grid;gap:1.2rem;align-items:start}
+@container app (min-width:1000px){ .two{grid-template-columns:minmax(0,1fr) minmax(360px,.82fr);gap:2rem} .two .side-col{position:sticky;top:4.6rem} }
+
+.card{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-card);padding:1rem}
+.card-soft{background:var(--paper-2);border-radius:var(--r-card);padding:1rem}
+.card-dark{background:var(--deep);color:var(--on-deep);border-radius:var(--r-card);padding:1.05rem}
+.card-sun{background:var(--sun);color:#2A0A02;border-radius:var(--r-card);padding:1.05rem}
+.card-berry{background:rgba(188,79,148,.1);border:1px solid rgba(188,79,148,.28);border-radius:var(--r-card);padding:1rem}
+.card-sea{background:rgba(74,143,135,.12);border:1px solid rgba(74,143,135,.3);border-radius:var(--r-card);padding:1rem}
+.card-clay{background:rgba(110,0,0,.07);border:1px solid rgba(110,0,0,.24);border-radius:var(--r-card);padding:1rem}
+.tile{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-tile);padding:.78rem}
+hr.rule{border:0;border-top:1px solid var(--hair);margin:0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.42rem;border:1px solid transparent;border-radius:999px;
+     cursor:pointer;font-weight:700;font-size:.88rem;padding:.7rem 1.1rem;line-height:1;background:transparent;
+     transition:transform .13s var(--ease),filter .13s,background .13s;min-height:44px}
+.btn:active{transform:translateY(1px)}
+.btn-sun{background:var(--sun);color:#2A0A02;box-shadow:0 10px 20px -13px rgba(232,83,43,.95)}
+.btn-sun:hover{filter:brightness(1.06)}
+.btn-deep{background:var(--deep);color:var(--on-deep)}
+.btn-wa{background:#1EA65A;color:#fff}
+.btn-clay{background:var(--clay);color:#fff}
+.btn-line{border-color:var(--ink-20)}
+.btn-line:hover{background:var(--paper-2)}
+.btn-plain{background:none;border:0;cursor:pointer;font-weight:600;font-size:.83rem;color:var(--ink-45);padding:.3rem;min-height:auto}
+.btn-plain:hover{color:var(--ink)}
+.btn-sm{padding:.45rem .78rem;font-size:.79rem;min-height:36px}
+.btn-lg{padding:.92rem 1.4rem;font-size:.96rem;min-height:50px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.42;cursor:not-allowed;box-shadow:none}
+.on-dark .btn-line{border-color:var(--deep-hair);color:var(--on-deep)}
+
+.chip{display:inline-flex;align-items:center;gap:.3rem;border-radius:999px;padding:.26rem .6rem;font-size:.72rem;font-weight:700;
+      background:var(--paper-2);color:var(--ink-70);white-space:nowrap;border:0}
+.chip-sun{background:var(--sun);color:#2A0A02}
+.chip-held{background:rgba(188,79,148,.16);color:#8E2E6D}
+.chip-live{background:rgba(74,143,135,.18);color:#2F6B64}
+.chip-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sea);animation:pulse 1.7s infinite}
+.chip-clay{background:rgba(110,0,0,.1);color:var(--clay)}
+.chip-line{background:transparent;border:1px solid var(--ink-20)}
+.chip-ai{background:rgba(169,140,196,.2);color:#5E4478}
+.chip-grey{background:var(--paper-2);color:var(--ink-45)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.itile{width:38px;height:38px;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;flex:none}
+.itile.sun{background:var(--sun);color:#2A0A02}
+.itile.sea{background:rgba(74,143,135,.2);color:#2F6B64}
+.itile.berry{background:rgba(188,79,148,.18);color:#8E2E6D}
+.itile.clay{background:rgba(110,0,0,.1);color:var(--clay)}
+.itile.deep{background:var(--deep);color:var(--on-deep)}
+.icn{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);background:var(--white);display:grid;place-items:center;cursor:pointer;flex:none}
+.iconbtn:hover{background:var(--paper-2)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--deep);color:var(--on-deep);display:grid;place-items:center;font-weight:700;font-size:.78rem;flex:none}
+
+.topbar{position:sticky;top:0;z-index:30;background:rgba(247,242,238,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair);flex:none}
+.topbar .in{display:flex;align-items:center;gap:.55rem;padding:.6rem .9rem}
+@container app (min-width:700px){ .topbar .in{padding:.7rem 1.5rem} }
+.brandline{display:flex;align-items:center;gap:.45rem;font-weight:700;font-size:.9rem}
+.brandline .mark{width:24px;height:24px;border-radius:8px;background:var(--sun);display:grid;place-items:center;color:#2A0A02}
+.brandline .mark svg{width:14px;height:14px}
+.secure{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;color:#2F6B64}
+
+.pad{padding:1rem .9rem 6rem;display:flex;flex-direction:column;gap:1rem}
+@container app (min-width:700px){ .pad{padding:1.4rem 1.5rem 6rem;gap:1.1rem} }
+@container app (min-width:1000px){ .pad{padding:1.8rem 1.8rem 2.4rem} }
+.state{display:none;flex:1;flex-direction:column}
+.state.on{display:flex;animation:rise .3s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.narrow{width:100%;max-width:620px;margin:0 auto}
+
+.field{display:flex;flex-direction:column;gap:.3rem}
+.label{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-45)}
+.input{width:100%;background:var(--white);border:1px solid var(--ink-20);border-radius:12px;padding:.72rem .8rem;font-size:.95rem;outline:none}
+.input:focus{border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,127,92,.2)}
+.input.bad{border-color:var(--clay);box-shadow:0 0 0 3px rgba(110,0,0,.14)}
+textarea.input{min-height:80px;resize:vertical;line-height:1.5}
+select.input{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-45) 50%),linear-gradient(135deg,var(--ink-45) 50%,transparent 50%);
+  background-position:calc(100% - 19px) 55%,calc(100% - 14px) 55%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:2.2rem}
+.hint{font-size:.72rem;color:var(--ink-45)}
+.err{font-size:.75rem;color:var(--clay);font-weight:600;display:none;align-items:center;gap:.3rem}
+.err.on{display:flex}
+.prefix{display:flex}
+.prefix .px{padding:.72rem .68rem;border:1px solid var(--ink-20);border-right:0;border-radius:12px 0 0 12px;background:var(--paper-2);font-weight:700;font-size:.88rem;white-space:nowrap}
+.prefix .input{border-radius:0 12px 12px 0}
+.opt{display:flex;align-items:flex-start;gap:.7rem;width:100%;text-align:left;cursor:pointer;background:var(--white);
+     border:1px solid var(--ink-20);border-radius:var(--r-tile);padding:.82rem;transition:border-color .15s,background .15s;min-height:auto}
+.opt:hover{border-color:var(--ink-45)}
+.opt .dot{width:19px;height:19px;border-radius:50%;border:2px solid var(--ink-20);flex:none;position:relative;margin-top:.12rem}
+.opt[aria-checked="true"]{border-color:var(--sun);background:rgba(255,127,92,.07)}
+.opt[aria-checked="true"] .dot{border-color:var(--sun);background:var(--sun)}
+.opt[aria-checked="true"] .dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:#2A0A02}
+.reveal{display:none;padding:.82rem;border:1px solid var(--hair);border-top:0;border-radius:0 0 var(--r-tile) var(--r-tile);
+        background:var(--paper-2);margin-top:-.6rem;flex-direction:column;gap:.8rem}
+.reveal.on{display:flex;animation:drop .25s var(--ease) both}
+@keyframes drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.switch{width:44px;height:25px;border-radius:999px;background:var(--ink-20);position:relative;cursor:pointer;border:0;flex:none;transition:background .17s;min-height:auto}
+.switch::after{content:'';position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:#fff;transition:transform .17s var(--ease)}
+.switch[aria-checked="true"]{background:var(--sea)}
+.switch[aria-checked="true"]::after{transform:translateX(19px)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--ink-20);border-radius:999px;background:var(--white);overflow:hidden}
+.qty button{border:0;background:none;cursor:pointer;width:40px;height:42px;display:grid;place-items:center;min-height:auto}
+.qty button:hover{background:var(--paper-2)}
+.qty span{min-width:34px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+
+.flow{display:flex;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-tile);overflow:hidden}
+.flow .n{flex:1;padding:.64rem .3rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.flow .n + .n{border-left:1px solid var(--hair)}
+.flow .n .b{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:var(--paper-2);color:var(--ink-45)}
+.flow .n .b svg{width:14px;height:14px}
+.flow .n .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-45);line-height:1.2}
+.flow .n.done .b{background:var(--sea);color:#fff}
+.flow .n.done .l{color:var(--ink-70)}
+.flow .n.now{background:rgba(188,79,148,.1)}
+.flow .n.now .b{background:var(--berry);color:#fff;box-shadow:0 0 0 4px rgba(188,79,148,.16)}
+.flow .n.now .l{color:var(--berry)}
+.flow .n.paid.now{background:rgba(74,143,135,.14)}
+.flow .n.paid.now .b{background:var(--sea);box-shadow:0 0 0 4px rgba(74,143,135,.18)}
+.flow .n.paid.now .l{color:#2F6B64}
+
+.ledger{display:flex;flex-direction:column}
+.ledger .li{display:flex;justify-content:space-between;gap:1rem;padding:.42rem 0;font-size:.85rem}
+.ledger .li + .li{border-top:1px dashed var(--hair)}
+.ledger .li.total{border-top:1px solid var(--ink-20);margin-top:.15rem;padding-top:.55rem;font-weight:700;font-size:.95rem}
+.note{border-radius:12px;padding:.7rem .8rem;font-size:.81rem;line-height:1.5;display:flex;gap:.45rem;align-items:flex-start}
+.note.grey{background:var(--paper-2);color:var(--ink-70)}
+.note.sea{background:rgba(74,143,135,.13);color:#2C625C}
+.note.berry{background:rgba(188,79,148,.1);color:#8E2E6D}
+.note.clay{background:rgba(110,0,0,.08);color:var(--clay)}
+.note svg{flex:none;margin-top:.15rem}
+
+.stickybar{position:sticky;bottom:0;z-index:28;background:rgba(247,242,238,.95);backdrop-filter:blur(14px);
+  border-top:1px solid var(--hair);padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));flex:none}
+.stickybar .in{display:flex;align-items:center;gap:.6rem;max-width:1100px;margin:0 auto}
+@container app (min-width:700px){ .stickybar{padding:.85rem 1.5rem calc(.85rem + env(safe-area-inset-bottom))} }
+.stickybar .cta{flex:1}
+@container app (min-width:700px){ .stickybar .cta{flex:none;min-width:300px;margin-left:auto} }
+
+.veil{position:fixed;inset:0;background:rgba(2,34,33,.62);z-index:60;display:none;align-items:flex-end;justify-content:center}
+.veil.open{display:flex;animation:fade .2s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sheet{width:100%;max-width:520px;background:var(--white);border-radius:22px 22px 0 0;padding:1.05rem;animation:up .3s var(--ease) both;max-height:90vh;overflow:auto}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@container app (min-width:700px){ .veil{align-items:center} .sheet{border-radius:20px;animation:rise .25s var(--ease) both} }
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,16px);z-index:95;background:var(--deep);color:var(--on-deep);
+  border-radius:999px;padding:.6rem 1rem;font-size:.83rem;font-weight:600;display:flex;align-items:center;gap:.45rem;
+  opacity:0;pointer-events:none;transition:opacity .22s var(--ease),transform .22s var(--ease);box-shadow:0 18px 40px -18px rgba(0,0,0,.6);max-width:90vw}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast svg{color:var(--sun)}
+
+.rev{position:fixed;right:10px;bottom:14px;z-index:90;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.revgrp{display:flex;gap:2px;background:rgba(2,34,33,.93);border:1px solid var(--deep-hair);border-radius:999px;padding:3px;backdrop-filter:blur(10px);flex-wrap:wrap;max-width:min(92vw,620px);justify-content:flex-end}
+.revgrp button{border:0;background:none;cursor:pointer;border-radius:999px;padding:.32rem .52rem;color:var(--on-deep-30);
+  display:grid;place-items:center;min-height:auto;font-size:.67rem;font-weight:700}
+.revgrp button[aria-pressed="true"]{background:var(--sun);color:#2A0A02}
+.revgrp button svg{width:16px;height:16px}
+.screentag{position:fixed;left:10px;bottom:16px;z-index:90;background:rgba(2,34,33,.93);border:1px solid var(--deep-hair);
+  color:var(--on-deep-60);border-radius:999px;padding:.3rem .7rem;font-size:.67rem;font-weight:700;backdrop-filter:blur(10px)}
+.screentag b{color:var(--sun);font-family:var(--font-d)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></symbol>
+  <symbol id="i-arrowR" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrowL" viewBox="0 0 24 24"><path d="M19 12H6M11 18l-6-6 6-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-chevR" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-chevD" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.3 3 8.2 7 9.5 4-1.3 7-5.2 7-9.5V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3.5 7.5A2 2 0 0 1 5.5 5.5H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5.5a2 2 0 0 1-2-2z"/><path d="M16 12h2.5"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/><path d="M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 7.5h10v9h-10z"/><path d="M12.5 11h4l3 3v2.5h-7z"/><circle cx="6.5" cy="18" r="1.8"/><circle cx="16.5" cy="18" r="1.8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><path d="M16 5.6a3.2 3.2 0 0 1 0 5.8M17 14.4a6 6 0 0 1 4 4.6"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 9 5.6 4.6A1 1 0 0 1 6.5 4h11a1 1 0 0 1 .9.6L20 9"/><path d="M9 20v-6h6v6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.4z"/><path d="M8.9 8.6c.6-.2 1 0 1.2.5l.5 1.1c.1.3 0 .5-.2.7l-.4.4c.5 1 1.3 1.7 2.3 2.2l.4-.4c.2-.2.5-.3.7-.2l1.1.5c.5.2.6.7.5 1.1-.3.9-1.4 1.2-2.3.9a8 8 0 0 1-4.6-4.5c-.3-.9 0-2 .8-2.3z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 2.8 20h18.4z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.4L19 10l-5.1 1.6L12 17l-1.9-5.4L5 10l5.1-1.6z"/><path d="M18.5 15.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.2a1 1 0 0 0 .8-.4l.9-1.2A1 1 0 0 1 9.2 4h5.6a1 1 0 0 1 .8.4l.9 1.2a1 1 0 0 0 .8.4h1.2A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.4"/><path d="M15.5 5.5h-9a2 2 0 0 0-2 2v9"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="m8.3 10.7 7.4-3.9M8.3 13.3l7.4 3.9"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5.5 21V4"/><path d="M5.5 5h11l-2 3.5 2 3.5h-11"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-tablet" viewBox="0 0 24 24"><rect x="4.5" y="2.5" width="15" height="19" rx="2.4"/><path d="M11 18.6h2"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="11" rx="1.8"/><path d="M2 18.5h20"/></symbol>
+  <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-13.7-5.3L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 13.7 5.3L20 16"/><path d="M20 20v-4h-4"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M15.5 12v2.4"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a14 14 0 0 1 0 17a14 14 0 0 1 0-17z"/></symbol>
+</svg>
+<div class="app" id="app">
+
+  <header class="topbar">
+    <div class="in">
+      <span class="brandline"><span class="mark"><svg class="icn"><use href="#i-bolt"/></svg></span> Order #1042</span>
+      <span class="spacer"></span>
+      <span class="secure" id="secureTag"><svg class="icn" style="width:14px;height:14px"><use href="#i-shield"/></svg> Protected</span>
+    </div>
+  </header>
+
+  <!-- ============ 15a · PAID AND HELD ============ -->
+  <section class="state" id="s-held" aria-label="Paid and held">
+    <div class="pad">
+      <div class="two">
+        <div class="stack g2">
+
+          <div style="text-align:center;padding:.4rem 0 .2rem">
+            <span class="itile berry" style="width:56px;height:56px;border-radius:18px;margin:0 auto .8rem">
+              <svg class="icn" style="width:26px;height:26px"><use href="#i-shield"/></svg></span>
+            <h1 class="d1">Paid. And held.</h1>
+            <p class="lede" style="margin-top:.5rem;max-width:44ch;margin-left:auto;margin-right:auto">
+              Amara can see your order. She cannot see your money — and she will not be paid until you say the bracelet reached you.</p>
+          </div>
+
+          <div class="flow">
+            <div class="n done"><span class="b"><svg class="icn"><use href="#i-check"/></svg></span><span class="l">You paid</span></div>
+            <div class="n now"><span class="b"><svg class="icn"><use href="#i-shield"/></svg></span><span class="l">Held</span></div>
+            <div class="n"><span class="b"><svg class="icn"><use href="#i-truck"/></svg></span><span class="l">On the way</span></div>
+            <div class="n paid"><span class="b"><svg class="icn"><use href="#i-wallet"/></svg></span><span class="l">She&rsquo;s paid</span></div>
+          </div>
+
+          <!-- THE CODE -->
+          <div class="card" style="text-align:center;border-color:rgba(255,127,92,.45);background:linear-gradient(180deg,rgba(255,127,92,.08),transparent)">
+            <p class="eyebrow">Your delivery code</p>
+            <p class="d1" id="code" style="font-size:3rem;letter-spacing:.2em;margin:.5rem 0">5083</p>
+            <div class="row g1" style="justify-content:center;margin-bottom:.7rem">
+              <button class="btn btn-line btn-sm" id="copyCode"><svg class="icn" style="width:14px;height:14px"><use href="#i-copy"/></svg> Copy</button>
+              <button class="btn btn-line btn-sm" data-sheet-open="#codeSheet"><svg class="icn" style="width:14px;height:14px"><use href="#i-info"/></svg> What is this?</button>
+            </div>
+            <p class="small" style="max-width:38ch;margin:0 auto">Give it to the courier <span class="strong">only once the bracelet is in your hands.</span> That is the moment Amara gets paid.</p>
+          </div>
+
+          <div class="note clay"><svg class="icn"><use href="#i-alert"/></svg>
+            <span><span class="strong">Nobody should ask you for this code before delivery.</span> Not the seller, not the courier, not anyone saying they are from SolAI. If someone does, report it and do not give it.</span></div>
+
+          <!-- timeline -->
+          <div class="card">
+            <p class="eyebrow q" style="margin-bottom:.7rem">What has happened</p>
+            <div id="timeline"></div>
+          </div>
+
+          <div class="card">
+            <p class="eyebrow q" style="margin-bottom:.6rem">Expect delivery</p>
+            <div class="row g2">
+              <span class="itile sea"><svg class="icn"><use href="#i-clock"/></svg></span>
+              <span style="flex:1"><span class="h4" style="display:block">Today, between 2pm and 6pm</span>
+                <span class="tiny">Amara usually ships the same day. You will get an SMS when the courier collects it.</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- side -->
+        <div class="stack g2 side-col">
+          <div class="card">
+            <p class="eyebrow q" style="margin-bottom:.7rem">Your order</p>
+            <div class="row g2" style="align-items:flex-start">
+              <span style="width:60px;height:60px;border-radius:12px;overflow:hidden;flex:none;background:var(--paper-2)" id="thumb"></span>
+              <span style="flex:1"><span class="h4" style="display:block">Hand-strung beaded bracelet</span>
+                <span class="tiny">Blue · quantity 1</span><br>
+                <span class="tiny">From <span class="strong">Amara Beads</span></span></span>
+            </div>
+            <hr class="rule" style="margin:.75rem 0">
+            <div class="ledger">
+              <div class="li"><span>Bracelet × 1</span><span class="money">RWF 8,500</span></div>
+              <div class="li"><span>Delivery · Kimironko</span><span class="money">RWF 1,200</span></div>
+              <div class="li total"><span>Paid, and held</span><span class="money">RWF 9,700</span></div>
+            </div>
+            <button class="btn btn-line btn-block btn-sm" style="margin-top:.8rem" id="receiptBtn">
+              <svg class="icn" style="width:14px;height:14px"><use href="#i-down"/></svg> Download receipt</button>
+          </div>
+
+          <div class="card-berry">
+            <p class="h4" style="color:#8E2E6D;margin-bottom:.35rem">Where your money is</p>
+            <p class="tiny" style="color:#8E2E6D">In SolAI&rsquo;s account, against this order. Not Amara&rsquo;s, and no longer yours. It moves one way or the other — to her when you confirm, or back to you if it never arrives.</p>
+          </div>
+
+          <div class="card">
+            <p class="eyebrow q" style="margin-bottom:.6rem">Need something?</p>
+            <div class="stack g1">
+              <button class="btn btn-wa btn-block btn-sm" id="askSeller"><svg class="icn"><use href="#i-wa"/></svg> Message Amara</button>
+              <button class="btn btn-line btn-block btn-sm" data-sheet-open="#problemSheet">Something is wrong</button>
+              <button class="btn btn-line btn-block btn-sm" id="cancelBtn">Cancel this order</button>
+            </div>
+            <p class="tiny" style="margin-top:.6rem">You can cancel free until the courier collects it. After that, report a problem instead.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 15b · ON THE WAY ============ -->
+  <section class="state" id="s-transit" aria-label="On the way">
+    <div class="pad">
+      <div class="two">
+        <div class="stack g2">
+          <div>
+            <p class="eyebrow">On the way</p>
+            <h1 class="d1" style="margin-top:.35rem">It is with the courier</h1>
+            <p class="lede" style="margin-top:.5rem">Have your code ready. Check the bracelet first, then read the code out.</p>
+          </div>
+
+          <div class="flow">
+            <div class="n done"><span class="b"><svg class="icn"><use href="#i-check"/></svg></span><span class="l">You paid</span></div>
+            <div class="n done"><span class="b"><svg class="icn"><use href="#i-shield"/></svg></span><span class="l">Held</span></div>
+            <div class="n now"><span class="b"><svg class="icn"><use href="#i-truck"/></svg></span><span class="l">On the way</span></div>
+            <div class="n paid"><span class="b"><svg class="icn"><use href="#i-wallet"/></svg></span><span class="l">She&rsquo;s paid</span></div>
+          </div>
+
+          <div class="card" style="text-align:center;border-color:rgba(255,127,92,.45)">
+            <p class="eyebrow">Read this out at the door</p>
+            <p class="d1" style="font-size:3rem;letter-spacing:.2em;margin:.5rem 0">5083</p>
+            <p class="small">Only after you have the bracelet and it is what you ordered.</p>
+          </div>
+
+          <div class="card">
+            <div class="row g2">
+              <span class="avatar">EM</span>
+              <span style="flex:1"><span class="h4" style="display:block">Eric M. · moto courier</span>
+                <span class="tiny">MT-114 · collected 14:20 · about 15 minutes away</span></span>
+              <button class="btn btn-line btn-sm" id="callCourier">Call</button>
+            </div>
+            <div style="height:8px;border-radius:999px;background:var(--paper-2);overflow:hidden;margin-top:.9rem">
+              <span id="trackBar" style="display:block;height:100%;width:0;background:var(--sea);transition:width 1.2s var(--ease)"></span></div>
+            <div class="between" style="margin-top:.4rem"><span class="tiny">Collected</span><span class="tiny">Kimironko</span></div>
+          </div>
+
+          <div class="card">
+            <p class="eyebrow q" style="margin-bottom:.7rem">What has happened</p>
+            <div id="timeline2"></div>
+          </div>
+
+          <div class="note grey"><svg class="icn"><use href="#i-info"/></svg>
+            <span>If the bracelet is not what was described, do not give the code. Report it instead and the money stays held while a person looks.</span></div>
+        </div>
+
+        <div class="stack g2 side-col">
+          <div class="card-sea">
+            <p class="h4" style="color:#2C625C;margin-bottom:.35rem">Already have it?</p>
+            <p class="tiny" style="color:#2C625C;margin-bottom:.8rem">If you have the bracelet and you are happy, you can release the money from here instead of reading the code out.</p>
+            <button class="btn btn-sea btn-block" id="confirmBtn"><svg class="icn"><use href="#i-check"/></svg> I have received it</button>
+          </div>
+          <div class="card">
+            <p class="eyebrow q" style="margin-bottom:.6rem">Need something?</p>
+            <div class="stack g1">
+              <button class="btn btn-wa btn-block btn-sm" id="askSeller2"><svg class="icn"><use href="#i-wa"/></svg> Message Amara</button>
+              <button class="btn btn-line btn-block btn-sm" data-sheet-open="#problemSheet">Something is wrong</button>
+            </div>
+          </div>
+          <div class="card-soft">
+            <p class="h4" style="margin-bottom:.4rem">If nobody confirms</p>
+            <p class="tiny">The money releases to Amara automatically <span class="strong">72 hours after delivery</span>, unless you have reported a problem. You will be reminded before that happens.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 15c · DONE ============ -->
+  <section class="state" id="s-done" aria-label="Delivered and released">
+    <div class="pad">
+      <div class="narrow stack g3">
+        <div style="text-align:center">
+          <span class="itile sea" style="width:60px;height:60px;border-radius:20px;background:var(--sea);color:#fff;margin:0 auto .9rem">
+            <svg class="icn" style="width:28px;height:28px;stroke-width:2.4"><use href="#i-check"/></svg></span>
+          <h1 class="d1">All done</h1>
+          <p class="lede" style="margin-top:.5rem">You have the bracelet, and Amara has been paid. Nothing is outstanding.</p>
+        </div>
+
+        <div class="flow">
+          <div class="n done"><span class="b"><svg class="icn"><use href="#i-check"/></svg></span><span class="l">You paid</span></div>
+          <div class="n done"><span class="b"><svg class="icn"><use href="#i-shield"/></svg></span><span class="l">Held</span></div>
+          <div class="n done"><span class="b"><svg class="icn"><use href="#i-truck"/></svg></span><span class="l">Delivered</span></div>
+          <div class="n paid now"><span class="b"><svg class="icn"><use href="#i-wallet"/></svg></span><span class="l">She&rsquo;s paid</span></div>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow q" style="margin-bottom:.6rem">Receipt</p>
+          <div class="ledger">
+            <div class="li"><span>Hand-strung beaded bracelet × 1</span><span class="money">RWF 8,500</span></div>
+            <div class="li"><span>Delivery · Kimironko</span><span class="money">RWF 1,200</span></div>
+            <div class="li"><span>Paid by</span><span class="strong">MTN · +250 788 ••• 771</span></div>
+            <div class="li"><span>Code accepted</span><span class="chip chip-live">16:41</span></div>
+            <div class="li total"><span>Total</span><span class="money">RWF 9,700</span></div>
+          </div>
+          <button class="btn btn-line btn-block btn-sm" style="margin-top:.8rem" id="receiptBtn2">
+            <svg class="icn" style="width:14px;height:14px"><use href="#i-down"/></svg> Download receipt</button>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow q" style="margin-bottom:.6rem">How was it?</p>
+          <p class="small" style="margin-bottom:.7rem">This only counts because you actually bought and confirmed. It is what the next buyer sees.</p>
+          <div class="row g1" id="rate">
+            <button class="btn btn-line" data-rate="good"><svg class="icn"><use href="#i-check"/></svg> All good</button>
+            <button class="btn btn-line" data-rate="late">It arrived late</button>
+            <button class="btn btn-line" data-rate="bad">Not as described</button>
+          </div>
+        </div>
+
+        <div class="row g1 wrapf">
+          <a class="btn btn-sun" href="13-storefront.html">Buy from Amara again</a>
+          <button class="btn btn-line" id="shareShop"><svg class="icn"><use href="#i-share"/></svg> Tell someone about this shop</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 15d · PROBLEM REPORTED ============ -->
+  <section class="state" id="s-dispute" aria-label="Problem reported">
+    <div class="pad">
+      <div class="narrow stack g3">
+        <div style="text-align:center">
+          <span class="itile clay" style="width:56px;height:56px;border-radius:18px;margin:0 auto .9rem">
+            <svg class="icn" style="width:26px;height:26px"><use href="#i-alert"/></svg></span>
+          <h1 class="d1">We are looking at it</h1>
+          <p class="lede" style="margin-top:.5rem">Your <span class="strong">RWF 9,700 is still held</span>. It has not gone to Amara and it will not while this is open.</p>
+        </div>
+
+        <div class="card-berry">
+          <div class="between wrapf">
+            <div><p class="tiny" style="color:#8E2E6D">Frozen while we look</p>
+              <p class="d2" style="color:#8E2E6D;margin-top:.2rem">RWF 9,700</p></div>
+            <span class="chip chip-held">Case #D-2291</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow q" style="margin-bottom:.7rem">What happens now</p>
+          <div class="stack g2">
+            <div class="row g2"><span class="chip chip-sun" style="width:22px;height:22px;padding:0;justify-content:center">1</span>
+              <span class="small">A person reads what you sent, plus the courier&rsquo;s record of the delivery.</span></div>
+            <div class="row g2"><span class="chip chip-sun" style="width:22px;height:22px;padding:0;justify-content:center">2</span>
+              <span class="small">Amara gets a chance to answer. You will both see the outcome.</span></div>
+            <div class="row g2"><span class="chip chip-sun" style="width:22px;height:22px;padding:0;justify-content:center">3</span>
+              <span class="small">You are refunded to the wallet you paid from, or the money is released — never anywhere else.</span></div>
+          </div>
+          <div class="note grey" style="margin-top:.8rem"><svg class="icn"><use href="#i-clock"/></svg>
+            <span>Answered within <span class="strong">48 hours</span>. That is a published promise, not a target. <span class="strong" id="slaLeft">41 hours left</span>.</span></div>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow q" style="margin-bottom:.6rem">What you told us</p>
+          <p class="small" id="reasonEcho">The bracelet never arrived.</p>
+          <button class="btn btn-line btn-block btn-sm" style="margin-top:.7rem" data-sheet-open="#addSheet">Add a photo or more detail</button>
+        </div>
+
+        <button class="btn btn-line btn-block" id="waSupport"><svg class="icn"><use href="#i-wa"/></svg> Message SolAI support</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 15e · REFUNDED ============ -->
+  <section class="state" id="s-refunded" aria-label="Refunded">
+    <div class="pad">
+      <div class="narrow stack g3">
+        <div style="text-align:center">
+          <span class="itile sea" style="width:60px;height:60px;border-radius:20px;background:var(--sea);color:#fff;margin:0 auto .9rem">
+            <svg class="icn" style="width:28px;height:28px;stroke-width:2.4"><use href="#i-check"/></svg></span>
+          <h1 class="d1">You have been refunded</h1>
+          <p class="lede" style="margin-top:.5rem">RWF 9,700 has gone back to the wallet you paid from. Amara was never paid.</p>
+        </div>
+        <div class="card-sea">
+          <div class="ledger">
+            <div class="li"><span>Refunded to</span><span class="strong">MTN · +250 788 ••• 771</span></div>
+            <div class="li"><span>Sent</span><span class="strong">Today 09:14</span></div>
+            <div class="li"><span>Usually arrives in</span><span class="strong">Under a minute</span></div>
+            <div class="li total"><span>Amount</span><span class="money">RWF 9,700</span></div>
+          </div>
+        </div>
+        <div class="note grey"><svg class="icn"><use href="#i-info"/></svg>
+          <span>Nothing arrived after ten minutes? Message us and we will trace it with the network — the reference is on your receipt.</span></div>
+        <div class="row g1 wrapf">
+          <button class="btn btn-line" id="receiptBtn3"><svg class="icn"><use href="#i-down"/></svg> Download receipt</button>
+          <a class="btn btn-sun" href="13-storefront.html">Try a different seller</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ SHEETS ============ -->
+<div class="veil" id="codeSheet"><div class="sheet">
+  <div class="between" style="margin-bottom:.9rem"><p class="d3">About your code</p>
+    <button class="iconbtn" data-close aria-label="Close"><svg class="icn"><use href="#i-x"/></svg></button></div>
+  <div class="stack g2">
+    <div class="row g2"><span class="itile sun"><svg class="icn"><use href="#i-key"/></svg></span>
+      <span class="small"><span class="strong">It exists only on your phone.</span> Amara does not have it. The courier does not have it. We generated it when you paid and sent it to you.</span></div>
+    <div class="row g2"><span class="itile sea"><svg class="icn"><use href="#i-wallet"/></svg></span>
+      <span class="small"><span class="strong">It is the thing that pays her.</span> Nothing else releases the money — not her saying she shipped it, not the courier saying he delivered it.</span></div>
+    <div class="row g2"><span class="itile clay"><svg class="icn"><use href="#i-alert"/></svg></span>
+      <span class="small"><span class="strong">So give it late, never early.</span> Item in hand, checked, then read it out.</span></div>
+  </div>
+  <div class="note grey" style="margin-top:.9rem"><svg class="icn"><use href="#i-info"/></svg>
+    <span>Lost the SMS? The code is always on this page, and this page is always linked from the message we sent you.</span></div>
+  <button class="btn btn-sun btn-block" style="margin-top:.9rem" data-close>Got it</button>
+</div></div>
+
+<div class="veil" id="problemSheet"><div class="sheet">
+  <div class="between" style="margin-bottom:.7rem"><p class="d3">What is wrong?</p>
+    <button class="iconbtn" data-close aria-label="Close"><svg class="icn"><use href="#i-x"/></svg></button></div>
+  <p class="small" style="margin-bottom:.9rem">Your money stays held while we look. Nothing is released to the seller and nothing is refunded until a person has read this.</p>
+  <div class="stack g1">
+    <button class="btn btn-line btn-block" data-reason="It never arrived.">It never arrived</button>
+    <button class="btn btn-line btn-block" data-reason="It arrived but it is not what was described.">Not what was described</button>
+    <button class="btn btn-line btn-block" data-reason="It arrived damaged.">It arrived damaged</button>
+    <button class="btn btn-line btn-block" data-reason="Part of the order is missing.">Something is missing</button>
+    <button class="btn btn-line btn-block" data-reason="Someone asked me for my code before delivery.">Someone asked for my code early</button>
+  </div>
+  <p class="tiny" style="margin-top:.8rem">Reporting is free and it does not cancel your order — if the seller sorts it out, you can close the case yourself.</p>
+</div></div>
+
+<div class="veil" id="addSheet"><div class="sheet">
+  <div class="between" style="margin-bottom:.7rem"><p class="d3">Add more detail</p>
+    <button class="iconbtn" data-close aria-label="Close"><svg class="icn"><use href="#i-x"/></svg></button></div>
+  <div class="field" style="margin-bottom:.8rem"><span class="label">What happened</span>
+    <textarea class="input" placeholder="The courier came but the parcel was open and the bracelet was not inside."></textarea></div>
+  <button class="btn btn-line btn-block" style="margin-bottom:.6rem"><svg class="icn"><use href="#i-cam"/></svg> Add a photo</button>
+  <button class="btn btn-sun btn-block" data-close>Send it</button>
+</div></div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="icn"><use href="#i-check"/></svg><span></span></div>
+
+<div class="screentag" id="screentag">PROTOTYPE <b>SCREEN 15</b></div>
+<div class="rev">
+  <div class="revgrp" role="group" aria-label="Screen state">
+    <button data-state="s-held" aria-pressed="true">Held</button>
+    <button data-state="s-transit" aria-pressed="false">On the way</button>
+    <button data-state="s-done" aria-pressed="false">Done</button>
+    <button data-state="s-dispute" aria-pressed="false">Problem</button>
+    <button data-state="s-refunded" aria-pressed="false">Refunded</button>
+  </div>
+  <div class="revgrp" role="group" aria-label="Preview width">
+    <button data-w="" aria-pressed="true" title="Fit"><svg class="icn"><use href="#i-fit"/></svg></button>
+    <button data-w="phone" aria-pressed="false" title="Phone"><svg class="icn"><use href="#i-phone"/></svg></button>
+    <button data-w="tablet" aria-pressed="false" title="Tablet"><svg class="icn"><use href="#i-tablet"/></svg></button>
+    <button data-w="desktop" aria-pressed="false" title="Desktop"><svg class="icn"><use href="#i-laptop"/></svg></button>
+  </div>
+</div>
+
+<script>
+var PAL=[['#FFB49B','#E8532B','#0A5E5C'],['#D9A7C9','#BC4F94','#3B1130'],
+         ['#BFD8D3','#4A8F87','#06322F'],['#D9C9EC','#A98CC4','#2C1B3F'],
+         ['#F3E0CB','#C9A87F','#3A2A16'],['#9FD6CF','#0C7B76','#022A29']];
+var artSeq=0;
+function art(i,beads){
+  var p=PAL[(i||0)%PAL.length], id='ga'+(++artSeq), n=beads||12, s='';
+  for(var k=0;k<n;k++) s+='<circle cx="0" cy="-27" r="6" fill="url(#'+id+')" transform="rotate('+(k*360/n)+')"/>';
+  return '<svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    +'<defs><radialGradient id="'+id+'" cx="35%" cy="30%"><stop offset="0" stop-color="'+p[0]+'"/>'
+    +'<stop offset="1" stop-color="'+p[1]+'"/></radialGradient></defs>'
+    +'<rect width="100" height="100" fill="'+p[2]+'"/>'
+    +'<g transform="translate(50 50)"><circle r="27" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1"/>'+s+'</g></svg>';
+}
+function ic(n,c){ return '<svg class="icn '+(c||'')+'"><use href="#'+n+'"/></svg>'; }
+var el=function(id){return document.getElementById(id)};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];})};
+var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+function money(n){ return 'RWF '+Number(n).toLocaleString('en-US'); }
+function num(n){ return Number(n).toLocaleString('en-US'); }
+var toastTimer=null;
+function toast(msg){
+  var t=el('toast'); if(!t) return;
+  t.querySelector('span').textContent=msg; t.classList.add('on');
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){t.classList.remove('on')},2700);
+}
+function copy(str,msg){
+  function done(){ toast(msg||'Copied'); }
+  function fb(){
+    var ta=document.createElement('textarea'); ta.value=str; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+    try{document.execCommand('copy');done()}catch(e){toast('Copy did not work — select the text instead')}
+    ta.remove();
+  }
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(str).then(done,fb)} else fb();
+}
+function wireSheets(){
+  document.querySelectorAll('[data-sheet-open]').forEach(function(b){
+    b.addEventListener('click',function(){ var s=document.querySelector(b.dataset.sheetOpen); if(s) s.classList.add('open'); });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.addEventListener('click',function(){ var v=b.closest('.veil'); if(v) v.classList.remove('open'); });
+  });
+  document.querySelectorAll('.veil').forEach(function(v){
+    v.addEventListener('click',function(e){ if(e.target===v) v.classList.remove('open'); });
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') document.querySelectorAll('.veil.open').forEach(function(v){v.classList.remove('open')});
+  });
+}
+function wireStates(defaultState, tags){
+  function go(id){
+    document.querySelectorAll('.state').forEach(function(s){ s.classList.toggle('on', s.id===id); });
+    document.querySelectorAll('.rev [data-state]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.state===id); });
+    var t=el('screentag'); if(t && tags) t.innerHTML=tags[id]||tags._||'';
+    try{window.scrollTo({top:0,behavior:'instant'})}catch(e){window.scrollTo(0,0)}
+    location.hash=id.replace('s-','');
+    if(window.__onState) window.__onState(id);
+  }
+  window.__go=go;
+  document.querySelectorAll('[data-goto]').forEach(function(b){
+    b.addEventListener('click',function(){ go(b.dataset.goto); });
+  });
+  document.querySelectorAll('.rev [data-state]').forEach(function(b){
+    b.addEventListener('click',function(){ go(b.dataset.state); });
+  });
+  document.querySelectorAll('.rev [data-w]').forEach(function(b){
+    b.addEventListener('click',function(){
+      ['phone','tablet','desktop'].forEach(function(w){document.body.classList.remove('w-'+w)});
+      if(b.dataset.w) document.body.classList.add('w-'+b.dataset.w);
+      document.querySelectorAll('.rev [data-w]').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
+    });
+  });
+  window.addEventListener('error',function(){
+    if(!document.querySelector('.state.on')){ var d=el(defaultState); if(d) d.classList.add('on'); }
+  });
+  var h=(location.hash||'').replace('#','');
+  go(el('s-'+h)?'s-'+h:defaultState);
+}
+function counters(scope){
+  (scope||document).querySelectorAll('[data-count]').forEach(function(n){
+    var to=+n.dataset.count;
+    if(reduce){n.textContent=num(to);return}
+    var t0=null,dur=700;
+    function tick(t){ if(!t0)t0=t; var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);
+      n.textContent=num(Math.round(to*e)); if(p<1) requestAnimationFrame(tick); }
+    requestAnimationFrame(tick);
+  });
+}
+
+(function(){
+'use strict';
+var ORDER = {id:'1042', code:'5083', total:9700, seller:'Amara Beads', buyerNum:'+250 788 ••• 771'};
+
+el('thumb').innerHTML = art(0, 15);
+
+/* --------- the timeline, from events not markup --------- */
+var EVENTS = [
+  {t:'14:02', title:'You paid ' + money(ORDER.total), sub:'MTN Mobile Money · reference 8842-1190', tone:'ok'},
+  {t:'14:02', title:'Held by SolAI', sub:'Against order #' + ORDER.id + '. Not released to the seller.', tone:'hold'},
+  {t:'14:02', title:'Your code was sent', sub:'By SMS to ' + ORDER.buyerNum, tone:'ok'},
+  {t:'14:05', title:'Amara was told', sub:'She is packing it now', tone:'ok'},
+  {t:'—',     title:'Courier collects', sub:'You will get an SMS', tone:'wait'},
+  {t:'—',     title:'You give the code', sub:'That is when Amara is paid', tone:'wait'}
+];
+function timeline(events){
+  return '<div style="position:relative;padding-left:1.15rem">'
+    + '<span style="position:absolute;left:5px;top:.5rem;bottom:.5rem;width:2px;background:var(--hair)"></span>'
+    + events.map(function(e){
+        var col = e.tone==='ok' ? 'var(--sea)' : (e.tone==='hold' ? 'var(--berry)'
+                : (e.tone==='bad' ? 'var(--clay)' : 'var(--ink-20)'));
+        return '<div style="position:relative;padding:.42rem 0">'
+          + '<span style="position:absolute;left:-1.15rem;top:.72rem;width:10px;height:10px;border-radius:50%;'
+          + 'background:'+col+';border:2px solid var(--white)"></span>'
+          + '<p class="small strong">'+esc(e.title)+'</p>'
+          + '<p class="tiny">'+esc(e.t)+' · '+esc(e.sub)+'</p></div>';
+      }).join('') + '</div>';
+}
+el('timeline').innerHTML = timeline(EVENTS);
+el('timeline2').innerHTML = timeline([
+  EVENTS[0], EVENTS[1], EVENTS[2], EVENTS[3],
+  {t:'14:20', title:'Courier collected it', sub:'Eric M. · MT-114', tone:'ok'},
+  {t:'—', title:'You give the code at the door', sub:'That is when Amara is paid', tone:'wait'}
+]);
+
+/* --------- code --------- */
+el('copyCode').addEventListener('click', function(){ copy(ORDER.code, 'Code copied — do not send it to anyone'); });
+
+/* --------- receipts, as real files --------- */
+function receipt(kind){
+  var lines = [
+    'SolAI receipt',
+    'Order #' + ORDER.id,
+    'Seller: ' + ORDER.seller,
+    'Item: Hand-strung beaded bracelet x 1 (Blue)',
+    'Item total: RWF 8,500',
+    'Delivery: RWF 1,200',
+    'Total: ' + money(ORDER.total),
+    'Paid by: MTN Mobile Money ' + ORDER.buyerNum,
+    'Status: ' + kind,
+    'Buyer protection: funds held by SolAI until delivery is confirmed.',
+    'Disputes answered within 48 hours.'
+  ].join('\r\n');
+  var blob = new Blob([lines], {type:'text/plain;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'solai-receipt-' + ORDER.id + '.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+  toast('Receipt saved');
+}
+['receiptBtn','receiptBtn2','receiptBtn3'].forEach(function(id){
+  var b = el(id); if(b) b.addEventListener('click', function(){ receipt('held'); });
+});
+
+/* --------- contacting people --------- */
+function wa(msg){ window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener'); }
+['askSeller','askSeller2'].forEach(function(id){
+  var b = el(id); if(b) b.addEventListener('click', function(){
+    wa('Hello ' + ORDER.seller + ', about my order #' + ORDER.id + ' — ');
+  });
+});
+var ws = el('waSupport');
+if(ws) ws.addEventListener('click', function(){ wa('Hello SolAI, about case D-2291 on order #' + ORDER.id + ' — '); });
+var cc = el('callCourier');
+if(cc) cc.addEventListener('click', function(){ toast('Calling the courier — your number stays hidden from him'); });
+
+/* --------- releasing early, the buyer-side path --------- */
+var cb = el('confirmBtn');
+if(cb) cb.addEventListener('click', function(){
+  el('problemSheet').classList.remove('open');
+  window.__go('s-done');
+  toast(money(ORDER.total - 1555) + ' released to ' + ORDER.seller);
+});
+
+/* --------- cancelling --------- */
+var cnl = el('cancelBtn');
+if(cnl) cnl.addEventListener('click', function(){ window.__go('s-refunded'); toast('Order cancelled — you are being refunded'); });
+
+/* --------- reporting a problem --------- */
+document.querySelectorAll('[data-reason]').forEach(function(b){
+  b.addEventListener('click', function(){
+    el('problemSheet').classList.remove('open');
+    el('reasonEcho').textContent = b.dataset.reason;
+    window.__go('s-dispute');
+    toast('Reported. Your money stays held.');
+  });
+});
+
+/* --------- rating, only after a confirmed delivery --------- */
+var rate = el('rate');
+if(rate) rate.addEventListener('click', function(e){
+  var b = e.target.closest('[data-rate]'); if(!b) return;
+  rate.querySelectorAll('[data-rate]').forEach(function(o){ o.className = 'btn btn-line'; });
+  b.className = 'btn btn-sun';
+  toast(b.dataset.rate === 'good' ? 'Thank you — that helps the next buyer'
+       : 'Noted. This counts towards Amara\u2019s record.');
+});
+
+var ss = el('shareShop');
+if(ss) ss.addEventListener('click', function(){
+  var url = 'https://solai.shop/amara';
+  if(navigator.share) navigator.share({title:ORDER.seller, url:url}).catch(function(){});
+  else copy(url, 'Shop link copied');
+});
+
+/* --------- per-state effects --------- */
+window.__onState = function(id){
+  var tag = el('secureTag');
+  if(id === 's-done'){ tag.innerHTML = ic('i-check') + ' Completed'; }
+  else if(id === 's-refunded'){ tag.innerHTML = ic('i-check') + ' Refunded'; }
+  else if(id === 's-dispute'){ tag.innerHTML = ic('i-alert') + ' Under review'; tag.style.color = 'var(--clay)'; }
+  else { tag.innerHTML = ic('i-shield') + ' Protected'; tag.style.color = '#2F6B64'; }
+  if(id === 's-transit' && !reduce){
+    var bar = el('trackBar');
+    bar.style.width = '0';
+    requestAnimationFrame(function(){ bar.style.width = '62%'; });
+  }
+  counters(document);
+};
+
+wireSheets();
+wireStates('s-held', {
+  's-held':'PROTOTYPE <b>SCREEN 15</b> · paid and held',
+  's-transit':'PROTOTYPE <b>SCREEN 15</b> · on the way',
+  's-done':'PROTOTYPE <b>SCREEN 15</b> · delivered and released',
+  's-dispute':'PROTOTYPE <b>SCREEN 15</b> · problem reported',
+  's-refunded':'PROTOTYPE <b>SCREEN 15</b> · refunded'
+});
+
+})();
+</script>
+</body>
+</html>
