@@ -1,0 +1,1859 @@
+{
+  "meta": {
+    "title": "SolAI — Take one photo. Get paid today.",
+    "description": "SolAI turns one photo into a shop that takes mobile money, puts it inside WhatsApp, and holds the buyer's money until you've delivered. Free until you sell."
+  },
+  "common": {
+    "start": "Start",
+    "startFree": "Start free",
+    "languageGroup": "Language",
+    "dismissAnnouncement": "Dismiss announcement",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main",
+    "mobileNav": "Mobile",
+    "takePhoto": "Take a photo instead",
+    "photoInputLabel": "What are you selling?",
+    "progressNav": "Progress",
+    "stepDone": "Done",
+    "stepCurrent": "Current step"
+  },
+  "nav": {
+    "howItWorks": "How it works",
+    "protection": "Protection",
+    "whatsapp": "WhatsApp",
+    "pricing": "Pricing",
+    "buyers": "For buyers"
+  },
+  "announcement": {
+    "highlight": "New —",
+    "message": "payouts now land in MTN and Airtel wallets in under 10 seconds."
+  },
+  "hero": {
+    "chipFree": "Free until you sell",
+    "headline": "Take one photo.<br></br><highlight>Get paid</highlight> today.",
+    "subline": "SolAI turns it into a shop that takes mobile money, puts it inside WhatsApp, and holds the buyer's money until you've delivered. No bank account. No card.",
+    "sellQuestion": "What are you selling?",
+    "readsAs": "Reads as",
+    "categoryHint": "— wrong? one tap to change it",
+    "footnote": "Two minutes from this box to a shop that can receive a payment. Prices in RWF · Kinyarwanda, Swahili, French.",
+    "trust": {
+      "momo": "MoMo & Airtel",
+      "held": "Money held",
+      "chat": "Sells in chat"
+    },
+    "shop": {
+      "status": "Live · 2m 14s",
+      "productTitle": "Hand-strung beaded bracelet",
+      "productMeta": "Nyamirambo · made to order · 12 in stock"
+    }
+  },
+  "categories": {
+    "Jewellery · handmade": "Jewellery · handmade",
+    "Repairs · service": "Repairs · service",
+    "Food · made to order": "Food · made to order",
+    "Clothing · resale": "Clothing · resale",
+    "Beauty · service": "Beauty · service",
+    "Creative · service": "Creative · service",
+    "Classes · booking": "Classes · booking",
+    "General goods": "General goods"
+  },
+  "proof": {
+    "stats": {
+      "payout": "paid out to sellers this year",
+      "shops": "shops opened from a single photo",
+      "time": "median time from photo to live",
+      "disputes": "of orders released without a dispute"
+    },
+    "cities": "Kigali · Kampala · Nairobi · Dar es Salaam · Lusaka · Accra"
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Three things you do.",
+    "titleMark": "Everything else is us.",
+    "lede": "There is no setup, no dashboard to learn and no plan to choose. From the box above to a shop that can receive a payment is five screens, and you can stop reading this page and just do it.",
+    "calloutStrong": "Nothing is charged, ever, until you make a sale.",
+    "callout": " No trial that quietly starts billing, no card held on file, no plan to cancel.",
+    "cta": "Start with your photo",
+    "steps": {
+      "one": {
+        "title": "Photograph it, or type one line",
+        "body": "Whichever is faster. SolAI reads the photo, works out the category, and never asks you to pick from a list of forty.",
+        "time": "≈ 10 seconds"
+      },
+      "two": {
+        "title": "SolAI builds the shop",
+        "body": "Five product shots, a written listing in Kinyarwanda and English, and a price checked against what similar things actually sell for in your city. Change anything you don't like.",
+        "time": "≈ 8 seconds"
+      },
+      "three": {
+        "title": "Give us your number",
+        "body": "That's your account and your payout wallet at once. No email, no password, no card. Then your link is live and you can share it.",
+        "time": "≈ 40 seconds"
+      }
+    }
+  },
+  "protection": {
+    "eyebrow": "Why a stranger will buy from you",
+    "title": "Their money sits with us until you've delivered.",
+    "lede": "The reason most small sellers stay stuck selling to people they already know is simple: a stranger has no reason to believe a parcel is coming. So we take that decision away from both of you.",
+    "tablistLabel": "How the money moves",
+    "stages": {
+      "paid": {
+        "title": "The buyer pays SolAI, not you",
+        "body": "A normal MoMo prompt appears on their phone. It says \"Amara Beads via SolAI\", so nobody is paying an anonymous merchant code and wondering where the money went.",
+        "chip": "Paid"
+      },
+      "held": {
+        "title": "We hold it — really hold it",
+        "body": "The money sits in our collection account, tracked against the order in a double-entry ledger. It is not yours yet and it is no longer theirs. Both of you can see exactly where it is.",
+        "chip": "Held"
+      },
+      "code": {
+        "title": "A four-digit code releases it",
+        "body": "The buyer gets the code by SMS. They read it out to the courier at the door. Nobody is taking anybody's word for anything — the code is the proof, and it only exists on the buyer's phone.",
+        "chip": "At the door"
+      },
+      "released": {
+        "title": "You're paid in seconds",
+        "body": "Straight to your wallet — typically under ten seconds, not the two to seven days a card platform would take. If the buyer never confirms, it releases to you automatically after 72 hours.",
+        "chip": "Released"
+      }
+    },
+    "tiles": {
+      "dispute": {
+        "title": "Didn't arrive?",
+        "body": "The buyer is refunded. Disputes are answered by a person within 48 hours — that promise is on the product page, not buried in terms."
+      },
+      "cash": {
+        "title": "Paying cash?",
+        "body": "Cash on delivery goes through the same escrow. The courier collects it into the hold — never straight into a pocket."
+      }
+    },
+    "mock": {
+      "bar": "9:41 · SolAI",
+      "order": "Order #1042 · Jean-Paul K.",
+      "hint": "Tap any step to move the money",
+      "merchant": "Amara Beads via SolAI",
+      "buyerPhone": "On the buyer's phone",
+      "buyerPrompt": "MTN Mobile Money",
+      "enterPin": "Enter PIN to approve",
+      "heldLabel": "Held safely",
+      "heldNote": "In SolAI's account — not yours, not theirs — until the code is entered.",
+      "codeIntro": "The buyer reads this to the courier",
+      "codeNote": "Only their phone has it. Not you, not the courier, not us.",
+      "releasedEyebrow": "Sent to your wallet",
+      "releasedNote": "MTN · landed in 4 seconds · fees itemised on the order"
+    }
+  },
+  "whatsapp": {
+    "eyebrow": "Where trade already happens",
+    "title": "Your shop lives",
+    "titleMark": "inside WhatsApp.",
+    "lede": "Not a link you paste and hope someone opens. A real catalogue people scroll in the chat, with checkout in the same conversation. When you're busy, SolAI answers — with the price, the stock and the delivery time, in whichever language they wrote to you in.",
+    "cta": "Put my shop in WhatsApp",
+    "bullets": {
+      "noPage": {
+        "title": "No business page required.",
+        "body": "Instagram and Facebook are there if you want them, later, and never as a gate."
+      },
+      "checkout": {
+        "title": "Checkout in the chat.",
+        "body": "The MoMo prompt goes straight to their phone — they never leave the conversation."
+      },
+      "protection": {
+        "title": "Same protection.",
+        "body": "Orders from a chat are held in escrow exactly like orders from your link."
+      }
+    },
+    "chat": {
+      "buyerAsk": "Mwiriwe! Do you have the blue ones?",
+      "sellerStrong": "Beaded bracelet · {price}",
+      "sellerDetail": "Blue is in stock — 12 left. Delivery in Kigali today.",
+      "sellerBody": "",
+      "viewCatalogue": "View catalogue",
+      "buyNow": "Buy now",
+      "buyerReply": "Perfect, I'll take one 🙌",
+      "aiNote": "Answered by SolAI in 2 seconds"
+    }
+  },
+  "builtFor": {
+    "eyebrow": "Built for here",
+    "title": "Designed around the phone in your hand, not the one in a demo.",
+    "cards": {
+      "momo": {
+        "title": "Mobile money first",
+        "body": "MTN and Airtel are the default — for buyers paying and for you getting paid. Card exists for the few who want it. No bank account anywhere."
+      },
+      "currency": {
+        "title": "Prices in your currency",
+        "body": "RWF, UGX, KES, TZS. Never a dollar figure you have to convert in your head before you know whether you can afford it."
+      },
+      "language": {
+        "title": "In your language",
+        "body": "Kinyarwanda, Swahili, French and English throughout — including the listing SolAI writes and the replies it sends your customers."
+      },
+      "signal": {
+        "title": "Works on 3G",
+        "body": "Tested with data saver on, on an Android under $150. Every screen is built to open on a bad connection, because that's the connection."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "title": "You pay us after you've been paid.",
+    "lede": "Nobody in this market should be putting card details into a platform that hasn't earned them anything yet. So there's no card at signup, no trial, and no plan decision until after your first payout — and when we do show you a paid plan, we'll tell you if you'd be better off staying free.",
+    "chips": {
+      "noCard": "No card at signup",
+      "noFee": "No monthly fee on Free",
+      "cancel": "Cancel in one tap"
+    },
+    "plan": {
+      "name": "Free",
+      "price": "RWF 0",
+      "perMonth": "/month",
+      "badge": "Everyone starts here"
+    },
+    "lines": {
+      "products": "Products you can list",
+      "whatsapp": "WhatsApp catalogue",
+      "escrow": "Escrow & buyer protection",
+      "payouts": "Payouts to your wallet",
+      "cut": "Our cut, only when you sell"
+    },
+    "values": {
+      "unlimited": "Unlimited",
+      "included": "Included",
+      "cutPercent": "3%"
+    },
+    "footnote": "On an RWF 8,500 bracelet that's RWF 255. The mobile-money disbursement fee is shown separately on every order, so you always see the real number before you agree to it.",
+    "cta": "Open my shop free"
+  },
+  "buyers": {
+    "eyebrow": "If you're buying, not selling",
+    "title": "You're never sending money to a stranger.",
+    "body": "You're paying SolAI. We hold it, you get a delivery code that only you have, and the seller is paid the moment you hand that code over. If nothing arrives, you're refunded — and a person answers you inside 48 hours.",
+    "bullets": {
+      "record": "<strong>Every seller has a visible record</strong> — orders delivered, orders confirmed, how fast they ship.",
+      "hold": "<strong>New sellers are held longer</strong> until that record exists. That's the point of it.",
+      "track": "<strong>Tracked to your door</strong> by the courier network, with the code as the handover."
+    }
+  },
+  "sellers": {
+    "eyebrow": "Sellers",
+    "title": "People who were already selling — just to fewer people.",
+    "quotes": {
+      "amara": {
+        "text": "\"I was selling to my cousins and their friends. The first time somebody I had never met paid me, I checked my phone four times. Now that happens most days.\"",
+        "name": "Amara U.",
+        "trade": "Beadwork · Kigali"
+      },
+      "grace": {
+        "text": "\"The photos it makes are better than mine. That was the part I was putting off every evening, and it does it while I'm still holding the phone.\"",
+        "name": "Grace N.",
+        "trade": "Second-hand kitenge · Kampala"
+      },
+      "samuel": {
+        "text": "\"Customers ask me why they should trust me. Now I just send the link and it explains itself. I stopped having that conversation.\"",
+        "name": "Samuel K.",
+        "trade": "Phone repairs · Nairobi"
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "The ones people actually ask.",
+    "lede": "If yours isn't here, message us on WhatsApp — a person replies, usually within the hour.",
+    "cta": "Ask us anything",
+    "items": {
+      "bank": {
+        "question": "Do I need a bank account?",
+        "answer": "No. Your mobile money wallet is the payout account, and for most sellers it's the same number they signed up with. If you'd rather use a bank account you can add one, but it settles in one to three days instead of seconds, so almost nobody does."
+      },
+      "when": {
+        "question": "When exactly do I get the money?",
+        "answer": "The moment the delivery code is entered at handover — typically under ten seconds later. If the buyer never confirms and never raises a problem, it releases to you automatically 72 hours after delivery. You can see which of those two clocks is running on the order at any time."
+      },
+      "lie": {
+        "question": "What if the buyer lies and says it never arrived?",
+        "answer": "The courier records GPS and a photo at handover, and the code can only come from the buyer's own phone. A dispute is decided on that evidence, not on who complains loudest, and buyers who make repeated false claims are limited the same way fraudulent sellers are."
+      },
+      "edit": {
+        "question": "Can I change what SolAI writes about my product?",
+        "answer": "All of it — the name, the price, the description, which photos to keep. It's a draft, not a decision. Most sellers change the price and leave the rest."
+      },
+      "free": {
+        "question": "Is it really free?",
+        "answer": "Yes, and it stays free. We take 3% when you make a sale and nothing when you don't. There is no card at signup and no trial that starts charging. A paid plan exists for sellers doing high volume, and we only mention it once you'd actually save money on it."
+      },
+      "holding": {
+        "question": "Who is holding my customers' money?",
+        "answer": "SolAI, in a mobile money merchant account kept separate from the money the business runs on. Every held amount is tracked against a specific order in a double-entry ledger, reconciled against the account twice a day. Your funds are never used for anything else, and support staff can decide the outcome of a case but can never send money to an account that isn't already on the order."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "Your shop is<br></br>one photo away.",
+    "lede": "Two minutes from now it can be live, in WhatsApp, and able to take a payment from someone you've never met.",
+    "inputLabel": "What are you selling?",
+    "placeholder": "what are you selling?",
+    "footnote": "No card. No email. Free until you sell."
+  },
+  "footer": {
+    "blurb": "One photo becomes a shop that takes mobile money and protects both sides of the sale. Built in Kigali, for this market.",
+    "copyright": "© 2026 SolAI. Prices shown in RWF.",
+    "cities": "Kigali · Kampala · Nairobi · Dar es Salaam · Lusaka · Accra",
+    "groups": {
+      "product": {
+        "title": "Product",
+        "how": "How it works",
+        "protection": "Buyer protection",
+        "whatsapp": "WhatsApp catalogue",
+        "pricing": "Pricing"
+      },
+      "support": {
+        "title": "Support",
+        "help": "Help centre",
+        "dispute": "Open a dispute",
+        "delivery": "Delivery & couriers",
+        "contact": "Contact us on WhatsApp"
+      },
+      "company": {
+        "title": "Company",
+        "about": "About",
+        "sellerTerms": "Seller terms",
+        "buyerPolicy": "Buyer protection policy",
+        "privacy": "Privacy"
+      }
+    }
+  },
+  "start": {
+    "stub": "The next onboarding screen is not built yet."
+  },
+  "moneyFlow": {
+    "buyerPays": "Buyer pays",
+    "held": "Held",
+    "delivered": "Delivered",
+    "paidOut": "Paid out",
+    "yourePaid": "You're paid",
+    "paid": "Paid",
+    "code": "Code",
+    "youPay": "You pay",
+    "sellerPaid": "Seller paid",
+    "onTheWay": "On the way",
+    "youPaid": "You paid",
+    "shesPaid": "She's paid"
+  },
+  "build": {
+    "steps": {
+      "sell": "Sell",
+      "build": "Build",
+      "paid": "Get paid",
+      "live": "Live",
+      "share": "Share"
+    },
+    "topbar": {
+      "saved": "Draft saved",
+      "saving": "Saving…",
+      "offline": "Saved on this phone",
+      "saveExit": "Save & exit"
+    },
+    "capture": {
+      "eyebrow": "Step 2 of 5",
+      "title": "Show SolAI what you're selling",
+      "lede": "One photo is enough. Up to five if you want more angles — more photos means better generated scenes and a better price estimate.",
+      "dropTitle": "Take a photo",
+      "dropBody": "Or drag one here, or choose from your gallery. We shrink it on your phone before sending, so it uses about 90% less data.",
+      "openCamera": "Open camera",
+      "chooseFile": "Choose a file",
+      "formats": "JPG, PNG or HEIC · up to 12 MB each · nothing is published until you say so",
+      "describeTitle": "Or describe it instead",
+      "describeChip": "No photo needed",
+      "describePlaceholder": "What are you selling?",
+      "describeHint": "SolAI will generate the images from your description. You can add a real photo later — and you'll need one before you can take an order.",
+      "describeSubmit": "Build from description",
+      "tipsEyebrow": "Photos that work",
+      "trustNote": "Your original photo is kept and is always the first image a buyer sees. Generated scenes are extras, and they're labelled as such — that's how we keep \"not as described\" disputes down."
+    },
+    "tips": {
+      "daylight": {
+        "title": "Daylight, plain background",
+        "body": "Near a window beats a flash every time."
+      },
+      "frame": {
+        "title": "Fill the frame",
+        "body": "One item, close, in focus."
+      },
+      "screenshot": {
+        "title": "Not a screenshot",
+        "body": "Someone else's photo will be rejected."
+      }
+    },
+    "upload": {
+      "eyebrow": "Step 2 of 5",
+      "title": "Sending your photos",
+      "lede": "Shrunk on your phone first. You can keep going as soon as the first one lands.",
+      "sent": "Sent",
+      "retry": "Retry",
+      "weakSignal": "On a weak signal we keep uploading in the background. Close the app if you need to — your draft is saved and we'll pick it up where it stopped.",
+      "addPhoto": "Add another photo",
+      "startBuild": "Start building"
+    },
+    "generating": {
+      "eyebrow": "Working",
+      "title": "SolAI is building your listing",
+      "lede": "About eight seconds. Everything it decides, you can change afterwards.",
+      "cancel": "Cancel",
+      "leaveNote": "You can leave this screen — we'll notify you when it's ready."
+    },
+    "draft": {
+      "eyebrow": "Draft ready",
+      "title": "Change anything you don't like",
+      "aiBadge": "Written by SolAI",
+      "buildAgain": "Build again",
+      "tabsLabel": "Sections",
+      "tabPhotos": "Photos",
+      "tabDetails": "Details"
+    },
+    "studio": {
+      "errorTitle": "Photos couldn't load",
+      "errorRetry": "Try again",
+      "regenerateOne": "Generate this scene again",
+      "remove": "Remove",
+      "lockHint": "Your original photo can't be removed — it's the evidence of what you're sending.",
+      "feedback": "Was this image good?",
+      "coverLabel": "Cover",
+      "setCover": "Use this as the cover",
+      "allowance": "{count} rebuilds left today",
+      "provenanceNote": "Scenes marked AI are your item in a generated setting. Your own photo stays first in the buyer's gallery and can't be removed.",
+      "sceneSection": "Scene style and shape",
+      "aspectSquare": "Square · 1:1",
+      "aspectTall": "Tall · 4:5",
+      "regenerateScenes": "Regenerate scenes only",
+      "addPhoto": "Add a photo",
+      "addScene": "Generate another scene"
+    },
+    "scenes": {
+      "cleanWhite": "Clean white",
+      "marketStall": "Market stall",
+      "onTheWrist": "On the wrist",
+      "flatLay": "Flat lay",
+      "outdoorsKigali": "Outdoors, Kigali",
+      "heldInHand": "Held in hand"
+    },
+    "tones": {
+      "plain": "Plainer",
+      "warm": "Warmer",
+      "short": "Shorter"
+    },
+    "details": {
+      "errorTitle": "Details couldn't load",
+      "errorRetry": "Try again",
+      "category": "Category",
+      "nameLabel": "Product name",
+      "aiWrote": "SolAI wrote this",
+      "restore": "Restore",
+      "nameHint": "short, plain names get found more often",
+      "priceLabel": "Price",
+      "suggested": "Suggested",
+      "confidence": {
+        "high": "High confidence",
+        "medium": "Medium confidence",
+        "low": "Low confidence"
+      },
+      "whyPrice": "Why this price?",
+      "rangeHint": "Most similar items in Kigali sell in this range.",
+      "stockLabel": "In stock",
+      "madeToOrder": "Made to order",
+      "descriptionLabel": "Description",
+      "rewriteAs": "Rewrite as",
+      "variantsLabel": "Colours you can make",
+      "variantsPlaceholder": "Add a colour and press enter",
+      "courierTitle": "Delivery by moto courier",
+      "notPublic": "Nothing here is public yet. Your shop goes live at step 4, after you've added the number you want to be paid on."
+    },
+    "action": {
+      "saved": "Saved just now",
+      "saving": "Saving…",
+      "offline": "Saved on this phone",
+      "again": "Again",
+      "continue": "Looks good — get paid"
+    },
+    "unclear": {
+      "title": "We can't tell what this is",
+      "lede": "The photo is quite dark and there's a lot in the frame. Tell us in a few words and we'll build it anyway — or take another photo.",
+      "hintLabel": "What is it?",
+      "hintPlaceholder": "e.g. beaded bracelets I make at home",
+      "build": "Build with this hint",
+      "retake": "Take another photo"
+    },
+    "blocked": {
+      "title": "This one we can't list",
+      "lede": "We can't list this item under the rules that protect buyers.",
+      "whatYouCanDo": "What you can do",
+      "optionSecondHand": "Sell it as second-hand without the brand claim",
+      "optionProof": "Send proof of authorised resale",
+      "optionOther": "List something else",
+      "rulePrefix": "Rule:",
+      "listOther": "List something else"
+    },
+    "error": {
+      "title": "That didn't finish",
+      "lede": "The connection dropped while we were building. Nothing was lost — your photos are saved.",
+      "notCharged": "It costs you no rebuilds to try again.",
+      "retry": "Try again",
+      "back": "Go back",
+      "support": "Still failing? Message us on WhatsApp and we'll finish it for you."
+    },
+    "priceSheet": {
+      "title": "Why {amount}",
+      "close": "Close",
+      "lede": "This is a suggestion from what similar things actually sold for near you. It is not a valuation, and you should change it if you know better than we do.",
+      "compared": "Similar listings compared",
+      "sold": "Sold in the last 90 days",
+      "median": "Middle of that range",
+      "payout": "You'd receive around {amount} after fees.",
+      "gotIt": "Got it"
+    },
+    "exitSheet": {
+      "title": "Save this and come back?",
+      "close": "Close",
+      "body": "Your draft is already saved on this phone. Give us a number and we'll send you the link so you don't lose it if you clear your browser or change phone.",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "788 000 000",
+      "phoneHint": "This isn't creating an account yet. That's step 3.",
+      "send": "Send me the link",
+      "stay": "Just leave it on this phone"
+    }
+  },
+  "payout": {
+    "topbar": {
+      "draftSaved": "Draft saved",
+      "back": "Back to the build screen"
+    },
+    "form": {
+      "eyebrow": "Step 3 of 5 · last one before you're live",
+      "title": "Where should the money land?",
+      "lede": "This one number is your account and your payout destination. No email, no password, no card.",
+      "phoneLabel": "Your phone number",
+      "phoneHelp": "This is how you sign in, always.",
+      "networkDetecting": "Detecting…",
+      "networkUnknown": "Network not recognised",
+      "destLabel": "Where we send your money",
+      "shopLabel": "Your shop name",
+      "shopSuggested": "Suggested",
+      "shopRestore": "Restore",
+      "shopHint": "Buyers see this name — on your shop, in the payment prompt and on the receipt. They never see your phone number.",
+      "consent": "I agree to the seller terms and I confirm this wallet or account is registered in my own name.",
+      "disabledPhone": "Enter a valid phone number on a recognised network.",
+      "disabledShop": "Add a shop name buyers can pay.",
+      "disabledConsent": "Confirm the terms before we can hold money for you.",
+      "disabledBank": "Choose a bank and enter a valid account number.",
+      "disabledAirtel": "Enter your Airtel wallet number.",
+      "disabledWallet": "Enter the wallet number we should pay."
+    },
+    "dest": {
+      "walletDefaultTitle": "Mobile Money",
+      "walletSameSub": "The number above · lands in seconds",
+      "instant": "Instant",
+      "slower": "Slower",
+      "walletWhich": "Which wallet number",
+      "sameNumber": "Same number",
+      "otherNumber": "A different number",
+      "walletNumberLabel": "Wallet number",
+      "walletCheckHint": "We'll check the name registered on it before we save it.",
+      "walletSpeedNote": "Payouts to a mobile money wallet usually arrive in under 10 seconds, any day of the week.",
+      "airtelTitle": "Airtel Money",
+      "airtelSub": "A different wallet on Airtel",
+      "airtelNumberLabel": "Airtel wallet number",
+      "airtelHint": "Must be registered in your name. We check before saving.",
+      "bankTitle": "Bank account",
+      "bankSub": "Settles in 1–3 working days",
+      "bankSelect": "Bank",
+      "accountLabel": "Account number",
+      "bankHint": "We'll confirm the account holder's name before anything is saved.",
+      "bankNote": "Bank payouts take 1–3 working days and cost {fee} per transfer. A wallet costs about RWF 100 and arrives in seconds — most sellers use a wallet and move money to the bank themselves.",
+      "bankFeeGeneric": "a higher fee"
+    },
+    "action": {
+      "sendCode": "Send me a code",
+      "hintWallet": "No charge, ever, until you make a sale.",
+      "hintBank": "Bank payouts take 1–3 working days."
+    },
+    "rail": {
+      "whyEyebrow": "Why one number",
+      "why1": "It's your login. Nobody here wants another password to forget.",
+      "why2": "It's your payout wallet. Money arrives where you already spend it.",
+      "why3": "It's how we reach you when an order comes in.",
+      "privateTitle": "Your number stays private",
+      "privateBody": "SolAI pays you, so buyers only ever see {shop}. Your number never appears on their statement or their receipt.",
+      "waitingEyebrow": "What's waiting for this account",
+      "draftFallbackTitle": "Your listing",
+      "draftFallbackMeta": "Ready to publish",
+      "images": "{count} images · ready to publish",
+      "draftNote": "Your draft is saved on this phone right now. Adding your number is what makes it yours permanently — if you lose this handset, it comes back.",
+      "privacyLink": "What can SolAI do with this number?"
+    },
+    "confirm": {
+      "eyebrow": "Quick check",
+      "title": "Is this you?",
+      "lede": "This is the name registered on the wallet you entered. We check because a mistyped digit sends your money to a stranger, and once it's gone we can't get it back.",
+      "note": "If this name isn't yours, the number is wrong. Go back and fix it — we can't pay out to a wallet registered to someone else.",
+      "yes": "Yes, that's me",
+      "no": "No — change the number"
+    },
+    "verify": {
+      "eyebrow": "Almost there",
+      "title": "Enter the code",
+      "lede": "We sent six digits to {phone}.",
+      "wrongNumber": "Wrong number?",
+      "digit1": "Digit 1",
+      "digit2": "Digit 2",
+      "digit3": "Digit 3",
+      "digit4": "Digit 4",
+      "digit5": "Digit 5",
+      "digit6": "Digit 6",
+      "invalid": "That code isn't right. Check the SMS and try again.",
+      "voiceTip": "No SMS after two tries? Choose Call me instead — you'll get a call and the last digits of the number are your code.",
+      "resend": "Send it again",
+      "voice": "Call me instead",
+      "countdown": "You can ask for a new code in {time}",
+      "submit": "Verify and open my shop",
+      "attempts": "Attempt {current} of {max}."
+    },
+    "working": {
+      "title": "Setting up your payouts",
+      "lede": "Linking your wallet and moving your draft onto the account. A few seconds.",
+      "stepVerified": "Number verified",
+      "stepLinked": "Wallet linked",
+      "stepLinkPending": "Linking wallet…",
+      "stepMigrating": "Moving your listing across…",
+      "stepMigratePending": "Moving your listing across…"
+    },
+    "done": {
+      "title": "You can be paid",
+      "lede": "Your wallet is linked and your listing is on your account. One more screen and your shop is open.",
+      "verified": "Verified",
+      "oneProduct": "1 product ready",
+      "cta": "Open my shop",
+      "footnote": "You can change your payout wallet any time."
+    },
+    "locked": {
+      "title": "Too many wrong codes",
+      "lede": "We've paused code checks on this number for {minutes} minutes. This protects your account — someone else guessing at your number would hit the same wall.",
+      "whileTitle": "While you wait",
+      "bullet1": "Your draft is safe. Nothing is lost.",
+      "bullet2": "Check the number is the one holding the SIM in this phone.",
+      "bullet3": "If the SMS never arrived, try Call me instead when the wait is up.",
+      "differentNumber": "Use a different number",
+      "whatsapp": "Message us on WhatsApp",
+      "timer": "You can try again in about {minutes} minutes."
+    },
+    "inuse": {
+      "title": "You already have a shop",
+      "lede": "This number is registered to {shop}. Sign in and we'll add this new listing to it — nothing you've built is lost.",
+      "meta": "{count} products · joined {joined}",
+      "active": "Active",
+      "signIn": "Sign in and add this listing",
+      "differentNumber": "Use a different number",
+      "note": "Signing in sends a code to the same number, exactly like signing up."
+    },
+    "unsupported": {
+      "title": "We can't pay out to that network yet",
+      "lede": "We can still verify this number and open your shop — but the money has to land somewhere we can reach.",
+      "unknownNet": "that network",
+      "optionsTitle": "Choose one of these instead",
+      "option1": "An MTN or Airtel wallet in your name, on any number.",
+      "option2": "A bank account in your name — slower, but it works everywhere.",
+      "feedback": "Tell us which network you use and we'll let you know when it's supported.",
+      "cta": "Choose another destination"
+    },
+    "error": {
+      "title": "That didn't go through",
+      "lede": "The connection dropped while we were setting things up. Your draft and your number are both saved — nothing needs redoing.",
+      "retry": "Try again",
+      "back": "Go back",
+      "support": "Still failing? Message us on WhatsApp and we'll finish it with you.",
+      "panel": "This section couldn't load"
+    },
+    "privacy": {
+      "title": "What we do with your number",
+      "do1": "Sign you in — a code to this number, every time. There is no password to steal.",
+      "do2": "Send your money — payouts go to the wallet you chose and nowhere else.",
+      "do3": "Tell you about orders — an SMS when someone buys, and when money is released.",
+      "dont1": "Never shown to buyers. They see your shop name on the payment prompt and the receipt.",
+      "dont2": "Never sold or given to advertisers.",
+      "dont3": "No marketing SMS unless you ask for it. Order messages only.",
+      "close": "Got it"
+    },
+    "liveStub": {
+      "title": "Screen 4 — Live",
+      "lede": "Your shop goes live here in a future release."
+    }
+  },
+  "live": {
+    "topbar": {
+      "back": "Back to getting paid",
+      "liveChip": "Live"
+    },
+    "publishing": {
+      "eyebrow": "Almost",
+      "title": "Opening your shop",
+      "lede": "Five things happen here. None of them need you.",
+      "closeTip": "If you close this, it keeps going. We'll text you when the shop is open.",
+      "progressLabel": "Publishing progress"
+    },
+    "shop": {
+      "title": "Your store is <highlight>live</highlight>",
+      "lede": "Two minutes ago you had a photo. <strong>{shopName}</strong> can now take a payment from someone you've never met.",
+      "linkEyebrow": "Your shop link",
+      "changeLink": "Change it",
+      "copyLink": "Copy",
+      "openShop": "Open your shop",
+      "linkHint": "Works in any chat, any bio, any SMS. You can change it once, free — after that the old link keeps working but it's harder to remember.",
+      "linkHintUsed": "Works in any chat, any bio, any SMS. You've used your free change, so this link is now the one on your QR code.",
+      "statusEyebrow": "What's switched on",
+      "statusListLabel": "What's switched on",
+      "moneyEyebrow": "How money will reach you",
+      "moneyHint": "Buyers see this same picture on your shop. It's why a stranger will risk the first order.",
+      "qrEyebrow": "Your QR code",
+      "qrChip": "Real, scannable",
+      "qrAlt": "QR code that opens {url}",
+      "qrDownload": "Download",
+      "qrPrint": "Print poster",
+      "qrEnlarge": "Show big",
+      "qrHint": "Stick it on the stall, the door, a flyer. Point a phone camera at it and the shop opens — no app needed.",
+      "buyerEyebrow": "What happens when someone buys",
+      "buyerStep1": "You get an SMS and a notification. No app to keep open.",
+      "buyerStep2": "A courier is arranged, or you hand it over yourself.",
+      "buyerStep3": "They read you a four-digit code. That's when you're paid.",
+      "previewTitle": "See what a buyer sees",
+      "previewSub": "Your shop, from the other side",
+      "ariaLabel": "Your store is live"
+    },
+    "status": {
+      "done": "Done",
+      "todo": "Not done yet",
+      "listingTitle": "{product}",
+      "listingSub": "{price} · {stock} in stock · {images} images",
+      "listingSubMadeToOrder": "{price} · made to order · {images} images",
+      "listingChip": "Listed",
+      "paymentsTitle": "Mobile money payments",
+      "paymentsSub": "Buyers pay by MTN, Airtel or cash on delivery",
+      "payoutTitle": "Payouts to your wallet",
+      "payoutSub": "{rail} · {masked} · {holder}",
+      "protectionTitle": "Buyer protection",
+      "protectionSub": "Every order held until delivery is confirmed",
+      "customersTitle": "Customers",
+      "customersSub": "Nobody knows you're open yet. That's the next screen.",
+      "customersChip": "To do"
+    },
+    "action": {
+      "hint": "Nobody can find it yet — that takes one more step.",
+      "shareCta": "Share it"
+    },
+    "error": {
+      "title": "Your shop didn't open",
+      "lede": "The connection dropped part way. Nothing is half-published — your listing, your wallet and your link are all saved exactly as they were.",
+      "retry": "Open it again",
+      "backToListing": "Back to my listing",
+      "helpHint": "Still failing? Message us on WhatsApp and we'll open it with you.",
+      "panel": "Something went wrong on this panel"
+    },
+    "slug": {
+      "sheetTitle": "Change your link",
+      "close": "Close",
+      "fieldLabel": "solai.shop/…",
+      "inputLabel": "Your shop link",
+      "hintDefault": "Letters, numbers and dashes. Short is better — people type this from memory.",
+      "hintChecking": "Checking if that one is free…",
+      "hintTooShort": "A bit longer — at least three characters.",
+      "hintTooLong": "Too long to remember. Keep it under 30.",
+      "hintUnchanged": "That's your link already.",
+      "hintTaken": "Someone already has that one.",
+      "hintReserved": "That one is not available.",
+      "hintInvalid": "That link won't work. Try letters, numbers and dashes.",
+      "hintFree": "solai.shop/{slug} is free.",
+      "suggestionsLabel": "Try one of these instead:",
+      "note": "You can change this once. After that the old link still works, but it won't be the one on your QR code.",
+      "save": "Save this link",
+      "saving": "Saving…"
+    },
+    "qrSheet": {
+      "title": "Scan to open the shop",
+      "close": "Close",
+      "hint": "Hold a phone camera over it. Works from about a metre away at this size.",
+      "download": "Download PNG",
+      "print": "Print poster"
+    },
+    "poster": {
+      "buyFrom": "Buy from",
+      "scanPrompt": "Point your phone camera at the square",
+      "paymentNote": "Pay by MTN Mobile Money, Airtel Money or cash on delivery.",
+      "protectionNote": "Your money is held by SolAI until your order is delivered."
+    },
+    "toast": {
+      "linkCopied": "Link copied",
+      "copyFailed": "Copy didn't work — long-press the link instead",
+      "qrSaved": "QR code saved to your downloads",
+      "qrFailed": "Could not save the image — try Print instead",
+      "slugChanged": "Your link is now solai.shop/{slug}"
+    }
+  },
+  "share": {
+    "topbar": {
+      "back": "Back to your shop",
+      "liveChip": "Shop open"
+    },
+    "header": {
+      "eyebrow": "Last step",
+      "title": "Now tell <highlight>five people.</highlight>",
+      "lede": "Your shop is open but nobody knows. Almost every first sale on SolAI comes from someone the seller already knows — so start there, then go wider.",
+      "ariaLabel": "Now tell five people."
+    },
+    "whatsapp": {
+      "title": "Start with WhatsApp",
+      "subtitle": "Where your customers already are. Send to a chat, or post it as your status.",
+      "chatAction": "Send to a chat",
+      "statusAction": "Post as status",
+      "hint": "Status reaches everyone who has your number, all at once. It is the single highest-return thing on this screen."
+    },
+    "channels": {
+      "eyebrow": "Everywhere else",
+      "wa": "WhatsApp",
+      "story": "Status picture",
+      "fb": "Facebook",
+      "ig": "Instagram",
+      "tg": "Telegram",
+      "x": "X",
+      "sms": "SMS",
+      "mail": "Email",
+      "link": "Copy link",
+      "qr": "QR code",
+      "more": "More apps",
+      "sharedState": "already shared",
+      "hint": "Instagram and TikTok don't accept links from other apps — tap Instagram and we'll hand you the pictures and the caption to paste."
+    },
+    "caption": {
+      "eyebrow": "What to say",
+      "textareaLabel": "Your message",
+      "languageGroupLabel": "Caption language",
+      "languageEn": "EN",
+      "languageRw": "RW",
+      "rewriteAs": "Rewrite as",
+      "toneFriendly": "Friendly",
+      "toneShort": "Short",
+      "toneOffer": "With an offer",
+      "aiBadge": "Written for you",
+      "restore": "Restore",
+      "copy": "Copy",
+      "hint": "The link is added automatically wherever it's needed. Editing this changes what every button above sends."
+    },
+    "checklist": {
+      "eyebrow": "Your first five customers",
+      "meterLabel": "People told",
+      "count": "{done} of {total}",
+      "familyTitle": "Someone in your family",
+      "familySub": "The easiest yes you'll ever get",
+      "customerTitle": "A customer who bought before",
+      "customerSub": "They already trust you",
+      "groupTitle": "Your busiest WhatsApp group",
+      "groupSub": "Church, savings group, neighbours",
+      "reposterTitle": "A friend who reposts things",
+      "reposterSub": "Every group has one",
+      "statusTitle": "Your own status",
+      "statusSub": "Everyone with your number, at once",
+      "note": "Tick them off as you go. Sellers who tell five people in the first day are far more likely to make a sale in the first week.",
+      "complete": "All five. That is genuinely the most useful thing you could have done today."
+    },
+    "story": {
+      "eyebrow": "Ready-made picture",
+      "description": "A status-sized picture with your product, your price and your QR code already on it.",
+      "download": "Download",
+      "pack": "All 4 pictures",
+      "hint": "Made on your phone, so it costs no data. Post it anywhere — the QR works from a screenshot.",
+      "imageNote": "Pay by MoMo · held until delivered",
+      "scanLabel": "Scan to buy"
+    },
+    "qr": {
+      "eyebrow": "Your link",
+      "alt": "QR code that opens {url}",
+      "copy": "Copy",
+      "preview": "Preview"
+    },
+    "shop": {
+      "qrAlt": "QR code that opens {url}"
+    },
+    "qrSheet": {
+      "title": "Your QR code",
+      "close": "Close",
+      "hint": "Hold a phone camera over it. Works from about a metre away at this size.",
+      "download": "Download",
+      "print": "Print a poster"
+    },
+    "instagram": {
+      "title": "Posting to Instagram",
+      "close": "Close",
+      "explanation": "Instagram won't let another app post for you, so we hand you the two pieces and you paste them. It takes about twenty seconds.",
+      "step1Title": "Save the pictures",
+      "step1Sub": "Four square images plus one for stories",
+      "step1Action": "Save",
+      "step2Title": "Copy the caption",
+      "step2Sub": "Your link is already in it",
+      "step2Action": "Copy",
+      "step3Title": "Put the link in your bio too",
+      "step3Sub": "Captions aren't clickable on Instagram — the bio is",
+      "step3Action": "Copy link",
+      "open": "Open Instagram",
+      "tiktokNote": "TikTok works exactly the same way."
+    },
+    "action": {
+      "countNone": "Nothing shared yet",
+      "countOne": "Shared in 1 place",
+      "countMany": "Shared in {count} places",
+      "skip": "Skip for now",
+      "done": "I've shared it"
+    },
+    "done": {
+      "title": "That's the whole thing",
+      "lede": "Five screens. One photo. A shop that takes mobile money and protects both sides of every sale.",
+      "expectTitle": "What to expect now",
+      "expectBody1": "Most shops get their first visitor within an hour of the first share, and the first order usually comes from someone the seller already knows.",
+      "expectBody2": "You'll get an SMS the moment somebody buys. There is nothing to keep open and nothing to check.",
+      "whileYouWait": "While you wait",
+      "catalogueTitle": "Put your catalogue in WhatsApp",
+      "catalogueSub": "A real product list inside the chat",
+      "addProductTitle": "Add another product",
+      "addProductSub": "Two minutes, same as the first",
+      "reachTitle": "Pay to reach more people",
+      "reachSub": "Only worth it once the free routes are used",
+      "shopHome": "Go to my shop"
+    },
+    "error": {
+      "title": "That app didn't open",
+      "lede": "Your phone couldn't hand it over — usually because the app isn't installed. Copy the link instead and paste it wherever you like.",
+      "copyLink": "Copy the link",
+      "backToSharing": "Back to sharing",
+      "panel": "Something went wrong on this panel",
+      "loadTitle": "Your shop isn't ready to share yet",
+      "loadLede": "We couldn't load your shop link. Open the live screen again, or retry here once publishing has finished.",
+      "retry": "Try again"
+    },
+    "toast": {
+      "linkCopied": "Link copied",
+      "captionCopied": "Message copied",
+      "bioLinkCopied": "Link copied for your bio",
+      "copyFailed": "Copy didn't work — select the text and copy it",
+      "statusSaved": "Picture saved — open WhatsApp and post it as your status",
+      "statusShared": "Picture sent",
+      "packSaved": "All four pictures saved",
+      "imageFailed": "Could not make the picture — try again",
+      "noShareMenu": "Your phone has no share menu — message copied instead",
+      "qrSaved": "QR code saved to your downloads",
+      "qrFailed": "Could not save the image — try Print instead"
+    },
+    "loading": "Getting your share kit ready…"
+  },
+  "dashboard": {
+    "nav": {
+      "sidebarLabel": "Shop sections",
+      "bottomLabel": "Shop sections",
+      "home": "Home",
+      "orders": "Orders",
+      "products": "Products",
+      "money": "Money",
+      "grow": "Grow",
+      "settings": "Settings"
+    },
+    "titles": {
+      "home": "Home",
+      "orders": "Orders",
+      "order": "Order",
+      "deliver": "Confirm delivery",
+      "paid": "Paid out",
+      "products": "Products",
+      "product": "Edit product",
+      "money": "Money",
+      "plans": "Plans",
+      "grow": "Grow",
+      "boost": "Boost",
+      "settings": "Settings"
+    },
+    "topBar": {
+      "back": "Back to section",
+      "search": "Search orders and products",
+      "notifications": "Notifications"
+    },
+    "placeholder": {
+      "eyebrow": "Dashboard",
+      "lede": "This section is wired into the shell. The full view lands in the next build phase."
+    },
+    "status": {
+      "held": {
+        "label": "Held",
+        "note": "Paid. Waiting for you to hand it over."
+      },
+      "transit": {
+        "label": "On the way",
+        "note": "With the courier. Money still held."
+      },
+      "paid": {
+        "label": "Paid out",
+        "note": "Delivered, confirmed and paid."
+      },
+      "problem": {
+        "label": "Problem",
+        "note": "A dispute is open. Support is on it."
+      }
+    },
+    "productStatus": {
+      "live": "On sale",
+      "oos": "Out of stock",
+      "draft": "Draft"
+    },
+    "empty": {
+      "needsYou": {
+        "title": "Nothing here",
+        "description": "No orders are waiting on you. That is the state you want.",
+        "action": "Show all orders"
+      }
+    },
+    "orders": {
+      "subtitle": "{count} in total",
+      "heldNow": "held right now",
+      "export": "Export",
+      "escrowNote": "Money for every order above sits in SolAI's account, not yours, until delivery is confirmed. That is what the buyer is trusting.",
+      "emptyTitle": "Nothing here",
+      "emptyFiltered": "No orders match this filter yet.",
+      "showingMatches": "Showing matches for “{query}” ·",
+      "clearSearch": "clear",
+      "notFoundTitle": "Order not found",
+      "notFoundLede": "It may have been removed, or the link is wrong.",
+      "backToOrders": "Back to orders",
+      "filters": {
+        "label": "Filter orders",
+        "all": "All",
+        "held": "Needs you",
+        "transit": "On the way",
+        "paid": "Paid out",
+        "problem": "Problems",
+        "resultCount": "{count, plural, =0 {No orders} one {# order} other {# orders}}"
+      },
+      "report": {
+        "title": "What went wrong?",
+        "lede": "The money stays held while we look. Nothing is released and nothing is refunded until a person has read this.",
+        "sent": "Report sent — money stays held",
+        "failed": "Could not send the report — try again",
+        "reasons": {
+          "cannotReachBuyer": "I cannot reach the buyer",
+          "courierNeverArrived": "The courier never arrived",
+          "buyerWontGiveCode": "The buyer will not give the code",
+          "somethingElse": "Something else"
+        }
+      },
+      "detail": {
+        "title": "Order #{id}",
+        "each": "each",
+        "editProduct": "Edit product",
+        "messageBuyer": "Message buyer on WhatsApp",
+        "tracked": "Tracked door to door",
+        "courierWaiting": "Waiting",
+        "courierTransit": "On the way",
+        "courierDelivered": "Delivered",
+        "paidToWallet": "Paid to your wallet",
+        "heldSafely": "Held safely",
+        "ledgerReceived": "What you received",
+        "ledgerWillReceive": "What you will receive",
+        "delivery": "Delivery (buyer pays)",
+        "fee": "SolAI fee · 3%",
+        "disbursement": "Mobile money payout",
+        "landed": "Landed in your wallet",
+        "lands": "Lands in your wallet",
+        "autoRelease": "If {name} never confirms, this releases to you automatically <strong>72 hours after delivery</strong>, unless a dispute is opened.",
+        "handOver": "Hand over to the courier",
+        "report": "Report a problem",
+        "transitNote": "The courier has it. When {name} reads out the code at the door, you are paid.",
+        "enterCode": "Enter the delivery code",
+        "settledNote": "Settled in {seconds} seconds after the code was accepted.",
+        "seePayout": "See the payout",
+        "disputeTitle": "A dispute is open",
+        "disputeLede": "The buyer says it never arrived. Support has the courier GPS and photo and will decide within 48 hours. The money stays held until then — it is not lost.",
+        "disputeCta": "Send your side of it",
+        "messageSupport": "Message support"
+      }
+    },
+    "deliver": {
+      "title": "Ask for the four-digit code",
+      "lede": "{buyer} got it by SMS when they paid. They read it out at the door. The code is what moves the money — not your word, and not theirs.",
+      "digit1": "Digit 1",
+      "digit2": "Digit 2",
+      "digit3": "Digit 3",
+      "digit4": "Digit 4",
+      "demoHint": "This order's code is <strong>{code}</strong> — try a wrong one to see the error.",
+      "hint": "Ask the buyer to read the code from their SMS.",
+      "step1": "The courier scans the parcel, or you type the code here.",
+      "step2": "SolAI releases {amount} to your wallet, in seconds.",
+      "step3": "Both of you get a receipt. Neither had to trust the other.",
+      "release": "Release the money",
+      "releasing": "Releasing…",
+      "back": "Not yet — back to the order",
+      "wrongCode": "That code is not right. Ask them to read it again.",
+      "rateLimited": "Too many tries. Wait a few minutes and try again.",
+      "notReleasable": "This order cannot be released right now.",
+      "notReleasableTitle": "Cannot release yet",
+      "failed": "Could not release the money — try again.",
+      "releasedToast": "{amount} sent to your wallet",
+      "releasedAnnounce": "Money released. Opening the receipt."
+    },
+    "paid": {
+      "eyebrow": "Sent to your wallet",
+      "landedIn": "landed in {seconds} seconds",
+      "ledgerTitle": "The ledger, in plain words",
+      "buyerPaid": "Buyer paid in",
+      "heldAgainst": "Held against #{id}",
+      "codeAccepted": "Code {code} accepted",
+      "verified": "Verified",
+      "feesTaken": "Fees taken",
+      "courierPaid": "Courier paid",
+      "releasedToYou": "Released to you",
+      "note": "A platform running on card rails would settle this in two to seven days. Mobile money is why we can say four seconds.",
+      "seePayouts": "See all payouts",
+      "backToOrders": "Back to orders",
+      "notYetTitle": "Not paid out yet",
+      "notYetLede": "Enter the delivery code first. The money stays held until then."
+    },
+    "search": {
+      "title": "Find an order or a product",
+      "placeholder": "Name, area, order number…",
+      "minChars": "Type at least two letters.",
+      "searching": "Searching…",
+      "none": "Nothing matched “{query}”."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "close": "Close",
+      "empty": "Nothing waiting for you right now."
+    },
+    "grow": {
+      "tabsLabel": "Grow",
+      "tabs": {
+        "catalogue": "WhatsApp catalogue",
+        "boost": "Paid boost"
+      },
+      "published": "Catalogue published",
+      "chatBuyer": "Mwiriwe! Do you have the blue ones?",
+      "chatStock": "Blue is in stock — {stock} left.",
+      "viewCatalogue": "View catalogue",
+      "buyNow": "Buy now",
+      "answeredIn": "Answered by SolAI in 2 seconds, in the language they wrote in",
+      "answersTitle": "What SolAI answers on its own",
+      "answers": {
+        "price": {
+          "title": "Price, stock and delivery",
+          "sub": "Without you typing"
+        },
+        "checkout": {
+          "title": "Checkout inside the chat",
+          "sub": "MoMo prompt straight to their phone"
+        },
+        "language": {
+          "title": "Reply in Kinyarwanda first",
+          "sub": "Switches if they write in English"
+        },
+        "closed": {
+          "title": "Say when you are closed",
+          "sub": "Outside your working hours"
+        }
+      },
+      "kpi": {
+        "views": "Catalogue views",
+        "chats": "Chats started"
+      },
+      "inCatalogue": "In the catalogue",
+      "catalogueToggle": "Show {name} in the WhatsApp catalogue",
+      "escrowNote": "Orders that start in a chat are held in escrow exactly like orders from your link.",
+      "boost": {
+        "optional": "Optional",
+        "headline": "Say who should see it. That is all.",
+        "lede": "Free routes first — your status, your groups, your QR. Paid reach is worth it once those are used up.",
+        "audienceLabel": "Who should see this",
+        "audienceDefault": "women in {city} who like handmade things",
+        "budgetLabel": "Budget for 5 days",
+        "budgetHint": "Paid from your wallet. It stops on its own — it cannot overspend.",
+        "productLabel": "Which product",
+        "noneLive": "Nothing is on sale yet",
+        "formatsNote": "Twelve format choices used to be a screen of its own. SolAI picks four and you swap any you dislike.",
+        "workedOut": "What SolAI worked out",
+        "reach": "Reach",
+        "reachValue": "3,000 – 4,500 people",
+        "where": "Where",
+        "whereValue": "Instagram, Facebook, Reels",
+        "language": "Language",
+        "languageValue": "Kinyarwanda + English",
+        "cost": "Cost",
+        "noFbNote": "No Facebook page needed. Ads run through SolAI’s business account with your shop named as the advertiser.",
+        "start": "Start the boost",
+        "starting": "Starting…",
+        "freeFirst": "Use the free routes first",
+        "started": "Boost started — it stops on its own in 5 days",
+        "failed": "Could not start the boost — try again.",
+        "validation": "Pick a product on sale and a budget above zero."
+      }
+    },
+    "settings": {
+      "shopTitle": "Your shop",
+      "fields": {
+        "name": "Shop name",
+        "nameHint": "Buyers see this on your shop, in the payment prompt and on the receipt.",
+        "link": "Link",
+        "linkHint": "The old link keeps working, but a printed QR would still point at the old one.",
+        "city": "City",
+        "language": "Language"
+      },
+      "langs": {
+        "en": "English",
+        "rw": "Kinyarwanda",
+        "sw": "Swahili",
+        "fr": "Français"
+      },
+      "save": {
+        "cta": "Save shop details",
+        "saving": "Saving…",
+        "done": "Shop details saved",
+        "failed": "Could not save — try again.",
+        "validation": "Check the shop name, link and city."
+      },
+      "deliveryTitle": "Delivery",
+      "delivery": {
+        "moto": {
+          "title": "Moto courier delivery",
+          "sub": "Buyer pays, about {price} in {city}"
+        },
+        "pickup": {
+          "title": "Buyer can collect from you",
+          "sub": "No delivery fee"
+        }
+      },
+      "notifyTitle": "Telling you things",
+      "notify": {
+        "sms": {
+          "title": "SMS when an order comes in",
+          "sub": "Works with no data"
+        },
+        "wa": {
+          "title": "WhatsApp messages",
+          "sub": "Cheaper for us, needs data"
+        },
+        "weekly": {
+          "title": "Weekly summary",
+          "sub": "How the shop did, every Monday"
+        }
+      },
+      "wallet": {
+        "title": "Where money lands",
+        "change": "Change it",
+        "note": "Changing this needs a code sent to your number — the same check as when you set it up.",
+        "sheetTitle": "Change where money lands",
+        "sheetLede": "We will send a code to {number} first. Payouts already on their way are not affected.",
+        "startChange": "Start the change",
+        "notNow": "Not now"
+      },
+      "planTitle": "Plan",
+      "planFeeFree": "3% per sale",
+      "planFeePlus": "1.5% per sale",
+      "seePlans": "See plans",
+      "accountTitle": "Account",
+      "downloadData": "Download my data",
+      "backupNumber": "Add a backup number",
+      "closeShop": "Close my shop",
+      "closeShopAria": "Close my shop. Held money is still resolved under normal rules.",
+      "closeShopNote": "Closing hides your shop. Money already held is still resolved under the normal rules — it never disappears with the account."
+    },
+    "money": {
+      "statement": "Statement",
+      "statementDownloaded": "solai-statement.csv downloaded",
+      "wallet": "In your wallet",
+      "held": "Held",
+      "lifetime": "Paid out, lifetime",
+      "payouts": "Payouts",
+      "payoutMeta": "{id} · order {order} · {when}",
+      "settledIn": "{seconds}s",
+      "emptyTitle": "No payouts yet",
+      "emptyLede": "When a delivery code is accepted, the release lands here in seconds.",
+      "flowTitle": "Where your money goes",
+      "salesMonth": "Sales, this month",
+      "fee": "SolAI fee · 3%",
+      "payoutCharges": "Mobile money payout charges",
+      "yours": "Yours",
+      "plansCta": "Could a paid plan cost you less? →",
+      "paidInto": "Paid into",
+      "verified": "Verified",
+      "changeWallet": "Change where money lands",
+      "reserveTitle": "Reserve",
+      "heldBack": "Held back",
+      "appliesFor": "Applies for",
+      "firstOrders": "First 10 orders",
+      "reserveNote": "Your record is clean, so nothing is held back. If it slipped, it would show here rather than silently delaying you."
+    },
+    "plans": {
+      "eyebrow": "Now — not on day one",
+      "title": "You have been paid {count} times.",
+      "lede": "So now it is fair to talk about money. Free stays free forever; it just takes a slightly larger cut of what you sell.",
+      "perMonth": "{price}/month",
+      "perMonthSuffix": "/ month",
+      "yourPlan": "Your plan",
+      "switch": "Switch",
+      "switchFailed": "Could not switch plan — try again.",
+      "switchedPlus": "Switched to Plus",
+      "switchedFree": "Back on Free — nothing to cancel",
+      "free": {
+        "name": "Free",
+        "features": "3% per sale · unlimited products · WhatsApp catalogue · escrow and payouts included"
+      },
+      "plus": {
+        "name": "Plus",
+        "features": "1.5% per sale · ads and boosts · exportable customer list · priority disputes"
+      },
+      "compareMore": "At your current sales, Plus costs you more",
+      "compareLess": "At your current sales, Plus would cost you less",
+      "onFree": "On Free · 3% of {sales}",
+      "onPlus": "On Plus · 1.5% + {fee}",
+      "breakEven": "Break-even at",
+      "adviceStay": "You are not there yet, so we would stay on Free. We will say so again when the maths changes.",
+      "adviceSwitch": "The maths favours Plus at your current sales. Switch when you are ready — cancel anytime from this screen.",
+      "note": "Paid from your mobile money wallet. No card. Cancel from this screen in one tap — the button is here, not buried in settings."
+    },
+    "products": {
+      "subtitle": "{total} total · {live} on sale",
+      "add": "Add a product",
+      "addHint": "One photo, about two minutes",
+      "cardMeta": "{views} views · {sold} sold · {stock} in stock",
+      "photoNote": "A product with no photo of the real item can be drafted but cannot take an order. That rule is what keeps “not as described” disputes down.",
+      "emptyTitle": "No products yet",
+      "emptyLede": "Start with one photo. SolAI builds the listing; you edit anything you don’t like.",
+      "viewAsBuyer": "View as buyer",
+      "imagesNote": "6 images · your photo first, five generated scenes",
+      "changePictures": "Change the pictures",
+      "fields": {
+        "name": "Name",
+        "nameError": "Give it a name — up to 70 characters.",
+        "price": "Price",
+        "priceError": "Price must be more than zero.",
+        "stock": "In stock",
+        "description": "Description",
+        "descriptionError": "Add a short description buyers can trust."
+      },
+      "oosBanner": "Stock is zero — buyers cannot order this while it stays on sale.",
+      "onSale": {
+        "title": "On sale",
+        "subtitle": "Visible on your shop and in WhatsApp",
+        "aria": "Toggle whether this product is on sale"
+      },
+      "statusHint": {
+        "live": "Live on your shop.",
+        "oos": "Out of stock — buyers cannot order it.",
+        "draft": "Taken off sale."
+      },
+      "statsTitle": "How it is doing",
+      "stats": {
+        "views": "Views",
+        "sold": "Sold",
+        "earned": "Earned from this product",
+        "conversion": "Visitors who bought"
+      },
+      "priceCheck": {
+        "title": "Price check",
+        "lede": "Similar items in {city} sell between {low} and {high}."
+      },
+      "boost": "Boost this product",
+      "save": {
+        "cta": "Save changes",
+        "saving": "Saving…",
+        "cancel": "Cancel",
+        "live": "Saved. Live on your shop.",
+        "oos": "Saved. Out of stock — buyers cannot order it.",
+        "draft": "Saved. Taken off sale.",
+        "failed": "Could not save — try again.",
+        "validation": "Check the name, price and description."
+      },
+      "delete": {
+        "cta": "Delete",
+        "title": "Delete this product?",
+        "lede": "It disappears from your shop and your WhatsApp catalogue. Orders already placed are unaffected and still have to be delivered.",
+        "confirm": "Yes, delete it",
+        "confirmAria": "Delete {name}. Existing orders stay open.",
+        "keep": "Keep it",
+        "deleting": "Deleting…",
+        "done": "Product deleted",
+        "failed": "Could not delete — try again."
+      }
+    },
+    "home": {
+      "greeting": {
+        "morning": "Morning, {name}.",
+        "afternoon": "Afternoon, {name}.",
+        "evening": "Evening, {name}."
+      },
+      "walletLabel": "In your wallet",
+      "walletHint": "Spendable from your phone right now",
+      "heldLabel": "Held for orders in progress",
+      "heldHint": "Releases as each order is delivered",
+      "needsYouTitle": "Needs you · order {id}",
+      "needsYouLede": "{buyer} paid {amount} {when} · hand it to the courier",
+      "kpi": {
+        "views": "Views this week",
+        "orders": "Orders",
+        "delivered": "Delivered",
+        "problems": "Problems",
+        "ofTotal": "of {total}",
+        "open": "1 open",
+        "none": "none"
+      },
+      "activity": "Recent activity",
+      "allOrders": "All orders →",
+      "scoreTitle": "Your seller score",
+      "scoreBuilding": "Building",
+      "scoreDelivered": "Delivered and confirmed",
+      "scoreDeliveredCount": "{confirmed} of {target}",
+      "scoreHold": "Orders until your hold shortens",
+      "scoreHoldMore": "{count} more",
+      "scoreNote": "Buyers see this on your shop. New sellers are held longer until it fills in.",
+      "viewsWeek": "Views, last 7 days",
+      "viewsNote": "Thursday was your best day — that was the WhatsApp status.",
+      "nudgesTitle": "Worth doing next",
+      "nudge": {
+        "oosTitle": "{name} is out of stock",
+        "oosSub": "Buyers cannot order it",
+        "catalogueTitle": "Check your WhatsApp catalogue",
+        "catalogueSub": "Two taps, no cost",
+        "addTitle": "Add another product",
+        "addSub": "Two minutes, same as the first"
+      }
+    },
+    "atomsPreview": {
+      "eyebrow": "Phase 2 · Atoms",
+      "title": "Building blocks",
+      "lede": "Status chips, KPIs, meters, sparkline, skeletons and empty states — ready for the view organisms.",
+      "kpiViews": "Views this week",
+      "kpiOrders": "Orders",
+      "kpiDelivered": "Delivered",
+      "kpiProblems": "Problems",
+      "kpiOpen": "1 open",
+      "kpiNone": "none",
+      "wallet": "In your wallet",
+      "held": "Held for orders in progress",
+      "score": "Your seller score",
+      "building": "Building",
+      "delivered": "Delivered and confirmed",
+      "holdShortens": "Orders until your hold shortens",
+      "viewsWeek": "Views, last 7 days",
+      "skeleton": "Skeleton"
+    },
+    "error": {
+      "title": "This screen could not load",
+      "lede": "Your shop data is safe. Try again — if it keeps failing, open Home and come back.",
+      "retry": "Try again"
+    }
+  },
+  "storefront": {
+    "secure": "Protected by SolAI",
+    "shareShop": "Share this shop",
+    "shareCopied": "Shop link copied",
+    "shareFailed": "Could not share — copy the link instead",
+    "ask": "Ask",
+    "askAria": "Ask a question",
+    "buyNow": "Buy now",
+    "stock": "{count} in stock",
+    "colour": "Colour",
+    "howMany": "How many",
+    "qtyFewer": "Fewer",
+    "qtyMore": "More",
+    "qtyLabel": "Quantity",
+    "deliverTo": "Deliver to",
+    "areaFee": "{area} · {fee}",
+    "areaPickup": "I'll collect it myself · free",
+    "delivery": "Delivery",
+    "free": "Free",
+    "youPay": "You pay",
+    "total": "Total",
+    "itemLine": "{item} × {qty}",
+    "itemLineVariant": "{item} × {qty} · {variant}",
+    "etaDelivery": "Usually delivered same day in Kigali if you order before 4pm.",
+    "etaPickup": "Collect from the seller in Nyamirambo. She will message you the address once you order.",
+    "shotNote": "Photo {n} of {total} · {label}",
+    "aiNoteTitle": "This one is a styled picture",
+    "aiNoteBody": "SolAI placed the seller's real item into a setting. Photo 1 is always the actual item, taken by the seller.",
+    "trustTitle": "{name} does not get your money yet",
+    "trustBody": "You pay SolAI. We hold it, and release it only when you have the bracelet in your hands. If it never arrives, you are refunded.",
+    "trustHow": "How the protection works",
+    "verifiedWallet": "Verified wallet",
+    "sellerMeta": "{city} · {since}",
+    "ordersDelivered": "Orders delivered",
+    "confirmedReceived": "Confirmed received by the buyer",
+    "usuallyShips": "Usually ships",
+    "answersIn": "Answers questions in",
+    "newerSellerNote": "A newer seller. SolAI holds their money longer until that record grows — which is exactly what makes a first order safe for you.",
+    "seeEverything": "See everything {name} sells",
+    "recentTitle": "Recent deliveries",
+    "recentRow": "{initial}. in {area} · confirmed received, {when}",
+    "recentNote": "These are deliveries the buyer confirmed with their own code. They are not written reviews and nobody can post one without having bought.",
+    "faqLink": "Questions people ask",
+    "reportLink": "Report this listing",
+    "shopOpen": "Open",
+    "shopMeta": "{city} · {delivered} delivered · usually ships {ships}",
+    "catalogueEyebrow": "{count} things for sale",
+    "catalogueHint": "Prices in {currency} · delivery from {from}",
+    "inStock": "In stock",
+    "soldOut": "Sold out",
+    "shopEscrowNote": "Whatever you buy here, your money is held by SolAI until it reaches you. Disputes are answered by a person within 48 hours.",
+    "oosChip": "Out of stock",
+    "notifyTitle": "Tell me when it is back",
+    "notifyLabel": "Your number",
+    "notifyHint": "One message when it is available. Nothing else, ever.",
+    "notifyCta": "Let me know",
+    "notifyOk": "We will message you the moment it is back",
+    "notifyShort": "That number looks too short",
+    "prefix": "+250",
+    "askWhenBack": "Ask {name} when it is back",
+    "seeWhatElse": "See what else {name} sells",
+    "goneTitle": "This listing is not available",
+    "goneLede": "It was taken down, or the seller removed it. Nothing has been charged to you and no order was created.",
+    "goneNote": "If you already paid for something from this shop, that order is unaffected and still protected. Open the link in your SMS to see it.",
+    "goneCta": "See the rest of the shop",
+    "protTitle": "How your money is protected",
+    "protStep1": "You pay SolAI, not {name}. The MoMo prompt says \"{name} via SolAI\" so you know where it went.",
+    "protStep2": "We hold the money. It is not hers and it is no longer yours. Both of you can see where it is.",
+    "protStep3": "You get a four-digit code by SMS. You give it at the door, once the parcel is in your hands.",
+    "protStep4": "That code is what pays {name}. Nothing else does.",
+    "protWarn": "Never give the code before you have the item. Anyone asking for it early — including someone claiming to be from SolAI — is trying to take your money.",
+    "protSla": "Nothing arrives? Report it and you are refunded. A person answers within 48 hours.",
+    "protGotIt": "Got it",
+    "faqTitle": "Questions people ask",
+    "faqClose": "Close",
+    "faq": {
+      "accountQ": "Do I need an account?",
+      "accountA": "No. You need a phone number so we can send you the delivery code and tell you where your order is.",
+      "payQ": "When do I pay?",
+      "payA": "Now, into SolAI's account. Or choose cash on delivery and pay the courier — that goes into the same hold, not straight into the seller's pocket.",
+      "wrongQ": "What if it is the wrong thing?",
+      "wrongA": "Report it from your order page. The money is still held while we look, and it is refunded if the seller cannot resolve it.",
+      "collectQ": "Can I collect it myself?",
+      "collectA": "Yes — choose that at delivery and there is no fee. You still get a code, and you still give it only when you have the item.",
+      "photosQ": "Are the pictures real?",
+      "photosA": "Photo 1 is always the seller's own photo of the actual item. Anything marked Styled is that item placed into a generated setting."
+    },
+    "reportTitle": "Report this listing",
+    "reportLede": "A person reviews every report. The seller is not told who reported them.",
+    "reportOk": "Reported. A person will look at this listing.",
+    "reportReasons": {
+      "counterfeit": "Counterfeit or fake brand",
+      "stolenPhotos": "The pictures are not theirs",
+      "misleading": "Misleading price or description",
+      "illegal": "Something illegal or unsafe",
+      "other": "Something else"
+    },
+    "errorTitle": "This page could not load",
+    "errorLede": "Try again in a moment. Your money was not charged.",
+    "errorRetry": "Try again",
+    "notFoundTitle": "Shop not found",
+    "notFoundLede": "That link does not match a live SolAI shop.",
+    "checkoutStubTitle": "Checkout",
+    "checkoutStubLede": "Your selection is saved. Checkout continues in the next build phase.",
+    "checkoutStubBack": "Back to product",
+    "close": "Close"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "secure": "Paying SolAI, not the seller",
+    "back": "Back to the product",
+    "headline": "Almost yours",
+    "lede": "No account needed. We only need a number, so we can send you the delivery code and tell you where your order is.",
+    "where": "Where it goes",
+    "step1": "Step 1 of 2",
+    "step2": "Step 2 of 2",
+    "modeLabel": "Delivery or pickup",
+    "deliver": "Deliver to me",
+    "pickup": "I'll collect it",
+    "name": "Your name",
+    "namePh": "Jean-Paul K.",
+    "phone": "Your phone number",
+    "phonePh": "788 902 771",
+    "phoneHint": "The delivery code comes here by SMS. This is also how the courier reaches you.",
+    "area": "Area",
+    "areaFee": "{area} · {fee}",
+    "landmark": "How the courier finds you",
+    "landmarkPh": "Near the market, blue gate opposite the pharmacy",
+    "landmarkHint": "A landmark works better than an address here. This is only shown to the courier.",
+    "pickupNote": "{name} will message you the exact place and time once you have paid. You still get a code, and you still give it only when the item is in your hands.",
+    "howPay": "How you pay",
+    "mtn": "MTN Mobile Money",
+    "mtnSub": "A prompt comes to your phone. Nothing to type in here.",
+    "mostUsed": "Most used",
+    "sameNum": "Pay from the same number",
+    "momoNum": "MoMo number",
+    "momoPh": "788 000 000",
+    "airtel": "Airtel Money",
+    "airtelSub": "Same thing, on Airtel.",
+    "airtelNum": "Airtel number",
+    "airtelPh": "730 000 000",
+    "cod": "Cash on delivery",
+    "codSub": "Pay the courier. Still protected the same way.",
+    "codBody": "The courier collects the cash and it goes into the same hold. The seller is paid after you give the code — never before.",
+    "codHint": "Have the exact amount if you can. Couriers rarely carry change.",
+    "card": "Card",
+    "cardSub": "Visa or Mastercard. Slower to clear.",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "cvc": "CVC",
+    "cardNote": "Card payments take 2–7 days to clear before the seller can be paid. Mobile money is instant, which is why it is first.",
+    "paySolaiNote": "You are paying <strong>SolAI</strong>, not {name}. We release her money only once you confirm the item reached you.",
+    "howItWorks": "How it works",
+    "terms": "By paying you agree to the buyer terms. We keep your number to run this order and to tell you about it — nothing else.",
+    "yourOrder": "Your order",
+    "lineMeta": "{variant} · quantity {qty}",
+    "fromSeller": "From {name}",
+    "itemLine": "{item} × {qty}",
+    "deliveryArea": "Delivery · {area}",
+    "collecting": "Collecting it yourself",
+    "free": "Free",
+    "youPayNow": "You pay now",
+    "feeNote": "SolAI charges the seller, not you. The price you see is the price you pay.",
+    "heldTitle": "Held until it reaches you",
+    "heldBody": "Not delivered? Refunded. A person answers a problem within 48 hours.",
+    "afterTitle": "What happens after you pay",
+    "after1": "1 · You get a four-digit code by SMS.",
+    "after2": "2 · {name} packs it and a courier collects.",
+    "after3": "3 · You give the code at the door — only then is she paid.",
+    "total": "Total",
+    "payCta": "Pay {total}",
+    "placeOrder": "Place the order · {total}",
+    "errName": "The courier needs a name to ask for.",
+    "errPhone": "That number looks too short — we send your code here.",
+    "errGeneric": "Something went wrong. Nothing was charged.",
+    "promptTitle": "Check your phone",
+    "promptLede": "A payment request has been sent to {phone}. Approve it with your MoMo PIN.",
+    "simNetwork": "MTN Mobile Money",
+    "simPay": "Pay",
+    "simTo": "to",
+    "simMerchant": "{name} via SolAI",
+    "simPin": "Enter PIN to approve",
+    "simNote": "The seller's name is in the prompt on purpose. You should never be paying a merchant code you do not recognise.",
+    "waiting": "Waiting for you to approve",
+    "dontClose": "Do not close this page. It updates on its own.",
+    "resend": "Send the request again",
+    "resent": "Request sent again — check your phone",
+    "cancelChange": "Cancel and change how I pay",
+    "promptHelp": "No prompt after a minute? Dial your MoMo menu and check pending approvals, or send the request again. Nothing is charged until you enter your PIN.",
+    "simApproved": "Simulate: approved",
+    "simFailed": "Simulate: failed",
+    "failTitle": "That payment did not go through",
+    "failLede": "<strong>Nothing has been taken from your wallet</strong>, and your order has not been placed. Nobody is holding your money.",
+    "failUsual": "Usually one of these",
+    "fail1": "The PIN was wrong, or the request timed out.",
+    "fail2": "Not enough in the wallet — the total is {total}.",
+    "fail3": "The network was busy. This one fixes itself; just try again.",
+    "tryAgain": "Try again",
+    "differentWay": "Pay a different way",
+    "askHelp": "Ask SolAI for help",
+    "waHelpText": "Hello SolAI, my payment for {product} from {shop} failed.",
+    "failBasket": "Your basket is still here. The item is not reserved though — if someone else buys the last one first, we will tell you and refund anything taken.",
+    "codTitle": "Paying cash at the door",
+    "codLede": "Nothing is charged now. Here is exactly how it will go.",
+    "codStep1": "{name} packs it and a courier brings it to you.",
+    "codStep2": "You pay the courier <strong>{total}</strong> and check the item.",
+    "codStep3": "The cash goes into SolAI's hold — not into the seller's pocket.",
+    "codStep4": "You give your code, and only then is she paid.",
+    "codExact": "Bring the exact amount if you can — couriers rarely carry change. If the item is not what was described, do not pay and do not give the code.",
+    "placeOrderBtn": "Place the order",
+    "payNowInstead": "Pay now instead",
+    "paidTitle": "Paid, and held",
+    "paidLede": "Your code is on its way by SMS. Taking you to your order.",
+    "seeOrder": "See my order now",
+    "sessionMissingTitle": "Checkout expired",
+    "sessionMissingLede": "That checkout session is gone. Go back to the product and tap Buy now again.",
+    "sessionMissingCta": "Back to the shop"
+  },
+  "protected": {
+    "secureProtected": "Protected",
+    "secureDone": "Complete",
+    "secureRefunded": "Refunded",
+    "secureReview": "Under review",
+    "orderTitle": "Order #{id}",
+    "suspendedBanner": "This seller’s shop is paused. Your order and held money are unaffected — we still protect this delivery the same way.",
+    "collecting": "Collect in person",
+    "deliveryArea": "Delivery · {area}",
+    "free": "Free",
+    "heldTitle": "Paid. And held.",
+    "heldLede": "{name} can see your order. She cannot see your money — and she will not be paid until you say it reached you.",
+    "codeEyebrow": "Your delivery code",
+    "copy": "Copy",
+    "codeCopied": "Code copied",
+    "whatIsThis": "What is this?",
+    "codeBody": "Give it to the courier <strong>only once the item is in your hands.</strong> That is the moment {name} gets paid.",
+    "codeWarn": "<strong>Nobody should ask you for this code before delivery.</strong> Not the seller, not the courier, not anyone saying they are from SolAI. If someone does, report it and do not give it.",
+    "timeline": "What has happened",
+    "expect": "Expect delivery",
+    "moneyWhere": "Where your money is",
+    "moneyWhereBody": "In SolAI’s account, against this order. Not {name}’s, and no longer yours. It moves one way or the other — to her when you confirm, or back to you if it never arrives.",
+    "needSomething": "Need something?",
+    "messageSeller": "Message {name}",
+    "somethingWrong": "Something is wrong",
+    "cancelOrder": "Cancel this order",
+    "cancelNote": "You can cancel free until the courier collects it. After that, report a problem instead.",
+    "demoTransit": "Demo: courier collected",
+    "transitEyebrow": "On the way",
+    "transitTitle": "It is with the courier",
+    "transitLede": "Have your code ready. Check the item first, then read the code out.",
+    "readOut": "Read this out at the door",
+    "readOutBody": "Only after you have the item and it is what you ordered.",
+    "call": "Call",
+    "callCourierToast": "Calling the courier — your number stays hidden from him",
+    "collected": "Collected",
+    "transitNote": "If the item is not what was described, do not give the code. Report it instead and the money stays held while a person looks.",
+    "alreadyHave": "Already have it?",
+    "alreadyHaveBody": "Confirm receipt to release payment. We ask for the last 4 digits of the phone you used at checkout.",
+    "iReceived": "I received it",
+    "nobodyConfirms": "What if nobody confirms?",
+    "nobodyConfirmsBody": "If you never confirm and never report a problem, we release to {name} after the delivery window — usually a few days. Report early if something is wrong.",
+    "doneTitle": "You got it",
+    "doneLede": "Your money was released to {name}. Thanks for shopping protected.",
+    "receipt": "Receipt",
+    "paidBy": "Paid by",
+    "codeAccepted": "Code accepted",
+    "total": "Total",
+    "downloadReceipt": "Download receipt",
+    "receiptSaved": "Receipt saved",
+    "howWasIt": "How was it?",
+    "howWasItLede": "A quick note helps the next buyer.",
+    "rate": {
+      "good": "Good",
+      "late": "Late",
+      "bad": "Not as described"
+    },
+    "rateGood": "Thank you — that helps the next buyer",
+    "rateOther": "Noted — thanks for telling us",
+    "buyAgain": "Buy again from {name}",
+    "tellSomeone": "Tell someone",
+    "shareCopied": "Shop link copied",
+    "shareFailed": "Could not share — copy the link from your browser",
+    "disputeTitle": "We are looking into it",
+    "disputeLede": "Your <strong>{total}</strong> stays held. {name} is not paid while a person reviews this.",
+    "frozen": "Still held",
+    "caseId": "Case {id}",
+    "whatNow": "What happens next",
+    "dispute1": "A SolAI person reads what you reported.",
+    "dispute2": "We may message you or {name} on WhatsApp for photos or a short call.",
+    "dispute3": "Then we release to her, refund you, or ask for one more step — you will hear either way.",
+    "slaNote": "<strong>We answer within 48 hours.</strong>",
+    "slaLeft": "About {hours}h left on this case.",
+    "youToldUs": "What you told us",
+    "addDetail": "Add a photo or more detail",
+    "messageSupport": "Message SolAI support",
+    "waSupport": "Hi SolAI — about case {caseId} / order #{id}",
+    "waSeller": "Hi {seller} — about my SolAI order #{id}",
+    "refundedTitle": "You have been refunded",
+    "refundedLede": "{total} has gone back to the wallet you paid from. {name} was never paid.",
+    "refundedTo": "Refunded to",
+    "sent": "Sent",
+    "usuallyArrives": "Usually arrives in",
+    "amount": "Amount",
+    "refundTrace": "Nothing arrived after ten minutes? Message us and we will trace it with the network — the reference is on your receipt.",
+    "tryDifferent": "Try a different seller",
+    "codeSheetTitle": "About your code",
+    "codeSheet1": "<strong>It exists only on your phone.</strong> {name} does not have it. The courier does not have it. We generated it when you paid and sent it to you.",
+    "codeSheet2": "<strong>It is the thing that pays her.</strong> Nothing else releases the money — not her saying she shipped it, not the courier saying he delivered it.",
+    "codeSheet3": "<strong>So give it late, never early.</strong> Item in hand, checked, then read it out.",
+    "codeSheetNote": "Lost the SMS? The code is always on this page, and this page is always linked from the message we sent you.",
+    "gotIt": "Got it",
+    "close": "Close",
+    "problemTitle": "What is wrong?",
+    "problemLede": "Your money stays held while we look. Nothing is released to the seller and nothing is refunded until a person has read this.",
+    "problemNote": "Reporting is free and it does not cancel your order — if the seller sorts it out, you can close the case yourself.",
+    "reasons": {
+      "neverArrived": "It never arrived",
+      "notAsDescribed": "Not what was described",
+      "damaged": "It arrived damaged",
+      "missing": "Something is missing",
+      "codeEarly": "Someone asked for my code early"
+    },
+    "confirmTitle": "Confirm you have it",
+    "confirmLede": "Enter the last 4 digits of the phone you used at checkout. This releases payment to the seller.",
+    "confirmPhone": "Last 4 digits",
+    "confirmCta": "Yes, I have it — release payment",
+    "confirmWrong": "Those digits do not match. Check the phone you used at checkout.",
+    "confirmErr": "Could not confirm right now. Try again.",
+    "confirmToast": "{total} released to {seller}",
+    "cancelBlocked": "You can only cancel while she is still packing.",
+    "cancelToast": "Order cancelled — you are being refunded",
+    "reportToast": "Reported. Your money stays held.",
+    "errGeneric": "Something went wrong. Try again.",
+    "addTitle": "Add more detail",
+    "addLabel": "What happened",
+    "addPh": "The courier came but the parcel was open…",
+    "addPhoto": "Add a photo",
+    "photoSoon": "Photo upload comes next — describe it for now.",
+    "sendDetail": "Send it",
+    "detailSent": "Thanks — that helps.",
+    "yourOrder": "Your order",
+    "lineMeta": "{variant} · quantity {qty}",
+    "fromSeller": "From {name}",
+    "itemLine": "{item} × {qty}",
+    "paidHeld": "Paid, and held",
+    "notFoundTitle": "Order not found",
+    "notFoundLede": "We could not find that order. Check the link from your SMS, or go back to the shop.",
+    "notFoundCta": "Back to the shop",
+    "tryAgain": "Try again"
+  },
+  "console": {
+    "nav": {
+      "sidebarLabel": "Console sections",
+      "bottomLabel": "Console sections",
+      "overview": "Overview",
+      "disputes": "Disputes",
+      "people": "People",
+      "listings": "Listings",
+      "ledger": "Ledger",
+      "rules": "Rules",
+      "back": "Back",
+      "actAs": "Act as",
+      "signedAs": "Every action you take here is signed with this name."
+    },
+    "titles": {
+      "overview": "Operations",
+      "disputes": "Disputes",
+      "case": "Case",
+      "people": "People",
+      "person": "File",
+      "listings": "Listings",
+      "ledger": "Ledger & audit",
+      "rules": "Rules",
+      "login": "Console login"
+    },
+    "roles": {
+      "support": "Support agent",
+      "finance": "Finance · read + approve",
+      "admin": "Administrator",
+      "short": {
+        "support": "Support",
+        "finance": "Finance",
+        "admin": "Admin"
+      }
+    },
+    "permissions": {
+      "seeHeld": "See held funds",
+      "resolve": "Resolve a dispute",
+      "resolveBig": "Resolve above the approval threshold",
+      "takedown": "Take a listing down",
+      "suspend": "Suspend an account",
+      "unmask": "Unmask a wallet or ID",
+      "rules": "Change hold rules",
+      "moveMoney": "Move money anywhere"
+    },
+    "error": {
+      "title": "This page could not load",
+      "lede": "Try again in a moment. Nothing about held funds was changed.",
+      "retry": "Try again"
+    }
+  }
+}
+
