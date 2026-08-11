@@ -1,0 +1,1858 @@
+{
+  "meta": {
+    "title": "[NEEDS TRANSLATION] SolAI — Take one photo. Get paid today.",
+    "description": "[NEEDS TRANSLATION] SolAI turns one photo into a shop that takes mobile money, puts it inside WhatsApp, and holds the buyer's money until you've delivered. Free until you sell."
+  },
+  "common": {
+    "start": "Commencer",
+    "startFree": "Commencer gratuitement",
+    "languageGroup": "[NEEDS TRANSLATION] Language",
+    "dismissAnnouncement": "[NEEDS TRANSLATION] Dismiss announcement",
+    "openMenu": "[NEEDS TRANSLATION] Open menu",
+    "closeMenu": "[NEEDS TRANSLATION] Close menu",
+    "mainNav": "[NEEDS TRANSLATION] Main",
+    "mobileNav": "[NEEDS TRANSLATION] Mobile",
+    "takePhoto": "[NEEDS TRANSLATION] Take a photo instead",
+    "photoInputLabel": "[NEEDS TRANSLATION] What are you selling?",
+    "progressNav": "[NEEDS TRANSLATION] Progress",
+    "stepDone": "[NEEDS TRANSLATION] Done",
+    "stepCurrent": "[NEEDS TRANSLATION] Current step"
+  },
+  "nav": {
+    "howItWorks": "[NEEDS TRANSLATION] How it works",
+    "protection": "[NEEDS TRANSLATION] Protection",
+    "whatsapp": "[NEEDS TRANSLATION] WhatsApp",
+    "pricing": "[NEEDS TRANSLATION] Pricing",
+    "buyers": "[NEEDS TRANSLATION] For buyers"
+  },
+  "announcement": {
+    "highlight": "[NEEDS TRANSLATION] New —",
+    "message": "[NEEDS TRANSLATION] payouts now land in MTN and Airtel wallets in under 10 seconds."
+  },
+  "hero": {
+    "chipFree": "Gratuit jusqu'à la vente",
+    "headline": "Une seule photo.<br></br><highlight>Payé</highlight> aujourd'hui.",
+    "subline": "[NEEDS TRANSLATION] SolAI turns it into a shop that takes mobile money, puts it inside WhatsApp, and holds the buyer's money until you've delivered. No bank account. No card.",
+    "sellQuestion": "Que vendez-vous ?",
+    "readsAs": "[NEEDS TRANSLATION] Reads as",
+    "categoryHint": "[NEEDS TRANSLATION] — wrong? one tap to change it",
+    "footnote": "[NEEDS TRANSLATION] Two minutes from this box to a shop that can receive a payment. Prices in RWF · Kinyarwanda, Swahili, French.",
+    "trust": {
+      "momo": "[NEEDS TRANSLATION] MoMo & Airtel",
+      "held": "[NEEDS TRANSLATION] Money held",
+      "chat": "[NEEDS TRANSLATION] Sells in chat"
+    },
+    "shop": {
+      "status": "[NEEDS TRANSLATION] Live · 2m 14s",
+      "productTitle": "[NEEDS TRANSLATION] Hand-strung beaded bracelet",
+      "productMeta": "[NEEDS TRANSLATION] Nyamirambo · made to order · 12 in stock"
+    }
+  },
+  "categories": {
+    "Jewellery · handmade": "[NEEDS TRANSLATION] Jewellery · handmade",
+    "Repairs · service": "[NEEDS TRANSLATION] Repairs · service",
+    "Food · made to order": "[NEEDS TRANSLATION] Food · made to order",
+    "Clothing · resale": "[NEEDS TRANSLATION] Clothing · resale",
+    "Beauty · service": "[NEEDS TRANSLATION] Beauty · service",
+    "Creative · service": "[NEEDS TRANSLATION] Creative · service",
+    "Classes · booking": "[NEEDS TRANSLATION] Classes · booking",
+    "General goods": "[NEEDS TRANSLATION] General goods"
+  },
+  "proof": {
+    "stats": {
+      "payout": "[NEEDS TRANSLATION] paid out to sellers this year",
+      "shops": "[NEEDS TRANSLATION] shops opened from a single photo",
+      "time": "[NEEDS TRANSLATION] median time from photo to live",
+      "disputes": "[NEEDS TRANSLATION] of orders released without a dispute"
+    },
+    "cities": "[NEEDS TRANSLATION] Kigali · Kampala · Nairobi · Dar es Salaam · Lusaka · Accra"
+  },
+  "how": {
+    "eyebrow": "[NEEDS TRANSLATION] How it works",
+    "title": "[NEEDS TRANSLATION] Three things you do.",
+    "titleMark": "[NEEDS TRANSLATION] Everything else is us.",
+    "lede": "[NEEDS TRANSLATION] There is no setup, no dashboard to learn and no plan to choose. From the box above to a shop that can receive a payment is five screens, and you can stop reading this page and just do it.",
+    "calloutStrong": "[NEEDS TRANSLATION] Nothing is charged, ever, until you make a sale.",
+    "callout": "[NEEDS TRANSLATION]  No trial that quietly starts billing, no card held on file, no plan to cancel.",
+    "cta": "[NEEDS TRANSLATION] Start with your photo",
+    "steps": {
+      "one": {
+        "title": "[NEEDS TRANSLATION] Photograph it, or type one line",
+        "body": "[NEEDS TRANSLATION] Whichever is faster. SolAI reads the photo, works out the category, and never asks you to pick from a list of forty.",
+        "time": "[NEEDS TRANSLATION] ≈ 10 seconds"
+      },
+      "two": {
+        "title": "[NEEDS TRANSLATION] SolAI builds the shop",
+        "body": "[NEEDS TRANSLATION] Five product shots, a written listing in Kinyarwanda and English, and a price checked against what similar things actually sell for in your city. Change anything you don't like.",
+        "time": "[NEEDS TRANSLATION] ≈ 8 seconds"
+      },
+      "three": {
+        "title": "[NEEDS TRANSLATION] Give us your number",
+        "body": "[NEEDS TRANSLATION] That's your account and your payout wallet at once. No email, no password, no card. Then your link is live and you can share it.",
+        "time": "[NEEDS TRANSLATION] ≈ 40 seconds"
+      }
+    }
+  },
+  "protection": {
+    "eyebrow": "[NEEDS TRANSLATION] Why a stranger will buy from you",
+    "title": "[NEEDS TRANSLATION] Their money sits with us until you've delivered.",
+    "lede": "[NEEDS TRANSLATION] The reason most small sellers stay stuck selling to people they already know is simple: a stranger has no reason to believe a parcel is coming. So we take that decision away from both of you.",
+    "tablistLabel": "[NEEDS TRANSLATION] How the money moves",
+    "stages": {
+      "paid": {
+        "title": "[NEEDS TRANSLATION] The buyer pays SolAI, not you",
+        "body": "[NEEDS TRANSLATION] A normal MoMo prompt appears on their phone. It says \"Amara Beads via SolAI\", so nobody is paying an anonymous merchant code and wondering where the money went.",
+        "chip": "[NEEDS TRANSLATION] Paid"
+      },
+      "held": {
+        "title": "[NEEDS TRANSLATION] We hold it — really hold it",
+        "body": "[NEEDS TRANSLATION] The money sits in our collection account, tracked against the order in a double-entry ledger. It is not yours yet and it is no longer theirs. Both of you can see exactly where it is.",
+        "chip": "[NEEDS TRANSLATION] Held"
+      },
+      "code": {
+        "title": "[NEEDS TRANSLATION] A four-digit code releases it",
+        "body": "[NEEDS TRANSLATION] The buyer gets the code by SMS. They read it out to the courier at the door. Nobody is taking anybody's word for anything — the code is the proof, and it only exists on the buyer's phone.",
+        "chip": "[NEEDS TRANSLATION] At the door"
+      },
+      "released": {
+        "title": "[NEEDS TRANSLATION] You're paid in seconds",
+        "body": "[NEEDS TRANSLATION] Straight to your wallet — typically under ten seconds, not the two to seven days a card platform would take. If the buyer never confirms, it releases to you automatically after 72 hours.",
+        "chip": "[NEEDS TRANSLATION] Released"
+      }
+    },
+    "tiles": {
+      "dispute": {
+        "title": "[NEEDS TRANSLATION] Didn't arrive?",
+        "body": "[NEEDS TRANSLATION] The buyer is refunded. Disputes are answered by a person within 48 hours — that promise is on the product page, not buried in terms."
+      },
+      "cash": {
+        "title": "[NEEDS TRANSLATION] Paying cash?",
+        "body": "[NEEDS TRANSLATION] Cash on delivery goes through the same escrow. The courier collects it into the hold — never straight into a pocket."
+      }
+    },
+    "mock": {
+      "bar": "[NEEDS TRANSLATION] 9:41 · SolAI",
+      "order": "[NEEDS TRANSLATION] Order #1042 · Jean-Paul K.",
+      "hint": "[NEEDS TRANSLATION] Tap any step to move the money",
+      "merchant": "[NEEDS TRANSLATION] Amara Beads via SolAI",
+      "buyerPhone": "[NEEDS TRANSLATION] On the buyer's phone",
+      "buyerPrompt": "[NEEDS TRANSLATION] MTN Mobile Money",
+      "enterPin": "[NEEDS TRANSLATION] Enter PIN to approve",
+      "heldLabel": "[NEEDS TRANSLATION] Held safely",
+      "heldNote": "[NEEDS TRANSLATION] In SolAI's account — not yours, not theirs — until the code is entered.",
+      "codeIntro": "[NEEDS TRANSLATION] The buyer reads this to the courier",
+      "codeNote": "[NEEDS TRANSLATION] Only their phone has it. Not you, not the courier, not us.",
+      "releasedEyebrow": "[NEEDS TRANSLATION] Sent to your wallet",
+      "releasedNote": "[NEEDS TRANSLATION] MTN · landed in 4 seconds · fees itemised on the order"
+    }
+  },
+  "whatsapp": {
+    "eyebrow": "[NEEDS TRANSLATION] Where trade already happens",
+    "title": "[NEEDS TRANSLATION] Your shop lives",
+    "titleMark": "[NEEDS TRANSLATION] inside WhatsApp.",
+    "lede": "[NEEDS TRANSLATION] Not a link you paste and hope someone opens. A real catalogue people scroll in the chat, with checkout in the same conversation. When you're busy, SolAI answers — with the price, the stock and the delivery time, in whichever language they wrote to you in.",
+    "cta": "[NEEDS TRANSLATION] Put my shop in WhatsApp",
+    "bullets": {
+      "noPage": {
+        "title": "[NEEDS TRANSLATION] No business page required.",
+        "body": "[NEEDS TRANSLATION] Instagram and Facebook are there if you want them, later, and never as a gate."
+      },
+      "checkout": {
+        "title": "[NEEDS TRANSLATION] Checkout in the chat.",
+        "body": "[NEEDS TRANSLATION] The MoMo prompt goes straight to their phone — they never leave the conversation."
+      },
+      "protection": {
+        "title": "[NEEDS TRANSLATION] Same protection.",
+        "body": "[NEEDS TRANSLATION] Orders from a chat are held in escrow exactly like orders from your link."
+      }
+    },
+    "chat": {
+      "buyerAsk": "[NEEDS TRANSLATION] Mwiriwe! Do you have the blue ones?",
+      "sellerStrong": "[NEEDS TRANSLATION] Beaded bracelet · {price}",
+      "sellerDetail": "[NEEDS TRANSLATION] Blue is in stock — 12 left. Delivery in Kigali today.",
+      "sellerBody": "[NEEDS TRANSLATION] ",
+      "viewCatalogue": "[NEEDS TRANSLATION] View catalogue",
+      "buyNow": "[NEEDS TRANSLATION] Buy now",
+      "buyerReply": "[NEEDS TRANSLATION] Perfect, I'll take one 🙌",
+      "aiNote": "[NEEDS TRANSLATION] Answered by SolAI in 2 seconds"
+    }
+  },
+  "builtFor": {
+    "eyebrow": "[NEEDS TRANSLATION] Built for here",
+    "title": "[NEEDS TRANSLATION] Designed around the phone in your hand, not the one in a demo.",
+    "cards": {
+      "momo": {
+        "title": "[NEEDS TRANSLATION] Mobile money first",
+        "body": "[NEEDS TRANSLATION] MTN and Airtel are the default — for buyers paying and for you getting paid. Card exists for the few who want it. No bank account anywhere."
+      },
+      "currency": {
+        "title": "[NEEDS TRANSLATION] Prices in your currency",
+        "body": "[NEEDS TRANSLATION] RWF, UGX, KES, TZS. Never a dollar figure you have to convert in your head before you know whether you can afford it."
+      },
+      "language": {
+        "title": "[NEEDS TRANSLATION] In your language",
+        "body": "[NEEDS TRANSLATION] Kinyarwanda, Swahili, French and English throughout — including the listing SolAI writes and the replies it sends your customers."
+      },
+      "signal": {
+        "title": "[NEEDS TRANSLATION] Works on 3G",
+        "body": "[NEEDS TRANSLATION] Tested with data saver on, on an Android under $150. Every screen is built to open on a bad connection, because that's the connection."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "[NEEDS TRANSLATION] Pricing",
+    "title": "[NEEDS TRANSLATION] You pay us after you've been paid.",
+    "lede": "[NEEDS TRANSLATION] Nobody in this market should be putting card details into a platform that hasn't earned them anything yet. So there's no card at signup, no trial, and no plan decision until after your first payout — and when we do show you a paid plan, we'll tell you if you'd be better off staying free.",
+    "chips": {
+      "noCard": "[NEEDS TRANSLATION] No card at signup",
+      "noFee": "[NEEDS TRANSLATION] No monthly fee on Free",
+      "cancel": "[NEEDS TRANSLATION] Cancel in one tap"
+    },
+    "plan": {
+      "name": "[NEEDS TRANSLATION] Free",
+      "price": "[NEEDS TRANSLATION] RWF 0",
+      "perMonth": "[NEEDS TRANSLATION] /month",
+      "badge": "[NEEDS TRANSLATION] Everyone starts here"
+    },
+    "lines": {
+      "products": "[NEEDS TRANSLATION] Products you can list",
+      "whatsapp": "[NEEDS TRANSLATION] WhatsApp catalogue",
+      "escrow": "[NEEDS TRANSLATION] Escrow & buyer protection",
+      "payouts": "[NEEDS TRANSLATION] Payouts to your wallet",
+      "cut": "[NEEDS TRANSLATION] Our cut, only when you sell"
+    },
+    "values": {
+      "unlimited": "[NEEDS TRANSLATION] Unlimited",
+      "included": "[NEEDS TRANSLATION] Included",
+      "cutPercent": "[NEEDS TRANSLATION] 3%"
+    },
+    "footnote": "[NEEDS TRANSLATION] On an RWF 8,500 bracelet that's RWF 255. The mobile-money disbursement fee is shown separately on every order, so you always see the real number before you agree to it.",
+    "cta": "[NEEDS TRANSLATION] Open my shop free"
+  },
+  "buyers": {
+    "eyebrow": "[NEEDS TRANSLATION] If you're buying, not selling",
+    "title": "[NEEDS TRANSLATION] You're never sending money to a stranger.",
+    "body": "[NEEDS TRANSLATION] You're paying SolAI. We hold it, you get a delivery code that only you have, and the seller is paid the moment you hand that code over. If nothing arrives, you're refunded — and a person answers you inside 48 hours.",
+    "bullets": {
+      "record": "[NEEDS TRANSLATION] Every seller has a visible record — orders delivered, orders confirmed, how fast they ship.",
+      "hold": "[NEEDS TRANSLATION] New sellers are held longer until that record exists. That's the point of it.",
+      "track": "[NEEDS TRANSLATION] Tracked to your door by the courier network, with the code as the handover."
+    }
+  },
+  "sellers": {
+    "eyebrow": "[NEEDS TRANSLATION] Sellers",
+    "title": "[NEEDS TRANSLATION] People who were already selling — just to fewer people.",
+    "quotes": {
+      "amara": {
+        "text": "[NEEDS TRANSLATION] \"I was selling to my cousins and their friends. The first time somebody I had never met paid me, I checked my phone four times. Now that happens most days.\"",
+        "name": "[NEEDS TRANSLATION] Amara U.",
+        "trade": "[NEEDS TRANSLATION] Beadwork · Kigali"
+      },
+      "grace": {
+        "text": "[NEEDS TRANSLATION] \"The photos it makes are better than mine. That was the part I was putting off every evening, and it does it while I'm still holding the phone.\"",
+        "name": "[NEEDS TRANSLATION] Grace N.",
+        "trade": "[NEEDS TRANSLATION] Second-hand kitenge · Kampala"
+      },
+      "samuel": {
+        "text": "[NEEDS TRANSLATION] \"Customers ask me why they should trust me. Now I just send the link and it explains itself. I stopped having that conversation.\"",
+        "name": "[NEEDS TRANSLATION] Samuel K.",
+        "trade": "[NEEDS TRANSLATION] Phone repairs · Nairobi"
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "[NEEDS TRANSLATION] Questions",
+    "title": "[NEEDS TRANSLATION] The ones people actually ask.",
+    "lede": "[NEEDS TRANSLATION] If yours isn't here, message us on WhatsApp — a person replies, usually within the hour.",
+    "cta": "[NEEDS TRANSLATION] Ask us anything",
+    "items": {
+      "bank": {
+        "question": "[NEEDS TRANSLATION] Do I need a bank account?",
+        "answer": "[NEEDS TRANSLATION] No. Your mobile money wallet is the payout account, and for most sellers it's the same number they signed up with. If you'd rather use a bank account you can add one, but it settles in one to three days instead of seconds, so almost nobody does."
+      },
+      "when": {
+        "question": "[NEEDS TRANSLATION] When exactly do I get the money?",
+        "answer": "[NEEDS TRANSLATION] The moment the delivery code is entered at handover — typically under ten seconds later. If the buyer never confirms and never raises a problem, it releases to you automatically 72 hours after delivery. You can see which of those two clocks is running on the order at any time."
+      },
+      "lie": {
+        "question": "[NEEDS TRANSLATION] What if the buyer lies and says it never arrived?",
+        "answer": "[NEEDS TRANSLATION] The courier records GPS and a photo at handover, and the code can only come from the buyer's own phone. A dispute is decided on that evidence, not on who complains loudest, and buyers who make repeated false claims are limited the same way fraudulent sellers are."
+      },
+      "edit": {
+        "question": "[NEEDS TRANSLATION] Can I change what SolAI writes about my product?",
+        "answer": "[NEEDS TRANSLATION] All of it — the name, the price, the description, which photos to keep. It's a draft, not a decision. Most sellers change the price and leave the rest."
+      },
+      "free": {
+        "question": "[NEEDS TRANSLATION] Is it really free?",
+        "answer": "[NEEDS TRANSLATION] Yes, and it stays free. We take 3% when you make a sale and nothing when you don't. There is no card at signup and no trial that starts charging. A paid plan exists for sellers doing high volume, and we only mention it once you'd actually save money on it."
+      },
+      "holding": {
+        "question": "[NEEDS TRANSLATION] Who is holding my customers' money?",
+        "answer": "[NEEDS TRANSLATION] SolAI, in a mobile money merchant account kept separate from the money the business runs on. Every held amount is tracked against a specific order in a double-entry ledger, reconciled against the account twice a day. Your funds are never used for anything else, and support staff can decide the outcome of a case but can never send money to an account that isn't already on the order."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "[NEEDS TRANSLATION] Your shop is<br></br>one photo away.",
+    "lede": "[NEEDS TRANSLATION] Two minutes from now it can be live, in WhatsApp, and able to take a payment from someone you've never met.",
+    "inputLabel": "[NEEDS TRANSLATION] What are you selling?",
+    "placeholder": "[NEEDS TRANSLATION] what are you selling?",
+    "footnote": "[NEEDS TRANSLATION] No card. No email. Free until you sell."
+  },
+  "footer": {
+    "blurb": "[NEEDS TRANSLATION] One photo becomes a shop that takes mobile money and protects both sides of the sale. Built in Kigali, for this market.",
+    "copyright": "[NEEDS TRANSLATION] © 2026 SolAI. Prices shown in RWF.",
+    "cities": "[NEEDS TRANSLATION] Kigali · Kampala · Nairobi · Dar es Salaam · Lusaka · Accra",
+    "groups": {
+      "product": {
+        "title": "[NEEDS TRANSLATION] Product",
+        "how": "[NEEDS TRANSLATION] How it works",
+        "protection": "[NEEDS TRANSLATION] Buyer protection",
+        "whatsapp": "[NEEDS TRANSLATION] WhatsApp catalogue",
+        "pricing": "[NEEDS TRANSLATION] Pricing"
+      },
+      "support": {
+        "title": "[NEEDS TRANSLATION] Support",
+        "help": "[NEEDS TRANSLATION] Help centre",
+        "dispute": "[NEEDS TRANSLATION] Open a dispute",
+        "delivery": "[NEEDS TRANSLATION] Delivery & couriers",
+        "contact": "[NEEDS TRANSLATION] Contact us on WhatsApp"
+      },
+      "company": {
+        "title": "[NEEDS TRANSLATION] Company",
+        "about": "[NEEDS TRANSLATION] About",
+        "sellerTerms": "[NEEDS TRANSLATION] Seller terms",
+        "buyerPolicy": "[NEEDS TRANSLATION] Buyer protection policy",
+        "privacy": "[NEEDS TRANSLATION] Privacy"
+      }
+    }
+  },
+  "start": {
+    "stub": "[NEEDS TRANSLATION] The next onboarding screen is not built yet."
+  },
+  "moneyFlow": {
+    "buyerPays": "[NEEDS TRANSLATION] Buyer pays",
+    "held": "[NEEDS TRANSLATION] Held",
+    "delivered": "[NEEDS TRANSLATION] Delivered",
+    "paidOut": "[NEEDS TRANSLATION] Paid out",
+    "yourePaid": "[NEEDS TRANSLATION] You're paid",
+    "paid": "[NEEDS TRANSLATION] Paid",
+    "code": "[NEEDS TRANSLATION] Code",
+    "youPay": "[NEEDS TRANSLATION] You pay",
+    "sellerPaid": "[NEEDS TRANSLATION] Seller paid",
+    "onTheWay": "[NEEDS TRANSLATION] On the way",
+    "youPaid": "[NEEDS TRANSLATION] You paid",
+    "shesPaid": "[NEEDS TRANSLATION] She's paid"
+  },
+  "build": {
+    "steps": {
+      "sell": "[NEEDS TRANSLATION] Sell",
+      "build": "[NEEDS TRANSLATION] Build",
+      "paid": "[NEEDS TRANSLATION] Get paid",
+      "live": "[NEEDS TRANSLATION] Live",
+      "share": "[NEEDS TRANSLATION] Share"
+    },
+    "topbar": {
+      "saved": "[NEEDS TRANSLATION] Draft saved",
+      "saving": "[NEEDS TRANSLATION] Saving…",
+      "offline": "[NEEDS TRANSLATION] Saved on this phone",
+      "saveExit": "[NEEDS TRANSLATION] Save & exit"
+    },
+    "capture": {
+      "eyebrow": "[NEEDS TRANSLATION] Step 2 of 5",
+      "title": "[NEEDS TRANSLATION] Show SolAI what you're selling",
+      "lede": "[NEEDS TRANSLATION] One photo is enough. Up to five if you want more angles — more photos means better generated scenes and a better price estimate.",
+      "dropTitle": "[NEEDS TRANSLATION] Take a photo",
+      "dropBody": "[NEEDS TRANSLATION] Or drag one here, or choose from your gallery. We shrink it on your phone before sending, so it uses about 90% less data.",
+      "openCamera": "[NEEDS TRANSLATION] Open camera",
+      "chooseFile": "[NEEDS TRANSLATION] Choose a file",
+      "formats": "[NEEDS TRANSLATION] JPG, PNG or HEIC · up to 12 MB each · nothing is published until you say so",
+      "describeTitle": "[NEEDS TRANSLATION] Or describe it instead",
+      "describeChip": "[NEEDS TRANSLATION] No photo needed",
+      "describePlaceholder": "[NEEDS TRANSLATION] What are you selling?",
+      "describeHint": "[NEEDS TRANSLATION] SolAI will generate the images from your description. You can add a real photo later — and you'll need one before you can take an order.",
+      "describeSubmit": "[NEEDS TRANSLATION] Build from description",
+      "tipsEyebrow": "[NEEDS TRANSLATION] Photos that work",
+      "trustNote": "[NEEDS TRANSLATION] Your original photo is kept and is always the first image a buyer sees. Generated scenes are extras, and they're labelled as such — that's how we keep \"not as described\" disputes down."
+    },
+    "tips": {
+      "daylight": {
+        "title": "[NEEDS TRANSLATION] Daylight, plain background",
+        "body": "[NEEDS TRANSLATION] Near a window beats a flash every time."
+      },
+      "frame": {
+        "title": "[NEEDS TRANSLATION] Fill the frame",
+        "body": "[NEEDS TRANSLATION] One item, close, in focus."
+      },
+      "screenshot": {
+        "title": "[NEEDS TRANSLATION] Not a screenshot",
+        "body": "[NEEDS TRANSLATION] Someone else's photo will be rejected."
+      }
+    },
+    "upload": {
+      "eyebrow": "[NEEDS TRANSLATION] Step 2 of 5",
+      "title": "[NEEDS TRANSLATION] Sending your photos",
+      "lede": "[NEEDS TRANSLATION] Shrunk on your phone first. You can keep going as soon as the first one lands.",
+      "sent": "[NEEDS TRANSLATION] Sent",
+      "retry": "[NEEDS TRANSLATION] Retry",
+      "weakSignal": "[NEEDS TRANSLATION] On a weak signal we keep uploading in the background. Close the app if you need to — your draft is saved and we'll pick it up where it stopped.",
+      "addPhoto": "[NEEDS TRANSLATION] Add another photo",
+      "startBuild": "[NEEDS TRANSLATION] Start building"
+    },
+    "generating": {
+      "eyebrow": "[NEEDS TRANSLATION] Working",
+      "title": "[NEEDS TRANSLATION] SolAI is building your listing",
+      "lede": "[NEEDS TRANSLATION] About eight seconds. Everything it decides, you can change afterwards.",
+      "cancel": "[NEEDS TRANSLATION] Cancel",
+      "leaveNote": "[NEEDS TRANSLATION] You can leave this screen — we'll notify you when it's ready."
+    },
+    "draft": {
+      "eyebrow": "[NEEDS TRANSLATION] Draft ready",
+      "title": "[NEEDS TRANSLATION] Change anything you don't like",
+      "aiBadge": "[NEEDS TRANSLATION] Written by SolAI",
+      "buildAgain": "[NEEDS TRANSLATION] Build again",
+      "tabsLabel": "[NEEDS TRANSLATION] Sections",
+      "tabPhotos": "[NEEDS TRANSLATION] Photos",
+      "tabDetails": "[NEEDS TRANSLATION] Details"
+    },
+    "studio": {
+      "errorTitle": "[NEEDS TRANSLATION] Photos couldn't load",
+      "errorRetry": "[NEEDS TRANSLATION] Try again",
+      "regenerateOne": "[NEEDS TRANSLATION] Generate this scene again",
+      "remove": "[NEEDS TRANSLATION] Remove",
+      "lockHint": "[NEEDS TRANSLATION] Your original photo can't be removed — it's the evidence of what you're sending.",
+      "feedback": "[NEEDS TRANSLATION] Was this image good?",
+      "coverLabel": "[NEEDS TRANSLATION] Cover",
+      "setCover": "[NEEDS TRANSLATION] Use this as the cover",
+      "allowance": "[NEEDS TRANSLATION] {count} rebuilds left today",
+      "provenanceNote": "[NEEDS TRANSLATION] Scenes marked AI are your item in a generated setting. Your own photo stays first in the buyer's gallery and can't be removed.",
+      "sceneSection": "[NEEDS TRANSLATION] Scene style and shape",
+      "aspectSquare": "[NEEDS TRANSLATION] Square · 1:1",
+      "aspectTall": "[NEEDS TRANSLATION] Tall · 4:5",
+      "regenerateScenes": "[NEEDS TRANSLATION] Regenerate scenes only",
+      "addPhoto": "[NEEDS TRANSLATION] Add a photo",
+      "addScene": "[NEEDS TRANSLATION] Generate another scene"
+    },
+    "scenes": {
+      "cleanWhite": "[NEEDS TRANSLATION] Clean white",
+      "marketStall": "[NEEDS TRANSLATION] Market stall",
+      "onTheWrist": "[NEEDS TRANSLATION] On the wrist",
+      "flatLay": "[NEEDS TRANSLATION] Flat lay",
+      "outdoorsKigali": "[NEEDS TRANSLATION] Outdoors, Kigali",
+      "heldInHand": "[NEEDS TRANSLATION] Held in hand"
+    },
+    "tones": {
+      "plain": "[NEEDS TRANSLATION] Plainer",
+      "warm": "[NEEDS TRANSLATION] Warmer",
+      "short": "[NEEDS TRANSLATION] Shorter"
+    },
+    "details": {
+      "errorTitle": "[NEEDS TRANSLATION] Details couldn't load",
+      "errorRetry": "[NEEDS TRANSLATION] Try again",
+      "category": "[NEEDS TRANSLATION] Category",
+      "nameLabel": "[NEEDS TRANSLATION] Product name",
+      "aiWrote": "[NEEDS TRANSLATION] SolAI wrote this",
+      "restore": "[NEEDS TRANSLATION] Restore",
+      "nameHint": "[NEEDS TRANSLATION] short, plain names get found more often",
+      "priceLabel": "[NEEDS TRANSLATION] Price",
+      "suggested": "[NEEDS TRANSLATION] Suggested",
+      "confidence": {
+        "high": "[NEEDS TRANSLATION] High confidence",
+        "medium": "[NEEDS TRANSLATION] Medium confidence",
+        "low": "[NEEDS TRANSLATION] Low confidence"
+      },
+      "whyPrice": "[NEEDS TRANSLATION] Why this price?",
+      "rangeHint": "[NEEDS TRANSLATION] Most similar items in Kigali sell in this range.",
+      "stockLabel": "[NEEDS TRANSLATION] In stock",
+      "madeToOrder": "[NEEDS TRANSLATION] Made to order",
+      "descriptionLabel": "[NEEDS TRANSLATION] Description",
+      "rewriteAs": "[NEEDS TRANSLATION] Rewrite as",
+      "variantsLabel": "[NEEDS TRANSLATION] Colours you can make",
+      "variantsPlaceholder": "[NEEDS TRANSLATION] Add a colour and press enter",
+      "courierTitle": "[NEEDS TRANSLATION] Delivery by moto courier",
+      "notPublic": "[NEEDS TRANSLATION] Nothing here is public yet. Your shop goes live at step 4, after you've added the number you want to be paid on."
+    },
+    "action": {
+      "saved": "[NEEDS TRANSLATION] Saved just now",
+      "saving": "[NEEDS TRANSLATION] Saving…",
+      "offline": "[NEEDS TRANSLATION] Saved on this phone",
+      "again": "[NEEDS TRANSLATION] Again",
+      "continue": "[NEEDS TRANSLATION] Looks good — get paid"
+    },
+    "unclear": {
+      "title": "[NEEDS TRANSLATION] We can't tell what this is",
+      "lede": "[NEEDS TRANSLATION] The photo is quite dark and there's a lot in the frame. Tell us in a few words and we'll build it anyway — or take another photo.",
+      "hintLabel": "[NEEDS TRANSLATION] What is it?",
+      "hintPlaceholder": "[NEEDS TRANSLATION] e.g. beaded bracelets I make at home",
+      "build": "[NEEDS TRANSLATION] Build with this hint",
+      "retake": "[NEEDS TRANSLATION] Take another photo"
+    },
+    "blocked": {
+      "title": "[NEEDS TRANSLATION] This one we can't list",
+      "lede": "[NEEDS TRANSLATION] We can't list this item under the rules that protect buyers.",
+      "whatYouCanDo": "[NEEDS TRANSLATION] What you can do",
+      "optionSecondHand": "[NEEDS TRANSLATION] Sell it as second-hand without the brand claim",
+      "optionProof": "[NEEDS TRANSLATION] Send proof of authorised resale",
+      "optionOther": "[NEEDS TRANSLATION] List something else",
+      "rulePrefix": "[NEEDS TRANSLATION] Rule:",
+      "listOther": "[NEEDS TRANSLATION] List something else"
+    },
+    "error": {
+      "title": "[NEEDS TRANSLATION] That didn't finish",
+      "lede": "[NEEDS TRANSLATION] The connection dropped while we were building. Nothing was lost — your photos are saved.",
+      "notCharged": "[NEEDS TRANSLATION] It costs you no rebuilds to try again.",
+      "retry": "[NEEDS TRANSLATION] Try again",
+      "back": "[NEEDS TRANSLATION] Go back",
+      "support": "[NEEDS TRANSLATION] Still failing? Message us on WhatsApp and we'll finish it for you."
+    },
+    "priceSheet": {
+      "title": "[NEEDS TRANSLATION] Why {amount}",
+      "close": "[NEEDS TRANSLATION] Close",
+      "lede": "[NEEDS TRANSLATION] This is a suggestion from what similar things actually sold for near you. It is not a valuation, and you should change it if you know better than we do.",
+      "compared": "[NEEDS TRANSLATION] Similar listings compared",
+      "sold": "[NEEDS TRANSLATION] Sold in the last 90 days",
+      "median": "[NEEDS TRANSLATION] Middle of that range",
+      "payout": "[NEEDS TRANSLATION] You'd receive around {amount} after fees.",
+      "gotIt": "[NEEDS TRANSLATION] Got it"
+    },
+    "exitSheet": {
+      "title": "[NEEDS TRANSLATION] Save this and come back?",
+      "close": "[NEEDS TRANSLATION] Close",
+      "body": "[NEEDS TRANSLATION] Your draft is already saved on this phone. Give us a number and we'll send you the link so you don't lose it if you clear your browser or change phone.",
+      "phoneLabel": "[NEEDS TRANSLATION] Phone number",
+      "phonePlaceholder": "[NEEDS TRANSLATION] 788 000 000",
+      "phoneHint": "[NEEDS TRANSLATION] This isn't creating an account yet. That's step 3.",
+      "send": "[NEEDS TRANSLATION] Send me the link",
+      "stay": "[NEEDS TRANSLATION] Just leave it on this phone"
+    }
+  },
+  "payout": {
+    "topbar": {
+      "draftSaved": "[NEEDS TRANSLATION] Draft saved",
+      "back": "[NEEDS TRANSLATION] Back to the build screen"
+    },
+    "form": {
+      "eyebrow": "[NEEDS TRANSLATION] Step 3 of 5 · last one before you're live",
+      "title": "[NEEDS TRANSLATION] Where should the money land?",
+      "lede": "[NEEDS TRANSLATION] This one number is your account and your payout destination. No email, no password, no card.",
+      "phoneLabel": "[NEEDS TRANSLATION] Your phone number",
+      "phoneHelp": "[NEEDS TRANSLATION] This is how you sign in, always.",
+      "networkDetecting": "[NEEDS TRANSLATION] Detecting…",
+      "networkUnknown": "[NEEDS TRANSLATION] Network not recognised",
+      "destLabel": "[NEEDS TRANSLATION] Where we send your money",
+      "shopLabel": "[NEEDS TRANSLATION] Your shop name",
+      "shopSuggested": "[NEEDS TRANSLATION] Suggested",
+      "shopRestore": "[NEEDS TRANSLATION] Restore",
+      "shopHint": "[NEEDS TRANSLATION] Buyers see this name — on your shop, in the payment prompt and on the receipt. They never see your phone number.",
+      "consent": "[NEEDS TRANSLATION] I agree to the seller terms and I confirm this wallet or account is registered in my own name.",
+      "disabledPhone": "[NEEDS TRANSLATION] Enter a valid phone number on a recognised network.",
+      "disabledShop": "[NEEDS TRANSLATION] Add a shop name buyers can pay.",
+      "disabledConsent": "[NEEDS TRANSLATION] Confirm the terms before we can hold money for you.",
+      "disabledBank": "[NEEDS TRANSLATION] Choose a bank and enter a valid account number.",
+      "disabledAirtel": "[NEEDS TRANSLATION] Enter your Airtel wallet number.",
+      "disabledWallet": "[NEEDS TRANSLATION] Enter the wallet number we should pay."
+    },
+    "dest": {
+      "walletDefaultTitle": "[NEEDS TRANSLATION] Mobile Money",
+      "walletSameSub": "[NEEDS TRANSLATION] The number above · lands in seconds",
+      "instant": "[NEEDS TRANSLATION] Instant",
+      "slower": "[NEEDS TRANSLATION] Slower",
+      "walletWhich": "[NEEDS TRANSLATION] Which wallet number",
+      "sameNumber": "[NEEDS TRANSLATION] Same number",
+      "otherNumber": "[NEEDS TRANSLATION] A different number",
+      "walletNumberLabel": "[NEEDS TRANSLATION] Wallet number",
+      "walletCheckHint": "[NEEDS TRANSLATION] We'll check the name registered on it before we save it.",
+      "walletSpeedNote": "[NEEDS TRANSLATION] Payouts to a mobile money wallet usually arrive in under 10 seconds, any day of the week.",
+      "airtelTitle": "[NEEDS TRANSLATION] Airtel Money",
+      "airtelSub": "[NEEDS TRANSLATION] A different wallet on Airtel",
+      "airtelNumberLabel": "[NEEDS TRANSLATION] Airtel wallet number",
+      "airtelHint": "[NEEDS TRANSLATION] Must be registered in your name. We check before saving.",
+      "bankTitle": "[NEEDS TRANSLATION] Bank account",
+      "bankSub": "[NEEDS TRANSLATION] Settles in 1–3 working days",
+      "bankSelect": "[NEEDS TRANSLATION] Bank",
+      "accountLabel": "[NEEDS TRANSLATION] Account number",
+      "bankHint": "[NEEDS TRANSLATION] We'll confirm the account holder's name before anything is saved.",
+      "bankNote": "[NEEDS TRANSLATION] Bank payouts take 1–3 working days and cost {fee} per transfer. A wallet costs about RWF 100 and arrives in seconds — most sellers use a wallet and move money to the bank themselves.",
+      "bankFeeGeneric": "[NEEDS TRANSLATION] a higher fee"
+    },
+    "action": {
+      "sendCode": "[NEEDS TRANSLATION] Send me a code",
+      "hintWallet": "[NEEDS TRANSLATION] No charge, ever, until you make a sale.",
+      "hintBank": "[NEEDS TRANSLATION] Bank payouts take 1–3 working days."
+    },
+    "rail": {
+      "whyEyebrow": "[NEEDS TRANSLATION] Why one number",
+      "why1": "[NEEDS TRANSLATION] It's your login. Nobody here wants another password to forget.",
+      "why2": "[NEEDS TRANSLATION] It's your payout wallet. Money arrives where you already spend it.",
+      "why3": "[NEEDS TRANSLATION] It's how we reach you when an order comes in.",
+      "privateTitle": "[NEEDS TRANSLATION] Your number stays private",
+      "privateBody": "[NEEDS TRANSLATION] SolAI pays you, so buyers only ever see {shop}. Your number never appears on their statement or their receipt.",
+      "waitingEyebrow": "[NEEDS TRANSLATION] What's waiting for this account",
+      "draftFallbackTitle": "[NEEDS TRANSLATION] Your listing",
+      "draftFallbackMeta": "[NEEDS TRANSLATION] Ready to publish",
+      "images": "[NEEDS TRANSLATION] {count} images · ready to publish",
+      "draftNote": "[NEEDS TRANSLATION] Your draft is saved on this phone right now. Adding your number is what makes it yours permanently — if you lose this handset, it comes back.",
+      "privacyLink": "[NEEDS TRANSLATION] What can SolAI do with this number?"
+    },
+    "confirm": {
+      "eyebrow": "[NEEDS TRANSLATION] Quick check",
+      "title": "[NEEDS TRANSLATION] Is this you?",
+      "lede": "[NEEDS TRANSLATION] This is the name registered on the wallet you entered. We check because a mistyped digit sends your money to a stranger, and once it's gone we can't get it back.",
+      "note": "[NEEDS TRANSLATION] If this name isn't yours, the number is wrong. Go back and fix it — we can't pay out to a wallet registered to someone else.",
+      "yes": "[NEEDS TRANSLATION] Yes, that's me",
+      "no": "[NEEDS TRANSLATION] No — change the number"
+    },
+    "verify": {
+      "eyebrow": "[NEEDS TRANSLATION] Almost there",
+      "title": "[NEEDS TRANSLATION] Enter the code",
+      "lede": "[NEEDS TRANSLATION] We sent six digits to {phone}.",
+      "wrongNumber": "[NEEDS TRANSLATION] Wrong number?",
+      "digit1": "[NEEDS TRANSLATION] Digit 1",
+      "digit2": "[NEEDS TRANSLATION] Digit 2",
+      "digit3": "[NEEDS TRANSLATION] Digit 3",
+      "digit4": "[NEEDS TRANSLATION] Digit 4",
+      "digit5": "[NEEDS TRANSLATION] Digit 5",
+      "digit6": "[NEEDS TRANSLATION] Digit 6",
+      "invalid": "[NEEDS TRANSLATION] That code isn't right. Check the SMS and try again.",
+      "voiceTip": "[NEEDS TRANSLATION] No SMS after two tries? Choose Call me instead — you'll get a call and the last digits of the number are your code.",
+      "resend": "[NEEDS TRANSLATION] Send it again",
+      "voice": "[NEEDS TRANSLATION] Call me instead",
+      "countdown": "[NEEDS TRANSLATION] You can ask for a new code in {time}",
+      "submit": "[NEEDS TRANSLATION] Verify and open my shop",
+      "attempts": "[NEEDS TRANSLATION] Attempt {current} of {max}."
+    },
+    "working": {
+      "title": "[NEEDS TRANSLATION] Setting up your payouts",
+      "lede": "[NEEDS TRANSLATION] Linking your wallet and moving your draft onto the account. A few seconds.",
+      "stepVerified": "[NEEDS TRANSLATION] Number verified",
+      "stepLinked": "[NEEDS TRANSLATION] Wallet linked",
+      "stepLinkPending": "[NEEDS TRANSLATION] Linking wallet…",
+      "stepMigrating": "[NEEDS TRANSLATION] Moving your listing across…",
+      "stepMigratePending": "[NEEDS TRANSLATION] Moving your listing across…"
+    },
+    "done": {
+      "title": "[NEEDS TRANSLATION] You can be paid",
+      "lede": "[NEEDS TRANSLATION] Your wallet is linked and your listing is on your account. One more screen and your shop is open.",
+      "verified": "[NEEDS TRANSLATION] Verified",
+      "oneProduct": "[NEEDS TRANSLATION] 1 product ready",
+      "cta": "[NEEDS TRANSLATION] Open my shop",
+      "footnote": "[NEEDS TRANSLATION] You can change your payout wallet any time."
+    },
+    "locked": {
+      "title": "[NEEDS TRANSLATION] Too many wrong codes",
+      "lede": "[NEEDS TRANSLATION] We've paused code checks on this number for {minutes} minutes. This protects your account — someone else guessing at your number would hit the same wall.",
+      "whileTitle": "[NEEDS TRANSLATION] While you wait",
+      "bullet1": "[NEEDS TRANSLATION] Your draft is safe. Nothing is lost.",
+      "bullet2": "[NEEDS TRANSLATION] Check the number is the one holding the SIM in this phone.",
+      "bullet3": "[NEEDS TRANSLATION] If the SMS never arrived, try Call me instead when the wait is up.",
+      "differentNumber": "[NEEDS TRANSLATION] Use a different number",
+      "whatsapp": "[NEEDS TRANSLATION] Message us on WhatsApp",
+      "timer": "[NEEDS TRANSLATION] You can try again in about {minutes} minutes."
+    },
+    "inuse": {
+      "title": "[NEEDS TRANSLATION] You already have a shop",
+      "lede": "[NEEDS TRANSLATION] This number is registered to {shop}. Sign in and we'll add this new listing to it — nothing you've built is lost.",
+      "meta": "[NEEDS TRANSLATION] {count} products · joined {joined}",
+      "active": "[NEEDS TRANSLATION] Active",
+      "signIn": "[NEEDS TRANSLATION] Sign in and add this listing",
+      "differentNumber": "[NEEDS TRANSLATION] Use a different number",
+      "note": "[NEEDS TRANSLATION] Signing in sends a code to the same number, exactly like signing up."
+    },
+    "unsupported": {
+      "title": "[NEEDS TRANSLATION] We can't pay out to that network yet",
+      "lede": "[NEEDS TRANSLATION] We can still verify this number and open your shop — but the money has to land somewhere we can reach.",
+      "unknownNet": "[NEEDS TRANSLATION] that network",
+      "optionsTitle": "[NEEDS TRANSLATION] Choose one of these instead",
+      "option1": "[NEEDS TRANSLATION] An MTN or Airtel wallet in your name, on any number.",
+      "option2": "[NEEDS TRANSLATION] A bank account in your name — slower, but it works everywhere.",
+      "feedback": "[NEEDS TRANSLATION] Tell us which network you use and we'll let you know when it's supported.",
+      "cta": "[NEEDS TRANSLATION] Choose another destination"
+    },
+    "error": {
+      "title": "[NEEDS TRANSLATION] That didn't go through",
+      "lede": "[NEEDS TRANSLATION] The connection dropped while we were setting things up. Your draft and your number are both saved — nothing needs redoing.",
+      "retry": "[NEEDS TRANSLATION] Try again",
+      "back": "[NEEDS TRANSLATION] Go back",
+      "support": "[NEEDS TRANSLATION] Still failing? Message us on WhatsApp and we'll finish it with you.",
+      "panel": "[NEEDS TRANSLATION] This section couldn't load"
+    },
+    "privacy": {
+      "title": "[NEEDS TRANSLATION] What we do with your number",
+      "do1": "[NEEDS TRANSLATION] Sign you in — a code to this number, every time. There is no password to steal.",
+      "do2": "[NEEDS TRANSLATION] Send your money — payouts go to the wallet you chose and nowhere else.",
+      "do3": "[NEEDS TRANSLATION] Tell you about orders — an SMS when someone buys, and when money is released.",
+      "dont1": "[NEEDS TRANSLATION] Never shown to buyers. They see your shop name on the payment prompt and the receipt.",
+      "dont2": "[NEEDS TRANSLATION] Never sold or given to advertisers.",
+      "dont3": "[NEEDS TRANSLATION] No marketing SMS unless you ask for it. Order messages only.",
+      "close": "[NEEDS TRANSLATION] Got it"
+    },
+    "liveStub": {
+      "title": "[NEEDS TRANSLATION] Screen 4 — Live",
+      "lede": "[NEEDS TRANSLATION] Your shop goes live here in a future release."
+    }
+  },
+  "live": {
+    "topbar": {
+      "back": "[NEEDS TRANSLATION] Back to getting paid",
+      "liveChip": "[NEEDS TRANSLATION] Live"
+    },
+    "publishing": {
+      "eyebrow": "[NEEDS TRANSLATION] Almost",
+      "title": "[NEEDS TRANSLATION] Opening your shop",
+      "lede": "[NEEDS TRANSLATION] Five things happen here. None of them need you.",
+      "closeTip": "[NEEDS TRANSLATION] If you close this, it keeps going. We'll text you when the shop is open.",
+      "progressLabel": "[NEEDS TRANSLATION] Publishing progress"
+    },
+    "shop": {
+      "title": "[NEEDS TRANSLATION] Your store is <highlight>live</highlight>",
+      "lede": "[NEEDS TRANSLATION] Two minutes ago you had a photo. <strong>{shopName}</strong> can now take a payment from someone you've never met.",
+      "linkEyebrow": "[NEEDS TRANSLATION] Your shop link",
+      "changeLink": "[NEEDS TRANSLATION] Change it",
+      "copyLink": "[NEEDS TRANSLATION] Copy",
+      "openShop": "[NEEDS TRANSLATION] Open your shop",
+      "linkHint": "[NEEDS TRANSLATION] Works in any chat, any bio, any SMS. You can change it once, free — after that the old link keeps working but it's harder to remember.",
+      "linkHintUsed": "[NEEDS TRANSLATION] Works in any chat, any bio, any SMS. You've used your free change, so this link is now the one on your QR code.",
+      "statusEyebrow": "[NEEDS TRANSLATION] What's switched on",
+      "statusListLabel": "[NEEDS TRANSLATION] What's switched on",
+      "moneyEyebrow": "[NEEDS TRANSLATION] How money will reach you",
+      "moneyHint": "[NEEDS TRANSLATION] Buyers see this same picture on your shop. It's why a stranger will risk the first order.",
+      "qrEyebrow": "[NEEDS TRANSLATION] Your QR code",
+      "qrChip": "[NEEDS TRANSLATION] Real, scannable",
+      "qrAlt": "[NEEDS TRANSLATION] QR code that opens {url}",
+      "qrDownload": "[NEEDS TRANSLATION] Download",
+      "qrPrint": "[NEEDS TRANSLATION] Print poster",
+      "qrEnlarge": "[NEEDS TRANSLATION] Show big",
+      "qrHint": "[NEEDS TRANSLATION] Stick it on the stall, the door, a flyer. Point a phone camera at it and the shop opens — no app needed.",
+      "buyerEyebrow": "[NEEDS TRANSLATION] What happens when someone buys",
+      "buyerStep1": "[NEEDS TRANSLATION] You get an SMS and a notification. No app to keep open.",
+      "buyerStep2": "[NEEDS TRANSLATION] A courier is arranged, or you hand it over yourself.",
+      "buyerStep3": "[NEEDS TRANSLATION] They read you a four-digit code. That's when you're paid.",
+      "previewTitle": "[NEEDS TRANSLATION] See what a buyer sees",
+      "previewSub": "[NEEDS TRANSLATION] Your shop, from the other side",
+      "ariaLabel": "[NEEDS TRANSLATION] Your store is live"
+    },
+    "status": {
+      "done": "[NEEDS TRANSLATION] Done",
+      "todo": "[NEEDS TRANSLATION] Not done yet",
+      "listingTitle": "[NEEDS TRANSLATION] {product}",
+      "listingSub": "[NEEDS TRANSLATION] {price} · {stock} in stock · {images} images",
+      "listingSubMadeToOrder": "[NEEDS TRANSLATION] {price} · made to order · {images} images",
+      "listingChip": "[NEEDS TRANSLATION] Listed",
+      "paymentsTitle": "[NEEDS TRANSLATION] Mobile money payments",
+      "paymentsSub": "[NEEDS TRANSLATION] Buyers pay by MTN, Airtel or cash on delivery",
+      "payoutTitle": "[NEEDS TRANSLATION] Payouts to your wallet",
+      "payoutSub": "[NEEDS TRANSLATION] {rail} · {masked} · {holder}",
+      "protectionTitle": "[NEEDS TRANSLATION] Buyer protection",
+      "protectionSub": "[NEEDS TRANSLATION] Every order held until delivery is confirmed",
+      "customersTitle": "[NEEDS TRANSLATION] Customers",
+      "customersSub": "[NEEDS TRANSLATION] Nobody knows you're open yet. That's the next screen.",
+      "customersChip": "[NEEDS TRANSLATION] To do"
+    },
+    "action": {
+      "hint": "[NEEDS TRANSLATION] Nobody can find it yet — that takes one more step.",
+      "shareCta": "[NEEDS TRANSLATION] Share it"
+    },
+    "error": {
+      "title": "[NEEDS TRANSLATION] Your shop didn't open",
+      "lede": "[NEEDS TRANSLATION] The connection dropped part way. Nothing is half-published — your listing, your wallet and your link are all saved exactly as they were.",
+      "retry": "[NEEDS TRANSLATION] Open it again",
+      "backToListing": "[NEEDS TRANSLATION] Back to my listing",
+      "helpHint": "[NEEDS TRANSLATION] Still failing? Message us on WhatsApp and we'll open it with you.",
+      "panel": "[NEEDS TRANSLATION] Something went wrong on this panel"
+    },
+    "slug": {
+      "sheetTitle": "[NEEDS TRANSLATION] Change your link",
+      "close": "[NEEDS TRANSLATION] Close",
+      "fieldLabel": "[NEEDS TRANSLATION] solai.shop/…",
+      "inputLabel": "[NEEDS TRANSLATION] Your shop link",
+      "hintDefault": "[NEEDS TRANSLATION] Letters, numbers and dashes. Short is better — people type this from memory.",
+      "hintChecking": "[NEEDS TRANSLATION] Checking if that one is free…",
+      "hintTooShort": "[NEEDS TRANSLATION] A bit longer — at least three characters.",
+      "hintTooLong": "[NEEDS TRANSLATION] Too long to remember. Keep it under 30.",
+      "hintUnchanged": "[NEEDS TRANSLATION] That's your link already.",
+      "hintTaken": "[NEEDS TRANSLATION] Someone already has that one.",
+      "hintReserved": "[NEEDS TRANSLATION] That one is not available.",
+      "hintInvalid": "[NEEDS TRANSLATION] That link won't work. Try letters, numbers and dashes.",
+      "hintFree": "[NEEDS TRANSLATION] solai.shop/{slug} is free.",
+      "suggestionsLabel": "[NEEDS TRANSLATION] Try one of these instead:",
+      "note": "[NEEDS TRANSLATION] You can change this once. After that the old link still works, but it won't be the one on your QR code.",
+      "save": "[NEEDS TRANSLATION] Save this link",
+      "saving": "[NEEDS TRANSLATION] Saving…"
+    },
+    "qrSheet": {
+      "title": "[NEEDS TRANSLATION] Scan to open the shop",
+      "close": "[NEEDS TRANSLATION] Close",
+      "hint": "[NEEDS TRANSLATION] Hold a phone camera over it. Works from about a metre away at this size.",
+      "download": "[NEEDS TRANSLATION] Download PNG",
+      "print": "[NEEDS TRANSLATION] Print poster"
+    },
+    "poster": {
+      "buyFrom": "[NEEDS TRANSLATION] Buy from",
+      "scanPrompt": "[NEEDS TRANSLATION] Point your phone camera at the square",
+      "paymentNote": "[NEEDS TRANSLATION] Pay by MTN Mobile Money, Airtel Money or cash on delivery.",
+      "protectionNote": "[NEEDS TRANSLATION] Your money is held by SolAI until your order is delivered."
+    },
+    "toast": {
+      "linkCopied": "[NEEDS TRANSLATION] Link copied",
+      "copyFailed": "[NEEDS TRANSLATION] Copy didn't work — long-press the link instead",
+      "qrSaved": "[NEEDS TRANSLATION] QR code saved to your downloads",
+      "qrFailed": "[NEEDS TRANSLATION] Could not save the image — try Print instead",
+      "slugChanged": "[NEEDS TRANSLATION] Your link is now solai.shop/{slug}"
+    }
+  },
+  "share": {
+    "topbar": {
+      "back": "[NEEDS TRANSLATION] Back to your shop",
+      "liveChip": "[NEEDS TRANSLATION] Shop open"
+    },
+    "header": {
+      "eyebrow": "[NEEDS TRANSLATION] Last step",
+      "title": "[NEEDS TRANSLATION] Now tell <highlight>five people.</highlight>",
+      "lede": "[NEEDS TRANSLATION] Your shop is open but nobody knows. Almost every first sale on SolAI comes from someone the seller already knows — so start there, then go wider.",
+      "ariaLabel": "[NEEDS TRANSLATION] Now tell five people."
+    },
+    "whatsapp": {
+      "title": "[NEEDS TRANSLATION] Start with WhatsApp",
+      "subtitle": "[NEEDS TRANSLATION] Where your customers already are. Send to a chat, or post it as your status.",
+      "chatAction": "[NEEDS TRANSLATION] Send to a chat",
+      "statusAction": "[NEEDS TRANSLATION] Post as status",
+      "hint": "[NEEDS TRANSLATION] Status reaches everyone who has your number, all at once. It is the single highest-return thing on this screen."
+    },
+    "channels": {
+      "eyebrow": "[NEEDS TRANSLATION] Everywhere else",
+      "wa": "[NEEDS TRANSLATION] WhatsApp",
+      "story": "[NEEDS TRANSLATION] Status picture",
+      "fb": "[NEEDS TRANSLATION] Facebook",
+      "ig": "[NEEDS TRANSLATION] Instagram",
+      "tg": "[NEEDS TRANSLATION] Telegram",
+      "x": "[NEEDS TRANSLATION] X",
+      "sms": "[NEEDS TRANSLATION] SMS",
+      "mail": "[NEEDS TRANSLATION] Email",
+      "link": "[NEEDS TRANSLATION] Copy link",
+      "qr": "[NEEDS TRANSLATION] QR code",
+      "more": "[NEEDS TRANSLATION] More apps",
+      "sharedState": "[NEEDS TRANSLATION] already shared",
+      "hint": "[NEEDS TRANSLATION] Instagram and TikTok don't accept links from other apps — tap Instagram and we'll hand you the pictures and the caption to paste."
+    },
+    "caption": {
+      "eyebrow": "[NEEDS TRANSLATION] What to say",
+      "textareaLabel": "[NEEDS TRANSLATION] Your message",
+      "languageGroupLabel": "[NEEDS TRANSLATION] Caption language",
+      "languageEn": "[NEEDS TRANSLATION] EN",
+      "languageRw": "[NEEDS TRANSLATION] RW",
+      "rewriteAs": "[NEEDS TRANSLATION] Rewrite as",
+      "toneFriendly": "[NEEDS TRANSLATION] Friendly",
+      "toneShort": "[NEEDS TRANSLATION] Short",
+      "toneOffer": "[NEEDS TRANSLATION] With an offer",
+      "aiBadge": "[NEEDS TRANSLATION] Written for you",
+      "restore": "[NEEDS TRANSLATION] Restore",
+      "copy": "[NEEDS TRANSLATION] Copy",
+      "hint": "[NEEDS TRANSLATION] The link is added automatically wherever it's needed. Editing this changes what every button above sends."
+    },
+    "checklist": {
+      "eyebrow": "[NEEDS TRANSLATION] Your first five customers",
+      "meterLabel": "[NEEDS TRANSLATION] People told",
+      "count": "[NEEDS TRANSLATION] {done} of {total}",
+      "familyTitle": "[NEEDS TRANSLATION] Someone in your family",
+      "familySub": "[NEEDS TRANSLATION] The easiest yes you'll ever get",
+      "customerTitle": "[NEEDS TRANSLATION] A customer who bought before",
+      "customerSub": "[NEEDS TRANSLATION] They already trust you",
+      "groupTitle": "[NEEDS TRANSLATION] Your busiest WhatsApp group",
+      "groupSub": "[NEEDS TRANSLATION] Church, savings group, neighbours",
+      "reposterTitle": "[NEEDS TRANSLATION] A friend who reposts things",
+      "reposterSub": "[NEEDS TRANSLATION] Every group has one",
+      "statusTitle": "[NEEDS TRANSLATION] Your own status",
+      "statusSub": "[NEEDS TRANSLATION] Everyone with your number, at once",
+      "note": "[NEEDS TRANSLATION] Tick them off as you go. Sellers who tell five people in the first day are far more likely to make a sale in the first week.",
+      "complete": "[NEEDS TRANSLATION] All five. That is genuinely the most useful thing you could have done today."
+    },
+    "story": {
+      "eyebrow": "[NEEDS TRANSLATION] Ready-made picture",
+      "description": "[NEEDS TRANSLATION] A status-sized picture with your product, your price and your QR code already on it.",
+      "download": "[NEEDS TRANSLATION] Download",
+      "pack": "[NEEDS TRANSLATION] All 4 pictures",
+      "hint": "[NEEDS TRANSLATION] Made on your phone, so it costs no data. Post it anywhere — the QR works from a screenshot.",
+      "imageNote": "[NEEDS TRANSLATION] Pay by MoMo · held until delivered",
+      "scanLabel": "[NEEDS TRANSLATION] Scan to buy"
+    },
+    "qr": {
+      "eyebrow": "[NEEDS TRANSLATION] Your link",
+      "alt": "[NEEDS TRANSLATION] QR code that opens {url}",
+      "copy": "[NEEDS TRANSLATION] Copy",
+      "preview": "[NEEDS TRANSLATION] Preview"
+    },
+    "shop": {
+      "qrAlt": "[NEEDS TRANSLATION] QR code that opens {url}"
+    },
+    "qrSheet": {
+      "title": "[NEEDS TRANSLATION] Your QR code",
+      "close": "[NEEDS TRANSLATION] Close",
+      "hint": "[NEEDS TRANSLATION] Hold a phone camera over it. Works from about a metre away at this size.",
+      "download": "[NEEDS TRANSLATION] Download",
+      "print": "[NEEDS TRANSLATION] Print a poster"
+    },
+    "instagram": {
+      "title": "[NEEDS TRANSLATION] Posting to Instagram",
+      "close": "[NEEDS TRANSLATION] Close",
+      "explanation": "[NEEDS TRANSLATION] Instagram won't let another app post for you, so we hand you the two pieces and you paste them. It takes about twenty seconds.",
+      "step1Title": "[NEEDS TRANSLATION] Save the pictures",
+      "step1Sub": "[NEEDS TRANSLATION] Four square images plus one for stories",
+      "step1Action": "[NEEDS TRANSLATION] Save",
+      "step2Title": "[NEEDS TRANSLATION] Copy the caption",
+      "step2Sub": "[NEEDS TRANSLATION] Your link is already in it",
+      "step2Action": "[NEEDS TRANSLATION] Copy",
+      "step3Title": "[NEEDS TRANSLATION] Put the link in your bio too",
+      "step3Sub": "[NEEDS TRANSLATION] Captions aren't clickable on Instagram — the bio is",
+      "step3Action": "[NEEDS TRANSLATION] Copy link",
+      "open": "[NEEDS TRANSLATION] Open Instagram",
+      "tiktokNote": "[NEEDS TRANSLATION] TikTok works exactly the same way."
+    },
+    "action": {
+      "countNone": "[NEEDS TRANSLATION] Nothing shared yet",
+      "countOne": "[NEEDS TRANSLATION] Shared in 1 place",
+      "countMany": "[NEEDS TRANSLATION] Shared in {count} places",
+      "skip": "[NEEDS TRANSLATION] Skip for now",
+      "done": "[NEEDS TRANSLATION] I've shared it"
+    },
+    "done": {
+      "title": "[NEEDS TRANSLATION] That's the whole thing",
+      "lede": "[NEEDS TRANSLATION] Five screens. One photo. A shop that takes mobile money and protects both sides of every sale.",
+      "expectTitle": "[NEEDS TRANSLATION] What to expect now",
+      "expectBody1": "[NEEDS TRANSLATION] Most shops get their first visitor within an hour of the first share, and the first order usually comes from someone the seller already knows.",
+      "expectBody2": "[NEEDS TRANSLATION] You'll get an SMS the moment somebody buys. There is nothing to keep open and nothing to check.",
+      "whileYouWait": "[NEEDS TRANSLATION] While you wait",
+      "catalogueTitle": "[NEEDS TRANSLATION] Put your catalogue in WhatsApp",
+      "catalogueSub": "[NEEDS TRANSLATION] A real product list inside the chat",
+      "addProductTitle": "[NEEDS TRANSLATION] Add another product",
+      "addProductSub": "[NEEDS TRANSLATION] Two minutes, same as the first",
+      "reachTitle": "[NEEDS TRANSLATION] Pay to reach more people",
+      "reachSub": "[NEEDS TRANSLATION] Only worth it once the free routes are used",
+      "shopHome": "[NEEDS TRANSLATION] Go to my shop"
+    },
+    "error": {
+      "title": "[NEEDS TRANSLATION] That app didn't open",
+      "lede": "[NEEDS TRANSLATION] Your phone couldn't hand it over — usually because the app isn't installed. Copy the link instead and paste it wherever you like.",
+      "copyLink": "[NEEDS TRANSLATION] Copy the link",
+      "backToSharing": "[NEEDS TRANSLATION] Back to sharing",
+      "panel": "[NEEDS TRANSLATION] Something went wrong on this panel",
+      "loadTitle": "[NEEDS TRANSLATION] Your shop isn't ready to share yet",
+      "loadLede": "[NEEDS TRANSLATION] We couldn't load your shop link. Open the live screen again, or retry here once publishing has finished.",
+      "retry": "[NEEDS TRANSLATION] Try again"
+    },
+    "toast": {
+      "linkCopied": "[NEEDS TRANSLATION] Link copied",
+      "captionCopied": "[NEEDS TRANSLATION] Message copied",
+      "bioLinkCopied": "[NEEDS TRANSLATION] Link copied for your bio",
+      "copyFailed": "[NEEDS TRANSLATION] Copy didn't work — select the text and copy it",
+      "statusSaved": "[NEEDS TRANSLATION] Picture saved — open WhatsApp and post it as your status",
+      "statusShared": "[NEEDS TRANSLATION] Picture sent",
+      "packSaved": "[NEEDS TRANSLATION] All four pictures saved",
+      "imageFailed": "[NEEDS TRANSLATION] Could not make the picture — try again",
+      "noShareMenu": "[NEEDS TRANSLATION] Your phone has no share menu — message copied instead",
+      "qrSaved": "[NEEDS TRANSLATION] QR code saved to your downloads",
+      "qrFailed": "[NEEDS TRANSLATION] Could not save the image — try Print instead"
+    },
+    "loading": "[NEEDS TRANSLATION] Getting your share kit ready…"
+  },
+  "dashboard": {
+    "nav": {
+      "sidebarLabel": "Sections de la boutique",
+      "bottomLabel": "Sections de la boutique",
+      "home": "Accueil",
+      "orders": "Commandes",
+      "products": "Produits",
+      "money": "Argent",
+      "grow": "Croître",
+      "settings": "Réglages"
+    },
+    "titles": {
+      "home": "Accueil",
+      "orders": "Commandes",
+      "order": "Commande",
+      "deliver": "Confirmer la livraison",
+      "paid": "Payé",
+      "products": "Produits",
+      "product": "Modifier le produit",
+      "money": "Argent",
+      "plans": "Forfaits",
+      "grow": "Croître",
+      "boost": "Boost",
+      "settings": "Réglages"
+    },
+    "topBar": {
+      "back": "Retour à la section",
+      "search": "Rechercher commandes et produits",
+      "notifications": "Notifications"
+    },
+    "placeholder": {
+      "eyebrow": "Tableau de bord",
+      "lede": "Cette section est branchée dans le shell. La vue complète arrive à la prochaine phase."
+    },
+    "status": {
+      "held": {
+        "label": "Retenu",
+        "note": "Payé. En attente que vous le remettiez."
+      },
+      "transit": {
+        "label": "En route",
+        "note": "Chez le coursier. L'argent est encore retenu."
+      },
+      "paid": {
+        "label": "Payé",
+        "note": "Livré, confirmé et payé."
+      },
+      "problem": {
+        "label": "Problème",
+        "note": "Un litige est ouvert. Le support s'en occupe."
+      }
+    },
+    "empty": {
+      "needsYou": {
+        "title": "Rien ici",
+        "description": "Aucune commande ne vous attend. C'est l'état que vous voulez.",
+        "action": "Voir toutes les commandes"
+      }
+    },
+    "atomsPreview": {
+      "eyebrow": "Phase 2 · Atomes",
+      "title": "Briques",
+      "lede": "Status chips, KPIs, meters, sparkline, skeletons et états vides — prêts pour les vues.",
+      "kpiViews": "Vues cette semaine",
+      "kpiOrders": "Commandes",
+      "kpiDelivered": "Livrées",
+      "kpiProblems": "Problèmes",
+      "kpiOpen": "1 ouvert",
+      "kpiNone": "aucun",
+      "wallet": "Dans votre portefeuille",
+      "held": "Retenu pour les commandes en cours",
+      "score": "Votre score vendeur",
+      "building": "En construction",
+      "delivered": "Livré et confirmé",
+      "holdShortens": "Commandes avant retenue plus courte",
+      "viewsWeek": "Vues, 7 derniers jours",
+      "skeleton": "Skeleton"
+    },
+    "error": {
+      "title": "Cet écran n'a pas pu charger",
+      "lede": "Les données de votre boutique sont en sécurité. Réessayez — si ça continue, ouvrez Accueil puis revenez.",
+      "retry": "Réessayer"
+    },
+    "orders": {
+      "subtitle": "{count} au total",
+      "heldNow": "retenu maintenant",
+      "export": "Exporter",
+      "escrowNote": "Money for every order above sits in SolAI's account, not yours, until delivery is confirmed. That is what the buyer is trusting.",
+      "emptyTitle": "Rien ici",
+      "emptyFiltered": "Aucune commande ne correspond encore à ce filtre.",
+      "showingMatches": "Showing matches for “{query}” ·",
+      "clearSearch": "effacer",
+      "notFoundTitle": "Commande introuvable",
+      "notFoundLede": "It may have been removed, or the link is wrong.",
+      "backToOrders": "Retour aux commandes",
+      "filters": {
+        "label": "Filtrer les commandes",
+        "all": "Toutes",
+        "held": "À traiter",
+        "transit": "En route",
+        "paid": "Payées",
+        "problem": "Problèmes",
+        "resultCount": "{count, plural, =0 {Aucune commande} one {# commande} other {# commandes}}"
+      },
+      "report": {
+        "title": "What went wrong?",
+        "lede": "The money stays held while we look. Nothing is released and nothing is refunded until a person has read this.",
+        "sent": "Report sent — money stays held",
+        "failed": "Could not send the report — try again",
+        "reasons": {
+          "cannotReachBuyer": "I cannot reach the buyer",
+          "courierNeverArrived": "The courier never arrived",
+          "buyerWontGiveCode": "The buyer will not give the code",
+          "somethingElse": "Something else"
+        }
+      },
+      "detail": {
+        "title": "Order #{id}",
+        "each": "each",
+        "editProduct": "Edit product",
+        "messageBuyer": "Message buyer on WhatsApp",
+        "tracked": "Tracked door to door",
+        "courierWaiting": "Waiting",
+        "courierTransit": "On the way",
+        "courierDelivered": "Delivered",
+        "paidToWallet": "Paid to your wallet",
+        "heldSafely": "Held safely",
+        "ledgerReceived": "What you received",
+        "ledgerWillReceive": "What you will receive",
+        "delivery": "Delivery (buyer pays)",
+        "fee": "SolAI fee · 3%",
+        "disbursement": "Mobile money payout",
+        "landed": "Landed in your wallet",
+        "lands": "Lands in your wallet",
+        "autoRelease": "If {name} never confirms, this releases to you automatically <strong>72 hours after delivery</strong>, unless a dispute is opened.",
+        "handOver": "Hand over to the courier",
+        "report": "Report a problem",
+        "transitNote": "The courier has it. When {name} reads out the code at the door, you are paid.",
+        "enterCode": "Enter the delivery code",
+        "settledNote": "Settled in {seconds} seconds after the code was accepted.",
+        "seePayout": "See the payout",
+        "disputeTitle": "A dispute is open",
+        "disputeLede": "The buyer says it never arrived. Support has the courier GPS and photo and will decide within 48 hours. The money stays held until then — it is not lost.",
+        "disputeCta": "Send your side of it",
+        "messageSupport": "Message support"
+      }
+    },
+    "deliver": {
+      "title": "Ask for the four-digit code",
+      "lede": "{buyer} got it by SMS when they paid. They read it out at the door. The code is what moves the money — not your word, and not theirs.",
+      "digit1": "Digit 1",
+      "digit2": "Digit 2",
+      "digit3": "Digit 3",
+      "digit4": "Digit 4",
+      "demoHint": "This order's code is <strong>{code}</strong> — try a wrong one to see the error.",
+      "hint": "Ask the buyer to read the code from their SMS.",
+      "step1": "The courier scans the parcel, or you type the code here.",
+      "step2": "SolAI releases {amount} to your wallet, in seconds.",
+      "step3": "Both of you get a receipt. Neither had to trust the other.",
+      "release": "Release the money",
+      "releasing": "Releasing…",
+      "back": "Not yet — back to the order",
+      "wrongCode": "That code is not right. Ask them to read it again.",
+      "rateLimited": "Too many tries. Wait a few minutes and try again.",
+      "notReleasable": "This order cannot be released right now.",
+      "notReleasableTitle": "Cannot release yet",
+      "failed": "Could not release the money — try again.",
+      "releasedToast": "{amount} sent to your wallet",
+      "releasedAnnounce": "Money released. Opening the receipt."
+    },
+    "paid": {
+      "eyebrow": "Sent to your wallet",
+      "landedIn": "landed in {seconds} seconds",
+      "ledgerTitle": "The ledger, in plain words",
+      "buyerPaid": "Buyer paid in",
+      "heldAgainst": "Held against #{id}",
+      "codeAccepted": "Code {code} accepted",
+      "verified": "Verified",
+      "feesTaken": "Fees taken",
+      "courierPaid": "Courier paid",
+      "releasedToYou": "Released to you",
+      "note": "A platform running on card rails would settle this in two to seven days. Mobile money is why we can say four seconds.",
+      "seePayouts": "See all payouts",
+      "backToOrders": "Back to orders",
+      "notYetTitle": "Not paid out yet",
+      "notYetLede": "Enter the delivery code first. The money stays held until then."
+    },
+    "home": {
+      "greeting": {
+        "morning": "Bonjour, {name}.",
+        "afternoon": "Bon après-midi, {name}.",
+        "evening": "Bonsoir, {name}."
+      },
+      "walletLabel": "Dans votre portefeuille",
+      "walletHint": "Dépensable depuis votre téléphone maintenant",
+      "heldLabel": "Retenu pour les commandes en cours",
+      "heldHint": "Libéré à chaque livraison",
+      "needsYouTitle": "À vous · commande {id}",
+      "needsYouLede": "{buyer} a payé {amount} {when} · remettez-la au coursier",
+      "kpi": {
+        "views": "Vues cette semaine",
+        "orders": "Commandes",
+        "delivered": "Livrées",
+        "problems": "Problèmes",
+        "ofTotal": "sur {total}",
+        "open": "1 ouvert",
+        "none": "aucun"
+      },
+      "activity": "Activité récente",
+      "allOrders": "Toutes les commandes →",
+      "scoreTitle": "Votre score vendeur",
+      "scoreBuilding": "En construction",
+      "scoreDelivered": "Livrées et confirmées",
+      "scoreDeliveredCount": "{confirmed} sur {target}",
+      "scoreHold": "Commandes avant une retenue plus courte",
+      "scoreHoldMore": "encore {count}",
+      "scoreNote": "Les acheteurs voient ceci sur votre boutique. Les nouveaux vendeurs sont retenus plus longtemps jusqu’à ce que ça se remplisse.",
+      "viewsWeek": "Vues, 7 derniers jours",
+      "viewsNote": "Jeudi était votre meilleur jour — c’était le statut WhatsApp.",
+      "nudgesTitle": "À faire ensuite",
+      "nudge": {
+        "oosTitle": "{name} est en rupture",
+        "oosSub": "Les acheteurs ne peuvent pas le commander",
+        "catalogueTitle": "Vérifiez votre catalogue WhatsApp",
+        "catalogueSub": "Deux taps, sans coût",
+        "addTitle": "Ajouter un autre produit",
+        "addSub": "Deux minutes, comme le premier"
+      }
+    },
+    "productStatus": {
+      "live": "En vente",
+      "oos": "Rupture de stock",
+      "draft": "Brouillon"
+    },
+    "products": {
+      "subtitle": "{total} au total · {live} en vente",
+      "add": "Ajouter un produit",
+      "addHint": "Une photo, environ deux minutes",
+      "cardMeta": "{views} vues · {sold} vendus · {stock} en stock",
+      "photoNote": "Un produit sans photo de l’article réel peut être en brouillon mais ne peut pas recevoir de commande. C’est ce qui limite les litiges « pas comme décrit ».",
+      "emptyTitle": "Aucun produit pour l’instant",
+      "emptyLede": "Commencez avec une photo. SolAI construit l’annonce ; vous modifiez ce que vous voulez.",
+      "viewAsBuyer": "Voir comme acheteur",
+      "imagesNote": "6 images · votre photo d’abord, cinq scènes générées",
+      "changePictures": "Changer les photos",
+      "fields": {
+        "name": "Nom",
+        "nameError": "Donnez-lui un nom — jusqu’à 70 caractères.",
+        "price": "Prix",
+        "priceError": "Le prix doit être supérieur à zéro.",
+        "stock": "En stock",
+        "description": "Description",
+        "descriptionError": "Ajoutez une courte description fiable."
+      },
+      "oosBanner": "Stock à zéro — les acheteurs ne peuvent pas commander tant que c’est en vente.",
+      "onSale": {
+        "title": "En vente",
+        "subtitle": "Visible sur votre boutique et WhatsApp",
+        "aria": "Activer ou désactiver la mise en vente"
+      },
+      "statusHint": {
+        "live": "En ligne sur votre boutique.",
+        "oos": "Rupture — les acheteurs ne peuvent pas commander.",
+        "draft": "Retiré de la vente."
+      },
+      "statsTitle": "Comment ça marche",
+      "stats": {
+        "views": "Vues",
+        "sold": "Vendus",
+        "earned": "Gagné sur ce produit",
+        "conversion": "Visiteurs qui ont acheté"
+      },
+      "priceCheck": {
+        "title": "Vérification du prix",
+        "lede": "Des articles similaires à {city} se vendent entre {low} et {high}."
+      },
+      "boost": "Booster ce produit",
+      "save": {
+        "cta": "Enregistrer",
+        "saving": "Enregistrement…",
+        "cancel": "Annuler",
+        "live": "Enregistré. En ligne sur votre boutique.",
+        "oos": "Enregistré. Rupture — les acheteurs ne peuvent pas commander.",
+        "draft": "Enregistré. Retiré de la vente.",
+        "failed": "Impossible d’enregistrer — réessayez.",
+        "validation": "Vérifiez le nom, le prix et la description."
+      },
+      "delete": {
+        "cta": "Supprimer",
+        "title": "Supprimer ce produit ?",
+        "lede": "Il disparaît de votre boutique et de votre catalogue WhatsApp. Les commandes déjà passées ne sont pas affectées et doivent toujours être livrées.",
+        "confirm": "Oui, le supprimer",
+        "confirmAria": "Supprimer {name}. Les commandes existantes restent ouvertes.",
+        "keep": "Le garder",
+        "deleting": "Suppression…",
+        "done": "Produit supprimé",
+        "failed": "Impossible de supprimer — réessayez."
+      }
+    },
+    "money": {
+      "statement": "Relevé",
+      "statementDownloaded": "solai-statement.csv téléchargé",
+      "wallet": "Dans votre portefeuille",
+      "held": "Retenu",
+      "lifetime": "Payé, à vie",
+      "payouts": "Versements",
+      "payoutMeta": "{id} · commande {order} · {when}",
+      "settledIn": "{seconds}s",
+      "emptyTitle": "Pas encore de versements",
+      "emptyLede": "Quand un code de livraison est accepté, le versement arrive ici en quelques secondes.",
+      "flowTitle": "Où va votre argent",
+      "salesMonth": "Ventes, ce mois",
+      "fee": "Frais SolAI · 3%",
+      "payoutCharges": "Frais de versement mobile money",
+      "yours": "À vous",
+      "plansCta": "Un forfait payant pourrait-il coûter moins ? →",
+      "paidInto": "Versé sur",
+      "verified": "Vérifié",
+      "changeWallet": "Changer où l’argent arrive",
+      "reserveTitle": "Réserve",
+      "heldBack": "Retenu",
+      "appliesFor": "S’applique pour",
+      "firstOrders": "Les 10 premières commandes",
+      "reserveNote": "Votre dossier est propre, donc rien n’est retenu. Si ça glissait, ça apparaîtrait ici plutôt que de vous retarder en silence."
+    },
+    "plans": {
+      "eyebrow": "Maintenant — pas le premier jour",
+      "title": "Vous avez été payé {count} fois.",
+      "lede": "Il est juste de parler d’argent. Free reste gratuit pour toujours ; il prend juste une part un peu plus grande de ce que vous vendez.",
+      "perMonth": "{price}/mois",
+      "perMonthSuffix": "/ mois",
+      "yourPlan": "Votre forfait",
+      "switch": "Changer",
+      "switchFailed": "Impossible de changer de forfait — réessayez.",
+      "switchedPlus": "Passé à Plus",
+      "switchedFree": "De retour sur Free — rien à annuler",
+      "free": {
+        "name": "Free",
+        "features": "3% par vente · produits illimités · catalogue WhatsApp · escrow et versements inclus"
+      },
+      "plus": {
+        "name": "Plus",
+        "features": "1,5% par vente · pubs et boosts · liste clients exportable · litiges prioritaires"
+      },
+      "compareMore": "Avec vos ventes actuelles, Plus vous coûte plus",
+      "compareLess": "Avec vos ventes actuelles, Plus vous coûterait moins",
+      "onFree": "Sur Free · 3% de {sales}",
+      "onPlus": "Sur Plus · 1,5% + {fee}",
+      "breakEven": "Seuil de rentabilité",
+      "adviceStay": "Vous n’y êtes pas encore, donc on resterait sur Free. On le dira à nouveau quand les maths changent.",
+      "adviceSwitch": "Les maths favorisent Plus avec vos ventes actuelles. Changez quand vous voulez — annulez quand vous voulez depuis cet écran.",
+      "note": "Payé depuis votre portefeuille mobile money. Pas de carte. Annulez depuis cet écran en un tap — le bouton est ici, pas enterré dans les réglages."
+    },
+    "search": {
+      "title": "Trouver une commande ou un produit",
+      "placeholder": "Nom, quartier, numéro de commande…",
+      "minChars": "Tapez au moins deux lettres.",
+      "searching": "Recherche…",
+      "none": "Rien ne correspond à « {query} »."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "close": "Fermer",
+      "empty": "Rien ne vous attend pour le moment."
+    },
+    "grow": {
+      "tabsLabel": "Grow",
+      "tabs": {
+        "catalogue": "Catalogue WhatsApp",
+        "boost": "Boost payant"
+      },
+      "published": "Catalogue publié",
+      "chatBuyer": "Mwiriwe! Do you have the blue ones?",
+      "chatStock": "Blue is in stock — {stock} left.",
+      "viewCatalogue": "View catalogue",
+      "buyNow": "Buy now",
+      "answeredIn": "Answered by SolAI in 2 seconds, in the language they wrote in",
+      "answersTitle": "What SolAI answers on its own",
+      "answers": {
+        "price": {
+          "title": "Price, stock and delivery",
+          "sub": "Without you typing"
+        },
+        "checkout": {
+          "title": "Checkout inside the chat",
+          "sub": "MoMo prompt straight to their phone"
+        },
+        "language": {
+          "title": "Reply in Kinyarwanda first",
+          "sub": "Switches if they write in English"
+        },
+        "closed": {
+          "title": "Say when you are closed",
+          "sub": "Outside your working hours"
+        }
+      },
+      "kpi": {
+        "views": "Catalogue views",
+        "chats": "Chats started"
+      },
+      "inCatalogue": "In the catalogue",
+      "catalogueToggle": "Show {name} in the WhatsApp catalogue",
+      "escrowNote": "Orders that start in a chat are held in escrow exactly like orders from your link.",
+      "boost": {
+        "optional": "Optional",
+        "headline": "Say who should see it. That is all.",
+        "lede": "Free routes first — your status, your groups, your QR. Paid reach is worth it once those are used up.",
+        "audienceLabel": "Who should see this",
+        "audienceDefault": "women in {city} who like handmade things",
+        "budgetLabel": "Budget for 5 days",
+        "budgetHint": "Paid from your wallet. It stops on its own — it cannot overspend.",
+        "productLabel": "Which product",
+        "noneLive": "Nothing is on sale yet",
+        "formatsNote": "Twelve format choices used to be a screen of its own. SolAI picks four and you swap any you dislike.",
+        "workedOut": "What SolAI worked out",
+        "reach": "Reach",
+        "reachValue": "3,000 – 4,500 people",
+        "where": "Where",
+        "whereValue": "Instagram, Facebook, Reels",
+        "language": "Language",
+        "languageValue": "Kinyarwanda + English",
+        "cost": "Cost",
+        "noFbNote": "No Facebook page needed. Ads run through SolAI’s business account with your shop named as the advertiser.",
+        "start": "Start the boost",
+        "starting": "Starting…",
+        "freeFirst": "Use the free routes first",
+        "started": "Boost started — it stops on its own in 5 days",
+        "failed": "Could not start the boost — try again.",
+        "validation": "Pick a product on sale and a budget above zero."
+      }
+    },
+    "settings": {
+      "shopTitle": "Your shop",
+      "fields": {
+        "name": "Shop name",
+        "nameHint": "Buyers see this on your shop, in the payment prompt and on the receipt.",
+        "link": "Link",
+        "linkHint": "The old link keeps working, but a printed QR would still point at the old one.",
+        "city": "City",
+        "language": "Language"
+      },
+      "langs": {
+        "en": "English",
+        "rw": "Kinyarwanda",
+        "sw": "Swahili",
+        "fr": "Français"
+      },
+      "save": {
+        "cta": "Enregistrer la boutique",
+        "saving": "Saving…",
+        "done": "Détails de la boutique enregistrés",
+        "failed": "Could not save — try again.",
+        "validation": "Check the shop name, link and city."
+      },
+      "deliveryTitle": "Delivery",
+      "delivery": {
+        "moto": {
+          "title": "Moto courier delivery",
+          "sub": "Buyer pays, about {price} in {city}"
+        },
+        "pickup": {
+          "title": "Buyer can collect from you",
+          "sub": "No delivery fee"
+        }
+      },
+      "notifyTitle": "Telling you things",
+      "notify": {
+        "sms": {
+          "title": "SMS when an order comes in",
+          "sub": "Works with no data"
+        },
+        "wa": {
+          "title": "WhatsApp messages",
+          "sub": "Cheaper for us, needs data"
+        },
+        "weekly": {
+          "title": "Weekly summary",
+          "sub": "How the shop did, every Monday"
+        }
+      },
+      "wallet": {
+        "title": "Where money lands",
+        "change": "Le changer",
+        "note": "Changing this needs a code sent to your number — the same check as when you set it up.",
+        "sheetTitle": "Change where money lands",
+        "sheetLede": "We will send a code to {number} first. Payouts already on their way are not affected.",
+        "startChange": "Commencer le changement",
+        "notNow": "Pas maintenant"
+      },
+      "planTitle": "Plan",
+      "planFeeFree": "3% per sale",
+      "planFeePlus": "1.5% per sale",
+      "seePlans": "See plans",
+      "accountTitle": "Account",
+      "downloadData": "Download my data",
+      "backupNumber": "Add a backup number",
+      "closeShop": "Close my shop",
+      "closeShopAria": "Close my shop. Held money is still resolved under normal rules.",
+      "closeShopNote": "Closing hides your shop. Money already held is still resolved under the normal rules — it never disappears with the account."
+    }
+  },
+  "storefront": {
+    "secure": "[NEEDS TRANSLATION] Protected by SolAI",
+    "shareShop": "[NEEDS TRANSLATION] Share this shop",
+    "shareCopied": "[NEEDS TRANSLATION] Shop link copied",
+    "shareFailed": "[NEEDS TRANSLATION] Could not share — copy the link instead",
+    "ask": "[NEEDS TRANSLATION] Ask",
+    "askAria": "[NEEDS TRANSLATION] Ask a question",
+    "buyNow": "[NEEDS TRANSLATION] Buy now",
+    "stock": "[NEEDS TRANSLATION] {count} in stock",
+    "colour": "[NEEDS TRANSLATION] Colour",
+    "howMany": "[NEEDS TRANSLATION] How many",
+    "qtyFewer": "[NEEDS TRANSLATION] Fewer",
+    "qtyMore": "[NEEDS TRANSLATION] More",
+    "qtyLabel": "[NEEDS TRANSLATION] Quantity",
+    "deliverTo": "[NEEDS TRANSLATION] Deliver to",
+    "areaFee": "[NEEDS TRANSLATION] {area} · {fee}",
+    "areaPickup": "[NEEDS TRANSLATION] I'll collect it myself · free",
+    "delivery": "[NEEDS TRANSLATION] Delivery",
+    "free": "[NEEDS TRANSLATION] Free",
+    "youPay": "[NEEDS TRANSLATION] You pay",
+    "total": "[NEEDS TRANSLATION] Total",
+    "itemLine": "[NEEDS TRANSLATION] {item} × {qty}",
+    "itemLineVariant": "[NEEDS TRANSLATION] {item} × {qty} · {variant}",
+    "etaDelivery": "[NEEDS TRANSLATION] Usually delivered same day in Kigali if you order before 4pm.",
+    "etaPickup": "[NEEDS TRANSLATION] Collect from the seller in Nyamirambo. She will message you the address once you order.",
+    "shotNote": "[NEEDS TRANSLATION] Photo {n} of {total} · {label}",
+    "aiNoteTitle": "[NEEDS TRANSLATION] This one is a styled picture",
+    "aiNoteBody": "[NEEDS TRANSLATION] SolAI placed the seller's real item into a setting. Photo 1 is always the actual item, taken by the seller.",
+    "trustTitle": "[NEEDS TRANSLATION] {name} does not get your money yet",
+    "trustBody": "[NEEDS TRANSLATION] You pay SolAI. We hold it, and release it only when you have the bracelet in your hands. If it never arrives, you are refunded.",
+    "trustHow": "[NEEDS TRANSLATION] How the protection works",
+    "verifiedWallet": "[NEEDS TRANSLATION] Verified wallet",
+    "sellerMeta": "[NEEDS TRANSLATION] {city} · {since}",
+    "ordersDelivered": "[NEEDS TRANSLATION] Orders delivered",
+    "confirmedReceived": "[NEEDS TRANSLATION] Confirmed received by the buyer",
+    "usuallyShips": "[NEEDS TRANSLATION] Usually ships",
+    "answersIn": "[NEEDS TRANSLATION] Answers questions in",
+    "newerSellerNote": "[NEEDS TRANSLATION] A newer seller. SolAI holds their money longer until that record grows — which is exactly what makes a first order safe for you.",
+    "seeEverything": "[NEEDS TRANSLATION] See everything {name} sells",
+    "recentTitle": "[NEEDS TRANSLATION] Recent deliveries",
+    "recentRow": "[NEEDS TRANSLATION] {initial}. in {area} · confirmed received, {when}",
+    "recentNote": "[NEEDS TRANSLATION] These are deliveries the buyer confirmed with their own code. They are not written reviews and nobody can post one without having bought.",
+    "faqLink": "[NEEDS TRANSLATION] Questions people ask",
+    "reportLink": "[NEEDS TRANSLATION] Report this listing",
+    "shopOpen": "[NEEDS TRANSLATION] Open",
+    "shopMeta": "[NEEDS TRANSLATION] {city} · {delivered} delivered · usually ships {ships}",
+    "catalogueEyebrow": "[NEEDS TRANSLATION] {count} things for sale",
+    "catalogueHint": "[NEEDS TRANSLATION] Prices in {currency} · delivery from {from}",
+    "inStock": "[NEEDS TRANSLATION] In stock",
+    "soldOut": "[NEEDS TRANSLATION] Sold out",
+    "shopEscrowNote": "[NEEDS TRANSLATION] Whatever you buy here, your money is held by SolAI until it reaches you. Disputes are answered by a person within 48 hours.",
+    "oosChip": "[NEEDS TRANSLATION] Out of stock",
+    "notifyTitle": "[NEEDS TRANSLATION] Tell me when it is back",
+    "notifyLabel": "[NEEDS TRANSLATION] Your number",
+    "notifyHint": "[NEEDS TRANSLATION] One message when it is available. Nothing else, ever.",
+    "notifyCta": "[NEEDS TRANSLATION] Let me know",
+    "notifyOk": "[NEEDS TRANSLATION] We will message you the moment it is back",
+    "notifyShort": "[NEEDS TRANSLATION] That number looks too short",
+    "prefix": "[NEEDS TRANSLATION] +250",
+    "askWhenBack": "[NEEDS TRANSLATION] Ask {name} when it is back",
+    "seeWhatElse": "[NEEDS TRANSLATION] See what else {name} sells",
+    "goneTitle": "[NEEDS TRANSLATION] This listing is not available",
+    "goneLede": "[NEEDS TRANSLATION] It was taken down, or the seller removed it. Nothing has been charged to you and no order was created.",
+    "goneNote": "[NEEDS TRANSLATION] If you already paid for something from this shop, that order is unaffected and still protected. Open the link in your SMS to see it.",
+    "goneCta": "[NEEDS TRANSLATION] See the rest of the shop",
+    "protTitle": "[NEEDS TRANSLATION] How your money is protected",
+    "protStep1": "[NEEDS TRANSLATION] You pay SolAI, not {name}. The MoMo prompt says \"{name} via SolAI\" so you know where it went.",
+    "protStep2": "[NEEDS TRANSLATION] We hold the money. It is not hers and it is no longer yours. Both of you can see where it is.",
+    "protStep3": "[NEEDS TRANSLATION] You get a four-digit code by SMS. You give it at the door, once the parcel is in your hands.",
+    "protStep4": "[NEEDS TRANSLATION] That code is what pays {name}. Nothing else does.",
+    "protWarn": "[NEEDS TRANSLATION] Never give the code before you have the item. Anyone asking for it early — including someone claiming to be from SolAI — is trying to take your money.",
+    "protSla": "[NEEDS TRANSLATION] Nothing arrives? Report it and you are refunded. A person answers within 48 hours.",
+    "protGotIt": "[NEEDS TRANSLATION] Got it",
+    "faqTitle": "[NEEDS TRANSLATION] Questions people ask",
+    "faqClose": "[NEEDS TRANSLATION] Close",
+    "faq": {
+      "accountQ": "[NEEDS TRANSLATION] Do I need an account?",
+      "accountA": "[NEEDS TRANSLATION] No. You need a phone number so we can send you the delivery code and tell you where your order is.",
+      "payQ": "[NEEDS TRANSLATION] When do I pay?",
+      "payA": "[NEEDS TRANSLATION] Now, into SolAI's account. Or choose cash on delivery and pay the courier — that goes into the same hold, not straight into the seller's pocket.",
+      "wrongQ": "[NEEDS TRANSLATION] What if it is the wrong thing?",
+      "wrongA": "[NEEDS TRANSLATION] Report it from your order page. The money is still held while we look, and it is refunded if the seller cannot resolve it.",
+      "collectQ": "[NEEDS TRANSLATION] Can I collect it myself?",
+      "collectA": "[NEEDS TRANSLATION] Yes — choose that at delivery and there is no fee. You still get a code, and you still give it only when you have the item.",
+      "photosQ": "[NEEDS TRANSLATION] Are the pictures real?",
+      "photosA": "[NEEDS TRANSLATION] Photo 1 is always the seller's own photo of the actual item. Anything marked Styled is that item placed into a generated setting."
+    },
+    "reportTitle": "[NEEDS TRANSLATION] Report this listing",
+    "reportLede": "[NEEDS TRANSLATION] A person reviews every report. The seller is not told who reported them.",
+    "reportOk": "[NEEDS TRANSLATION] Reported. A person will look at this listing.",
+    "reportReasons": {
+      "counterfeit": "[NEEDS TRANSLATION] Counterfeit or fake brand",
+      "stolenPhotos": "[NEEDS TRANSLATION] The pictures are not theirs",
+      "misleading": "[NEEDS TRANSLATION] Misleading price or description",
+      "illegal": "[NEEDS TRANSLATION] Something illegal or unsafe",
+      "other": "[NEEDS TRANSLATION] Something else"
+    },
+    "errorTitle": "[NEEDS TRANSLATION] This page could not load",
+    "errorLede": "[NEEDS TRANSLATION] Try again in a moment. Your money was not charged.",
+    "errorRetry": "[NEEDS TRANSLATION] Try again",
+    "notFoundTitle": "[NEEDS TRANSLATION] Shop not found",
+    "notFoundLede": "[NEEDS TRANSLATION] That link does not match a live SolAI shop.",
+    "checkoutStubTitle": "[NEEDS TRANSLATION] Checkout",
+    "checkoutStubLede": "[NEEDS TRANSLATION] Your selection is saved. Checkout continues in the next build phase.",
+    "checkoutStubBack": "[NEEDS TRANSLATION] Back to product",
+    "close": "[NEEDS TRANSLATION] Close"
+  },
+  "checkout": {
+    "title": "[NEEDS TRANSLATION] Checkout",
+    "secure": "[NEEDS TRANSLATION] Paying SolAI, not the seller",
+    "back": "[NEEDS TRANSLATION] Back to the product",
+    "headline": "[NEEDS TRANSLATION] Almost yours",
+    "lede": "[NEEDS TRANSLATION] No account needed. We only need a number, so we can send you the delivery code and tell you where your order is.",
+    "where": "[NEEDS TRANSLATION] Where it goes",
+    "step1": "[NEEDS TRANSLATION] Step 1 of 2",
+    "step2": "[NEEDS TRANSLATION] Step 2 of 2",
+    "modeLabel": "[NEEDS TRANSLATION] Delivery or pickup",
+    "deliver": "[NEEDS TRANSLATION] Deliver to me",
+    "pickup": "[NEEDS TRANSLATION] I'll collect it",
+    "name": "[NEEDS TRANSLATION] Your name",
+    "namePh": "[NEEDS TRANSLATION] Jean-Paul K.",
+    "phone": "[NEEDS TRANSLATION] Your phone number",
+    "phonePh": "[NEEDS TRANSLATION] 788 902 771",
+    "phoneHint": "[NEEDS TRANSLATION] The delivery code comes here by SMS. This is also how the courier reaches you.",
+    "area": "[NEEDS TRANSLATION] Area",
+    "areaFee": "[NEEDS TRANSLATION] {area} · {fee}",
+    "landmark": "[NEEDS TRANSLATION] How the courier finds you",
+    "landmarkPh": "[NEEDS TRANSLATION] Near the market, blue gate opposite the pharmacy",
+    "landmarkHint": "[NEEDS TRANSLATION] A landmark works better than an address here. This is only shown to the courier.",
+    "pickupNote": "[NEEDS TRANSLATION] {name} will message you the exact place and time once you have paid. You still get a code, and you still give it only when the item is in your hands.",
+    "howPay": "[NEEDS TRANSLATION] How you pay",
+    "mtn": "[NEEDS TRANSLATION] MTN Mobile Money",
+    "mtnSub": "[NEEDS TRANSLATION] A prompt comes to your phone. Nothing to type in here.",
+    "mostUsed": "[NEEDS TRANSLATION] Most used",
+    "sameNum": "[NEEDS TRANSLATION] Pay from the same number",
+    "momoNum": "[NEEDS TRANSLATION] MoMo number",
+    "momoPh": "[NEEDS TRANSLATION] 788 000 000",
+    "airtel": "[NEEDS TRANSLATION] Airtel Money",
+    "airtelSub": "[NEEDS TRANSLATION] Same thing, on Airtel.",
+    "airtelNum": "[NEEDS TRANSLATION] Airtel number",
+    "airtelPh": "[NEEDS TRANSLATION] 730 000 000",
+    "cod": "[NEEDS TRANSLATION] Cash on delivery",
+    "codSub": "[NEEDS TRANSLATION] Pay the courier. Still protected the same way.",
+    "codBody": "[NEEDS TRANSLATION] The courier collects the cash and it goes into the same hold. The seller is paid after you give the code — never before.",
+    "codHint": "[NEEDS TRANSLATION] Have the exact amount if you can. Couriers rarely carry change.",
+    "card": "[NEEDS TRANSLATION] Card",
+    "cardSub": "[NEEDS TRANSLATION] Visa or Mastercard. Slower to clear.",
+    "cardNumber": "[NEEDS TRANSLATION] Card number",
+    "expiry": "[NEEDS TRANSLATION] Expiry",
+    "cvc": "[NEEDS TRANSLATION] CVC",
+    "cardNote": "[NEEDS TRANSLATION] Card payments take 2–7 days to clear before the seller can be paid. Mobile money is instant, which is why it is first.",
+    "paySolaiNote": "[NEEDS TRANSLATION] You are paying <strong>SolAI</strong>, not {name}. We release her money only once you confirm the item reached you.",
+    "howItWorks": "[NEEDS TRANSLATION] How it works",
+    "terms": "[NEEDS TRANSLATION] By paying you agree to the buyer terms. We keep your number to run this order and to tell you about it — nothing else.",
+    "yourOrder": "[NEEDS TRANSLATION] Your order",
+    "lineMeta": "[NEEDS TRANSLATION] {variant} · quantity {qty}",
+    "fromSeller": "[NEEDS TRANSLATION] From {name}",
+    "itemLine": "[NEEDS TRANSLATION] {item} × {qty}",
+    "deliveryArea": "[NEEDS TRANSLATION] Delivery · {area}",
+    "collecting": "[NEEDS TRANSLATION] Collecting it yourself",
+    "free": "[NEEDS TRANSLATION] Free",
+    "youPayNow": "[NEEDS TRANSLATION] You pay now",
+    "feeNote": "[NEEDS TRANSLATION] SolAI charges the seller, not you. The price you see is the price you pay.",
+    "heldTitle": "[NEEDS TRANSLATION] Held until it reaches you",
+    "heldBody": "[NEEDS TRANSLATION] Not delivered? Refunded. A person answers a problem within 48 hours.",
+    "afterTitle": "[NEEDS TRANSLATION] What happens after you pay",
+    "after1": "[NEEDS TRANSLATION] 1 · You get a four-digit code by SMS.",
+    "after2": "[NEEDS TRANSLATION] 2 · {name} packs it and a courier collects.",
+    "after3": "[NEEDS TRANSLATION] 3 · You give the code at the door — only then is she paid.",
+    "total": "[NEEDS TRANSLATION] Total",
+    "payCta": "[NEEDS TRANSLATION] Pay {total}",
+    "placeOrder": "[NEEDS TRANSLATION] Place the order · {total}",
+    "errName": "[NEEDS TRANSLATION] The courier needs a name to ask for.",
+    "errPhone": "[NEEDS TRANSLATION] That number looks too short — we send your code here.",
+    "errGeneric": "[NEEDS TRANSLATION] Something went wrong. Nothing was charged.",
+    "promptTitle": "[NEEDS TRANSLATION] Check your phone",
+    "promptLede": "[NEEDS TRANSLATION] A payment request has been sent to {phone}. Approve it with your MoMo PIN.",
+    "simNetwork": "[NEEDS TRANSLATION] MTN Mobile Money",
+    "simPay": "[NEEDS TRANSLATION] Pay",
+    "simTo": "[NEEDS TRANSLATION] to",
+    "simMerchant": "[NEEDS TRANSLATION] {name} via SolAI",
+    "simPin": "[NEEDS TRANSLATION] Enter PIN to approve",
+    "simNote": "[NEEDS TRANSLATION] The seller's name is in the prompt on purpose. You should never be paying a merchant code you do not recognise.",
+    "waiting": "[NEEDS TRANSLATION] Waiting for you to approve",
+    "dontClose": "[NEEDS TRANSLATION] Do not close this page. It updates on its own.",
+    "resend": "[NEEDS TRANSLATION] Send the request again",
+    "resent": "[NEEDS TRANSLATION] Request sent again — check your phone",
+    "cancelChange": "[NEEDS TRANSLATION] Cancel and change how I pay",
+    "promptHelp": "[NEEDS TRANSLATION] No prompt after a minute? Dial your MoMo menu and check pending approvals, or send the request again. Nothing is charged until you enter your PIN.",
+    "simApproved": "[NEEDS TRANSLATION] Simulate: approved",
+    "simFailed": "[NEEDS TRANSLATION] Simulate: failed",
+    "failTitle": "[NEEDS TRANSLATION] That payment did not go through",
+    "failLede": "[NEEDS TRANSLATION] <strong>Nothing has been taken from your wallet</strong>, and your order has not been placed. Nobody is holding your money.",
+    "failUsual": "[NEEDS TRANSLATION] Usually one of these",
+    "fail1": "[NEEDS TRANSLATION] The PIN was wrong, or the request timed out.",
+    "fail2": "[NEEDS TRANSLATION] Not enough in the wallet — the total is {total}.",
+    "fail3": "[NEEDS TRANSLATION] The network was busy. This one fixes itself; just try again.",
+    "tryAgain": "[NEEDS TRANSLATION] Try again",
+    "differentWay": "[NEEDS TRANSLATION] Pay a different way",
+    "askHelp": "[NEEDS TRANSLATION] Ask SolAI for help",
+    "waHelpText": "[NEEDS TRANSLATION] Hello SolAI, my payment for {product} from {shop} failed.",
+    "failBasket": "[NEEDS TRANSLATION] Your basket is still here. The item is not reserved though — if someone else buys the last one first, we will tell you and refund anything taken.",
+    "codTitle": "[NEEDS TRANSLATION] Paying cash at the door",
+    "codLede": "[NEEDS TRANSLATION] Nothing is charged now. Here is exactly how it will go.",
+    "codStep1": "[NEEDS TRANSLATION] {name} packs it and a courier brings it to you.",
+    "codStep2": "[NEEDS TRANSLATION] You pay the courier <strong>{total}</strong> and check the item.",
+    "codStep3": "[NEEDS TRANSLATION] The cash goes into SolAI's hold — not into the seller's pocket.",
+    "codStep4": "[NEEDS TRANSLATION] You give your code, and only then is she paid.",
+    "codExact": "[NEEDS TRANSLATION] Bring the exact amount if you can — couriers rarely carry change. If the item is not what was described, do not pay and do not give the code.",
+    "placeOrderBtn": "[NEEDS TRANSLATION] Place the order",
+    "payNowInstead": "[NEEDS TRANSLATION] Pay now instead",
+    "paidTitle": "[NEEDS TRANSLATION] Paid, and held",
+    "paidLede": "[NEEDS TRANSLATION] Your code is on its way by SMS. Taking you to your order.",
+    "seeOrder": "[NEEDS TRANSLATION] See my order now",
+    "sessionMissingTitle": "[NEEDS TRANSLATION] Checkout expired",
+    "sessionMissingLede": "[NEEDS TRANSLATION] That checkout session is gone. Go back to the product and tap Buy now again.",
+    "sessionMissingCta": "[NEEDS TRANSLATION] Back to the shop"
+  },
+  "protected": {
+    "secureProtected": "[NEEDS TRANSLATION] Protected",
+    "secureDone": "[NEEDS TRANSLATION] Complete",
+    "secureRefunded": "[NEEDS TRANSLATION] Refunded",
+    "secureReview": "[NEEDS TRANSLATION] Under review",
+    "orderTitle": "[NEEDS TRANSLATION] Order #{id}",
+    "suspendedBanner": "[NEEDS TRANSLATION] This seller’s shop is paused. Your order and held money are unaffected — we still protect this delivery the same way.",
+    "collecting": "[NEEDS TRANSLATION] Collect in person",
+    "deliveryArea": "[NEEDS TRANSLATION] Delivery · {area}",
+    "free": "[NEEDS TRANSLATION] Free",
+    "heldTitle": "[NEEDS TRANSLATION] Paid. And held.",
+    "heldLede": "[NEEDS TRANSLATION] {name} can see your order. She cannot see your money — and she will not be paid until you say it reached you.",
+    "codeEyebrow": "[NEEDS TRANSLATION] Your delivery code",
+    "copy": "[NEEDS TRANSLATION] Copy",
+    "codeCopied": "[NEEDS TRANSLATION] Code copied",
+    "whatIsThis": "[NEEDS TRANSLATION] What is this?",
+    "codeBody": "[NEEDS TRANSLATION] Give it to the courier <strong>only once the item is in your hands.</strong> That is the moment {name} gets paid.",
+    "codeWarn": "[NEEDS TRANSLATION] <strong>Nobody should ask you for this code before delivery.</strong> Not the seller, not the courier, not anyone saying they are from SolAI. If someone does, report it and do not give it.",
+    "timeline": "[NEEDS TRANSLATION] What has happened",
+    "expect": "[NEEDS TRANSLATION] Expect delivery",
+    "moneyWhere": "[NEEDS TRANSLATION] Where your money is",
+    "moneyWhereBody": "[NEEDS TRANSLATION] In SolAI’s account, against this order. Not {name}’s, and no longer yours. It moves one way or the other — to her when you confirm, or back to you if it never arrives.",
+    "needSomething": "[NEEDS TRANSLATION] Need something?",
+    "messageSeller": "[NEEDS TRANSLATION] Message {name}",
+    "somethingWrong": "[NEEDS TRANSLATION] Something is wrong",
+    "cancelOrder": "[NEEDS TRANSLATION] Cancel this order",
+    "cancelNote": "[NEEDS TRANSLATION] You can cancel free until the courier collects it. After that, report a problem instead.",
+    "demoTransit": "[NEEDS TRANSLATION] Demo: courier collected",
+    "transitEyebrow": "[NEEDS TRANSLATION] On the way",
+    "transitTitle": "[NEEDS TRANSLATION] It is with the courier",
+    "transitLede": "[NEEDS TRANSLATION] Have your code ready. Check the item first, then read the code out.",
+    "readOut": "[NEEDS TRANSLATION] Read this out at the door",
+    "readOutBody": "[NEEDS TRANSLATION] Only after you have the item and it is what you ordered.",
+    "call": "[NEEDS TRANSLATION] Call",
+    "callCourierToast": "[NEEDS TRANSLATION] Calling the courier — your number stays hidden from him",
+    "collected": "[NEEDS TRANSLATION] Collected",
+    "transitNote": "[NEEDS TRANSLATION] If the item is not what was described, do not give the code. Report it instead and the money stays held while a person looks.",
+    "alreadyHave": "[NEEDS TRANSLATION] Already have it?",
+    "alreadyHaveBody": "[NEEDS TRANSLATION] Confirm receipt to release payment. We ask for the last 4 digits of the phone you used at checkout.",
+    "iReceived": "[NEEDS TRANSLATION] I received it",
+    "nobodyConfirms": "[NEEDS TRANSLATION] What if nobody confirms?",
+    "nobodyConfirmsBody": "[NEEDS TRANSLATION] If you never confirm and never report a problem, we release to {name} after the delivery window — usually a few days. Report early if something is wrong.",
+    "doneTitle": "[NEEDS TRANSLATION] You got it",
+    "doneLede": "[NEEDS TRANSLATION] Your money was released to {name}. Thanks for shopping protected.",
+    "receipt": "[NEEDS TRANSLATION] Receipt",
+    "paidBy": "[NEEDS TRANSLATION] Paid by",
+    "codeAccepted": "[NEEDS TRANSLATION] Code accepted",
+    "total": "[NEEDS TRANSLATION] Total",
+    "downloadReceipt": "[NEEDS TRANSLATION] Download receipt",
+    "receiptSaved": "[NEEDS TRANSLATION] Receipt saved",
+    "howWasIt": "[NEEDS TRANSLATION] How was it?",
+    "howWasItLede": "[NEEDS TRANSLATION] A quick note helps the next buyer.",
+    "rate": {
+      "good": "[NEEDS TRANSLATION] Good",
+      "late": "[NEEDS TRANSLATION] Late",
+      "bad": "[NEEDS TRANSLATION] Not as described"
+    },
+    "rateGood": "[NEEDS TRANSLATION] Thank you — that helps the next buyer",
+    "rateOther": "[NEEDS TRANSLATION] Noted — thanks for telling us",
+    "buyAgain": "[NEEDS TRANSLATION] Buy again from {name}",
+    "tellSomeone": "[NEEDS TRANSLATION] Tell someone",
+    "shareCopied": "[NEEDS TRANSLATION] Shop link copied",
+    "shareFailed": "[NEEDS TRANSLATION] Could not share — copy the link from your browser",
+    "disputeTitle": "[NEEDS TRANSLATION] We are looking into it",
+    "disputeLede": "[NEEDS TRANSLATION] Your <strong>{total}</strong> stays held. {name} is not paid while a person reviews this.",
+    "frozen": "[NEEDS TRANSLATION] Still held",
+    "caseId": "[NEEDS TRANSLATION] Case {id}",
+    "whatNow": "[NEEDS TRANSLATION] What happens next",
+    "dispute1": "[NEEDS TRANSLATION] A SolAI person reads what you reported.",
+    "dispute2": "[NEEDS TRANSLATION] We may message you or {name} on WhatsApp for photos or a short call.",
+    "dispute3": "[NEEDS TRANSLATION] Then we release to her, refund you, or ask for one more step — you will hear either way.",
+    "slaNote": "[NEEDS TRANSLATION] <strong>We answer within 48 hours.</strong>",
+    "slaLeft": "[NEEDS TRANSLATION] About {hours}h left on this case.",
+    "youToldUs": "[NEEDS TRANSLATION] What you told us",
+    "addDetail": "[NEEDS TRANSLATION] Add a photo or more detail",
+    "messageSupport": "[NEEDS TRANSLATION] Message SolAI support",
+    "waSupport": "[NEEDS TRANSLATION] Hi SolAI — about case {caseId} / order #{id}",
+    "waSeller": "[NEEDS TRANSLATION] Hi {seller} — about my SolAI order #{id}",
+    "refundedTitle": "[NEEDS TRANSLATION] You have been refunded",
+    "refundedLede": "[NEEDS TRANSLATION] {total} has gone back to the wallet you paid from. {name} was never paid.",
+    "refundedTo": "[NEEDS TRANSLATION] Refunded to",
+    "sent": "[NEEDS TRANSLATION] Sent",
+    "usuallyArrives": "[NEEDS TRANSLATION] Usually arrives in",
+    "amount": "[NEEDS TRANSLATION] Amount",
+    "refundTrace": "[NEEDS TRANSLATION] Nothing arrived after ten minutes? Message us and we will trace it with the network — the reference is on your receipt.",
+    "tryDifferent": "[NEEDS TRANSLATION] Try a different seller",
+    "codeSheetTitle": "[NEEDS TRANSLATION] About your code",
+    "codeSheet1": "[NEEDS TRANSLATION] <strong>It exists only on your phone.</strong> {name} does not have it. The courier does not have it. We generated it when you paid and sent it to you.",
+    "codeSheet2": "[NEEDS TRANSLATION] <strong>It is the thing that pays her.</strong> Nothing else releases the money — not her saying she shipped it, not the courier saying he delivered it.",
+    "codeSheet3": "[NEEDS TRANSLATION] <strong>So give it late, never early.</strong> Item in hand, checked, then read it out.",
+    "codeSheetNote": "[NEEDS TRANSLATION] Lost the SMS? The code is always on this page, and this page is always linked from the message we sent you.",
+    "gotIt": "[NEEDS TRANSLATION] Got it",
+    "close": "[NEEDS TRANSLATION] Close",
+    "problemTitle": "[NEEDS TRANSLATION] What is wrong?",
+    "problemLede": "[NEEDS TRANSLATION] Your money stays held while we look. Nothing is released to the seller and nothing is refunded until a person has read this.",
+    "problemNote": "[NEEDS TRANSLATION] Reporting is free and it does not cancel your order — if the seller sorts it out, you can close the case yourself.",
+    "reasons": {
+      "neverArrived": "[NEEDS TRANSLATION] It never arrived",
+      "notAsDescribed": "[NEEDS TRANSLATION] Not what was described",
+      "damaged": "[NEEDS TRANSLATION] It arrived damaged",
+      "missing": "[NEEDS TRANSLATION] Something is missing",
+      "codeEarly": "[NEEDS TRANSLATION] Someone asked for my code early"
+    },
+    "confirmTitle": "[NEEDS TRANSLATION] Confirm you have it",
+    "confirmLede": "[NEEDS TRANSLATION] Enter the last 4 digits of the phone you used at checkout. This releases payment to the seller.",
+    "confirmPhone": "[NEEDS TRANSLATION] Last 4 digits",
+    "confirmCta": "[NEEDS TRANSLATION] Yes, I have it — release payment",
+    "confirmWrong": "[NEEDS TRANSLATION] Those digits do not match. Check the phone you used at checkout.",
+    "confirmErr": "[NEEDS TRANSLATION] Could not confirm right now. Try again.",
+    "confirmToast": "[NEEDS TRANSLATION] {total} released to {seller}",
+    "cancelBlocked": "[NEEDS TRANSLATION] You can only cancel while she is still packing.",
+    "cancelToast": "[NEEDS TRANSLATION] Order cancelled — you are being refunded",
+    "reportToast": "[NEEDS TRANSLATION] Reported. Your money stays held.",
+    "errGeneric": "[NEEDS TRANSLATION] Something went wrong. Try again.",
+    "addTitle": "[NEEDS TRANSLATION] Add more detail",
+    "addLabel": "[NEEDS TRANSLATION] What happened",
+    "addPh": "[NEEDS TRANSLATION] The courier came but the parcel was open…",
+    "addPhoto": "[NEEDS TRANSLATION] Add a photo",
+    "photoSoon": "[NEEDS TRANSLATION] Photo upload comes next — describe it for now.",
+    "sendDetail": "[NEEDS TRANSLATION] Send it",
+    "detailSent": "[NEEDS TRANSLATION] Thanks — that helps.",
+    "yourOrder": "[NEEDS TRANSLATION] Your order",
+    "lineMeta": "[NEEDS TRANSLATION] {variant} · quantity {qty}",
+    "fromSeller": "[NEEDS TRANSLATION] From {name}",
+    "itemLine": "[NEEDS TRANSLATION] {item} × {qty}",
+    "paidHeld": "[NEEDS TRANSLATION] Paid, and held",
+    "notFoundTitle": "[NEEDS TRANSLATION] Order not found",
+    "notFoundLede": "[NEEDS TRANSLATION] We could not find that order. Check the link from your SMS, or go back to the shop.",
+    "notFoundCta": "[NEEDS TRANSLATION] Back to the shop",
+    "tryAgain": "[NEEDS TRANSLATION] Try again"
+  },
+  "console": {
+    "nav": {
+      "sidebarLabel": "[NEEDS TRANSLATION] Console sections",
+      "bottomLabel": "[NEEDS TRANSLATION] Console sections",
+      "overview": "[NEEDS TRANSLATION] Overview",
+      "disputes": "[NEEDS TRANSLATION] Disputes",
+      "people": "[NEEDS TRANSLATION] People",
+      "listings": "[NEEDS TRANSLATION] Listings",
+      "ledger": "[NEEDS TRANSLATION] Ledger",
+      "rules": "[NEEDS TRANSLATION] Rules",
+      "back": "[NEEDS TRANSLATION] Back",
+      "actAs": "[NEEDS TRANSLATION] Act as",
+      "signedAs": "[NEEDS TRANSLATION] Every action you take here is signed with this name."
+    },
+    "titles": {
+      "overview": "[NEEDS TRANSLATION] Operations",
+      "disputes": "[NEEDS TRANSLATION] Disputes",
+      "case": "[NEEDS TRANSLATION] Case",
+      "people": "[NEEDS TRANSLATION] People",
+      "person": "[NEEDS TRANSLATION] File",
+      "listings": "[NEEDS TRANSLATION] Listings",
+      "ledger": "[NEEDS TRANSLATION] Ledger & audit",
+      "rules": "[NEEDS TRANSLATION] Rules",
+      "login": "[NEEDS TRANSLATION] Console login"
+    },
+    "roles": {
+      "support": "[NEEDS TRANSLATION] Support agent",
+      "finance": "[NEEDS TRANSLATION] Finance · read + approve",
+      "admin": "[NEEDS TRANSLATION] Administrator",
+      "short": {
+        "support": "Support",
+        "finance": "Finance",
+        "admin": "Admin"
+      }
+    },
+    "permissions": {
+      "seeHeld": "[NEEDS TRANSLATION] See held funds",
+      "resolve": "[NEEDS TRANSLATION] Resolve a dispute",
+      "resolveBig": "[NEEDS TRANSLATION] Resolve above the approval threshold",
+      "takedown": "[NEEDS TRANSLATION] Take a listing down",
+      "suspend": "[NEEDS TRANSLATION] Suspend an account",
+      "unmask": "[NEEDS TRANSLATION] Unmask a wallet or ID",
+      "rules": "[NEEDS TRANSLATION] Change hold rules",
+      "moveMoney": "[NEEDS TRANSLATION] Move money anywhere"
+    },
+    "error": {
+      "title": "[NEEDS TRANSLATION] This page could not load",
+      "lede": "[NEEDS TRANSLATION] Try again in a moment. Nothing about held funds was changed.",
+      "retry": "[NEEDS TRANSLATION] Try again"
+    }
+  }
+}
