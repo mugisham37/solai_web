@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import { siteMeta } from "@/data/site-meta";
 
-export const runtime = "edge";
-
 export const size = {
   width: 1200,
   height: 630,
