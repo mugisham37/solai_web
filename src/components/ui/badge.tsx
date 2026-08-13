@@ -25,12 +25,12 @@ const badgeVariants = cva(
   },
 );
 
-export type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
+export type BadgeProps = React.HTMLAttributes<HTMLSpanElement> &
   VariantProps<typeof badgeVariants>;
 
 function Badge({ className, variant, onDark, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant, onDark }), className)} {...props} />
+    <span className={cn(badgeVariants({ variant, onDark }), className)} {...props} />
   );
 }
 
