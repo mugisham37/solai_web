@@ -1,18 +1,32 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { draftSchema } from "@/lib/schemas/build";
-import type { Draft } from "@/types/build";
-import { getDraftMemory, saveDraftMemory } from "@/lib/draft-store";
+import { proxyDraftRequest } from "@/lib/api/solai-server";
+
+const DRAFT_COOKIE = "solai_draft_token";
+
+async function draftToken(): Promise<string | undefined> {
+  const cookieStore = await cookies();
+  return cookieStore.get(DRAFT_COOKIE)?.value;
+}
 
 export async function GET(
   _request: Request,
   context: { params: Promise<{ draftId: string }> },
 ) {
   const { draftId } = await context.params;
-  const draft = getDraftMemory(draftId);
-  if (!draft) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  const token = await draftToken();
+  if (!token) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return NextResponse.json({ draft });
+  const upstream = await proxyDraftRequest(`/v1/draft/${draftId}`, {
+    method: "GET",
+    draftToken: token,
+  });
+  const body = await upstream.text();
+  return new NextResponse(body, {
+    status: upstream.status,
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
 export async function PUT(
@@ -20,17 +34,20 @@ export async function PUT(
   context: { params: Promise<{ draftId: string }> },
 ) {
   const { draftId } = await context.params;
-  const body = (await request.json()) as { draft: unknown };
-  const parsed = draftSchema.safeParse(body.draft);
-  if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid draft" }, { status: 400 });
+  const token = await draftToken();
+  if (!token) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  if (parsed.data.id !== draftId) {
-    return NextResponse.json({ error: "ID mismatch" }, { status: 400 });
-  }
-  if (parsed.data.images.original.locked !== true) {
-    return NextResponse.json({ error: "Original must stay locked" }, { status: 400 });
-  }
-  saveDraftMemory(parsed.data as Draft);
-  return NextResponse.json({ ok: true });
+  const payload = await request.text();
+  const upstream = await proxyDraftRequest(`/v1/draft/${draftId}`, {
+    method: "PUT",
+    draftToken: token,
+    headers: { "Content-Type": "application/json" },
+    body: payload,
+  });
+  const body = await upstream.text();
+  return new NextResponse(body, {
+    status: upstream.status,
+    headers: { "Content-Type": "application/json" },
+  });
 }
