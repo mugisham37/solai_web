@@ -1,4 +1,5 @@
 import { mockBuyerService } from "@/lib/buyer/store";
+import { httpBuyerService } from "@/lib/buyer/http";
 import type { BuyerService } from "@/types/buyer";
 
 export type { BuyerService } from "@/types/buyer";
@@ -27,7 +28,9 @@ export { buyerAskWhatsAppUrl } from "./whatsapp";
 
 export const MOMO_TIMEOUT_SECONDS = 119;
 
-let service: BuyerService = mockBuyerService;
+const useHttp = process.env.SOLAI_USE_HTTP_BUYER !== "0";
+
+let service: BuyerService = useHttp ? httpBuyerService : mockBuyerService;
 
 export function getBuyerService(): BuyerService {
   return service;
