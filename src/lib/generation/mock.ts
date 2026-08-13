@@ -284,6 +284,12 @@ const SCENE_LABELS: Record<SceneStyle, string> = {
   "held-in-hand": "Held in hand",
 };
 
+let generationService: GenerationService = mockGenerationService;
+
 export function getGenerationService(): GenerationService {
-  return mockGenerationService;
+  return generationService;
+}
+
+export function setGenerationService(service: GenerationService): void {
+  generationService = service;
 }
