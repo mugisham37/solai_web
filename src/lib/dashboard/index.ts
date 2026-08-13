@@ -1,4 +1,5 @@
 import { mockDashboardService } from "@/lib/dashboard/store";
+import { httpDashboardService } from "@/lib/dashboard/http";
 import type { DashboardService } from "@/types/dashboard";
 
 export type { DashboardService } from "@/types/dashboard";
@@ -40,7 +41,9 @@ export {
 } from "./mock";
 export { resetDashboardStore } from "./store";
 
-let service: DashboardService = mockDashboardService;
+const useHttp = process.env.SOLAI_USE_HTTP_DASHBOARD !== "0";
+
+let service: DashboardService = useHttp ? httpDashboardService : mockDashboardService;
 
 export function getDashboardService(): DashboardService {
   return service;
