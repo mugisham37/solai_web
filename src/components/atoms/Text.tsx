@@ -1,6 +1,7 @@
 import { cn } from "@/lib/cn";
 
 type TextProps = {
+  as?: "p" | "span";
   size?: "body-large" | "body" | "small" | "tiny";
   surface?: "light" | "dark";
   className?: string;
@@ -14,9 +15,15 @@ const sizeClass = {
   tiny: "text-[0.76rem] leading-snug text-ink-45",
 } as const;
 
-export function Text({ size = "body", surface = "light", className, children }: TextProps) {
+export function Text({
+  as: Component = "p",
+  size = "body",
+  surface = "light",
+  className,
+  children,
+}: TextProps) {
   return (
-    <p
+    <Component
       className={cn(
         "m-0",
         sizeClass[size],
@@ -28,6 +35,6 @@ export function Text({ size = "body", surface = "light", className, children }: 
       )}
     >
       {children}
-    </p>
+    </Component>
   );
 }
