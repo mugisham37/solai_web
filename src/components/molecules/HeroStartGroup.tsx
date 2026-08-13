@@ -31,15 +31,15 @@ export function HeroStartGroup({
         id="hero-start"
         onValueChange={setDraft}
       />
-      <p className="m-0 flex flex-wrap items-center gap-2">
-        <Text size="tiny" surface="dark">
+      <div className="m-0 flex flex-wrap items-center gap-2">
+        <Text as="span" size="tiny" surface="dark">
           {readsAsLabel}
         </Text>
         <CategoryChip value={draft} />
-        <Text size="tiny" surface="dark">
+        <Text as="span" size="tiny" surface="dark">
           {categoryHint}
         </Text>
-      </p>
+      </div>
     </div>
   );
 }
