@@ -1,21 +1,23 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { nanoid } from "nanoid";
 import { redirect } from "@/i18n/navigation";
 import { getLocale } from "next-intl/server";
+import { createDraftOnServer } from "@/lib/api/solai-server";
 
-export async function createDraftAndRedirect(formData: FormData) {
-  const q = formData.get("q");
-  const description = typeof q === "string" ? q.trim() : "";
-  const draftId = nanoid();
-  const token = nanoid();
+const DRAFT_COOKIE = "solai_draft_token";
+const DRAFT_COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
+
+async function mintDraftAndRedirect(description: string) {
+  const { draftId, draftToken } = await createDraftOnServer(
+    description || undefined,
+  );
   const cookieStore = await cookies();
-  cookieStore.set("solai_draft_token", token, {
+  cookieStore.set(DRAFT_COOKIE, draftToken, {
     httpOnly: true,
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: DRAFT_COOKIE_MAX_AGE,
   });
   const locale = await getLocale();
   const params = new URLSearchParams();
@@ -28,23 +30,12 @@ export async function createDraftAndRedirect(formData: FormData) {
   });
 }
 
+export async function createDraftAndRedirect(formData: FormData) {
+  const q = formData.get("q");
+  const description = typeof q === "string" ? q.trim() : "";
+  await mintDraftAndRedirect(description);
+}
+
 export async function createDraftFromQuery(query?: string) {
-  const draftId = nanoid();
-  const token = nanoid();
-  const cookieStore = await cookies();
-  cookieStore.set("solai_draft_token", token, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 30,
-  });
-  const locale = await getLocale();
-  const params = new URLSearchParams();
-  if (query?.trim()) params.set("q", query.trim());
-  params.set("screen", "capture");
-  const qs = params.toString();
-  redirect({
-    href: `/build/${draftId}${qs ? `?${qs}` : ""}`,
-    locale,
-  });
+  await mintDraftAndRedirect(query?.trim() ?? "");
 }
