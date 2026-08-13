@@ -28,6 +28,8 @@ export type AnalyseAndBuildInput = Readonly<{
   imageUrls: readonly string[];
   hint?: string;
   descriptionOnly?: boolean;
+  /** When calling a real backend, scopes the job to this draft session. */
+  draftId?: string;
 }>;
 
 export type AnalyseAndBuildResult =
