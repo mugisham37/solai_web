@@ -132,7 +132,7 @@ export function BuildShell({ draftId, initialQuery }: BuildShellProps) {
 
       try {
         const result = await service.analyseAndBuild(
-          { imageUrls: urls, hint, descriptionOnly: urls.length === 0 },
+          { imageUrls: urls, hint, descriptionOnly: urls.length === 0, draftId },
           (ev) => {
             if (ev.type === "stage") {
               stagesMap.set(ev.stageId, {
