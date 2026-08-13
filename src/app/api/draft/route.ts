@@ -1,25 +1,25 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { nanoid } from "nanoid";
-import { createMockDraft } from "@/lib/generation/mock";
-import { saveDraftMemory, getDraftMemory } from "@/lib/draft-store";
+import { createDraftOnServer, proxyDraftRequest } from "@/lib/api/solai-server";
 
 const DRAFT_COOKIE = "solai_draft_token";
+const DRAFT_COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 export async function POST() {
-  const draftId = nanoid();
-  const token = nanoid();
-  const placeholder = "data:image/svg+xml," + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/>");
-  const draft = createMockDraft(draftId, placeholder);
-  saveDraftMemory(draft);
-
-  const res = NextResponse.json({ draftId });
-  res.cookies.set(DRAFT_COOKIE, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 30,
-  });
-  return res;
+  try {
+    const { draftId, draftToken } = await createDraftOnServer();
+    const res = NextResponse.json({ draftId });
+    res.cookies.set(DRAFT_COOKIE, draftToken, {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: DRAFT_COOKIE_MAX_AGE,
+    });
+    return res;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Upstream error";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
 }
 
 export async function GET(request: Request) {
@@ -28,9 +28,18 @@ export async function GET(request: Request) {
   if (!draftId) {
     return NextResponse.json({ error: "Missing draftId" }, { status: 400 });
   }
-  const draft = getDraftMemory(draftId);
-  if (!draft) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  const cookieStore = await cookies();
+  const token = cookieStore.get(DRAFT_COOKIE)?.value;
+  if (!token) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return NextResponse.json({ draft });
+  const upstream = await proxyDraftRequest(`/v1/draft/${draftId}`, {
+    method: "GET",
+    draftToken: token,
+  });
+  const body = await upstream.text();
+  return new NextResponse(body, {
+    status: upstream.status,
+    headers: { "Content-Type": "application/json" },
+  });
 }
