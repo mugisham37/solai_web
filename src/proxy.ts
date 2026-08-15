@@ -9,5 +9,7 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/(rw|sw|fr|en)/:path*", "/((?!_next|_vercel|.*\\..*).*)"],
+  // `api` is excluded: BFF route handlers are locale-agnostic, and rewriting
+  // them to /{locale}/api/... makes every one of them 404.
+  matcher: ["/", "/(rw|sw|fr|en)/:path*", "/((?!api|_next|_vercel|.*\\..*).*)"],
 };

@@ -331,6 +331,7 @@ export function PayoutForm({
             >
               <Input
                 className="min-h-11 rounded-xl"
+                aria-label={t("form.shopLabel")}
                 maxLength={40}
                 autoComplete="organization"
                 value={shopName}

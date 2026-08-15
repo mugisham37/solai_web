@@ -13,7 +13,7 @@ import { orderedGalleryImages, canDeleteImage } from "@/lib/build-reducer";
 import type { Draft, SceneStyle } from "@/types/build";
 
 type ImageStudioPanelProps = {
-  t: (key: string) => string;
+  t: (key: string, values?: Record<string, string | number>) => string;
   draft: Draft;
   selectedId: string;
   onSelect: (id: string) => void;
@@ -81,8 +81,7 @@ export function ImageStudioPanel({
           </ActionButton>
           <span className="flex-1" />
           <AllowanceCounter
-            remaining={allowanceRemaining}
-            label={t("studio.allowance")}
+            label={t("studio.allowance", { count: allowanceRemaining })}
             className="text-xs text-ink-45"
           />
         </div>

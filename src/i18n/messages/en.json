@@ -328,7 +328,11 @@
     }
   },
   "start": {
-    "stub": "The next onboarding screen is not built yet."
+    "eyebrow": "Step 1 of 5",
+    "title": "Setting up your draft",
+    "lede": "One moment — SolAI is reserving a draft for this item.",
+    "errorTitle": "That didn't start",
+    "retry": "Try again"
   },
   "moneyFlow": {
     "buyerPays": "Buyer pays",
@@ -1856,4 +1860,3 @@
     }
   }
 }
-

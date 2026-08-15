@@ -32,9 +32,12 @@ export function usePayoutState() {
 
   useEffect(() => {
     if (syncing.current) return;
-    const screen = payoutStateToScreen(state.payoutState);
+    const screen = screenToHash(payoutStateToScreen(state.payoutState));
+    // Same trap as useBuildState: an unconditional replace re-triggers itself
+    // through the refreshed searchParams and never settles.
+    if (searchParams.get("screen") === screen) return;
     const params = new URLSearchParams(searchParams.toString());
-    params.set("screen", screenToHash(screen));
+    params.set("screen", screen);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [pathname, router, searchParams, state.payoutState]);
 

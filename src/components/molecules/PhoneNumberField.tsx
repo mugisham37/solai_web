@@ -51,6 +51,7 @@ export function PhoneNumberField({
   className,
 }: PhoneNumberFieldProps) {
   const country = getCountryByCode(countryCode);
+  const inputId = useId();
   const helpId = useId();
   const errId = useId();
   const [touched, setTouched] = useState(false);
@@ -80,9 +81,12 @@ export function PhoneNumberField({
 
   return (
     <div className={cn("flex flex-col gap-1", className)}>
-      <span className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-ink-45">
+      <label
+        htmlFor={inputId}
+        className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-ink-45"
+      >
         {label}
-      </span>
+      </label>
       <div className="flex gap-1.5">
         <label className="flex shrink-0 items-center gap-1 rounded-xl border border-ink-20 bg-white px-2 font-bold">
           <select
@@ -101,6 +105,7 @@ export function PhoneNumberField({
           </select>
         </label>
         <input
+          id={inputId}
           className={cn(
             "min-h-11 flex-1 rounded-xl border border-ink-20 bg-white px-3 py-3 text-base tabular-nums tracking-wide outline-none focus:border-sun focus:shadow-[0_0_0_3px_rgb(255_127_92_/_0.2)]",
             error && touched && "border-clay shadow-[0_0_0_3px_rgb(110_0_0_/_0.14)]",

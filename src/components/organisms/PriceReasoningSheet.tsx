@@ -13,7 +13,7 @@ import { cn } from "@/lib/cn";
 type PriceReasoningSheetProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  t: (key: string) => string;
+  t: (key: string, values?: Record<string, string | number>) => string;
   price: PriceSuggestion;
   triggerRef?: React.RefObject<HTMLButtonElement | null>;
 };
@@ -44,7 +44,9 @@ export function PriceReasoningSheet({
           >
             <div className="mb-3 flex items-center justify-between">
               <Dialog.Title className="text-d3">
-                {t("priceSheet.title").replace("{amount}", formatMoney({ amountMinor: price.amountMinor, currency: price.currency }, locale))}
+                {t("priceSheet.title", {
+                  amount: formatMoney({ amountMinor: price.amountMinor, currency: price.currency }, locale),
+                })}
               </Dialog.Title>
               <Dialog.Close asChild>
                 <button type="button" className="grid size-10 place-items-center rounded-full border border-hair" aria-label={t("priceSheet.close")}>
@@ -69,10 +71,9 @@ export function PriceReasoningSheet({
             </div>
             <p className="mb-3 text-sm text-ink-70">{price.explanation}</p>
             <p className="rounded-xl bg-paper-2 p-3 text-sm">
-              {t("priceSheet.payout").replace(
-                "{amount}",
-                formatMoney({ amountMinor: price.payoutMinor, currency: price.currency }, locale),
-              )}
+              {t("priceSheet.payout", {
+                amount: formatMoney({ amountMinor: price.payoutMinor, currency: price.currency }, locale),
+              })}
             </p>
             <ActionButton type="button" variant="sun" block className="mt-3" onClick={() => onOpenChange(false)}>
               {t("priceSheet.gotIt")}

@@ -50,10 +50,19 @@ export type PayoutFormSnapshot = Readonly<{
   consent: boolean;
 }>;
 
+/** Everything here comes from the API — never invent a count or a join date. */
 export type ExistingShopSummary = Readonly<{
   shopName: string;
   productCount: number;
-  joinedLabel: string;
+  /** ISO 8601; the screen formats it for the active locale. */
+  joinedAt: string;
+}>;
+
+export type CheckPhoneResult = Readonly<{
+  registered: boolean;
+  shopName?: string;
+  productCount?: number;
+  joinedAt?: string;
 }>;
 
 export type PayoutDoneSummary = Readonly<{
@@ -106,6 +115,9 @@ export type PayoutState =
       form: PayoutFormSnapshot;
       message: string;
       retryTarget: "verify" | "working" | "form";
+      /** Carried through so a retry re-binds the name the rail actually
+       * returned, rather than a placeholder. */
+      holderName?: string;
     };
 
 export type BankOption = Readonly<{
@@ -165,7 +177,7 @@ export const OTP_LOCKOUT_MINUTES = 15;
 export const OTP_RESEND_SECONDS = 30;
 
 export type PayoutService = Readonly<{
-  checkPhoneRegistered(phoneE164: string): Promise<{ registered: boolean; shopName?: string }>;
+  checkPhoneRegistered(phoneE164: string): Promise<CheckPhoneResult>;
   sendOtp(phoneE164: string, channel: "sms" | "voice"): Promise<SendOtpResult>;
   verifyOtp(phoneE164: string, code: string): Promise<VerifyOtpResult>;
   nameEnquiry(input: NameEnquiryInput): Promise<HolderInfo>;

@@ -104,7 +104,13 @@ function downloadReceipt(order: BuyerOrder, statusLabel: string) {
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
 }
 
-function SlaCountdown({ deadlineAt, template }: { deadlineAt: number; template: string }) {
+function SlaCountdown({
+  deadlineAt,
+  t,
+}: {
+  deadlineAt: number;
+  t: ReturnType<typeof useTranslations<"protected">>;
+}) {
   const [left, setLeft] = useState(() => Math.max(0, deadlineAt - Date.now()));
   useEffect(() => {
     const id = window.setInterval(() => {
@@ -113,7 +119,7 @@ function SlaCountdown({ deadlineAt, template }: { deadlineAt: number; template: 
     return () => window.clearInterval(id);
   }, [deadlineAt]);
   const hours = Math.max(1, Math.ceil(left / (60 * 60 * 1000)));
-  return <strong className="font-bold">{template.replace("{hours}", String(hours))}</strong>;
+  return <strong className="font-bold">{t("slaLeft", { hours })}</strong>;
 }
 
 type ProtectedShellProps = { order: BuyerOrder };
@@ -604,10 +610,7 @@ function ProtectedShellInner({ order }: ProtectedShellProps) {
                 {t.rich("slaNote", {
                   strong: (c) => <strong className="font-bold">{c}</strong>,
                 })}{" "}
-                <SlaCountdown
-                  deadlineAt={order.dispute.slaDeadlineAt}
-                  template={t("slaLeft")}
-                />
+                <SlaCountdown deadlineAt={order.dispute.slaDeadlineAt} t={t} />
               </span>
             </div>
           </div>

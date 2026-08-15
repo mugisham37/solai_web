@@ -31,15 +31,8 @@ export function GeneratingState({ t, stages, progress, onCancel, liveMessage }: 
     }
   }, [stages]);
 
-  useEffect(() => {
-    const onVis = () => {
-      if (document.visibilityState === "visible") {
-        /* reconnect hook point for real provider */
-      }
-    };
-    document.addEventListener("visibilitychange", onVis);
-    return () => document.removeEventListener("visibilitychange", onVis);
-  }, []);
+  // Reconnecting is the stream layer's job (lib/generation/http.ts resumes by
+  // job id), so this screen only ever renders what it is told.
 
   return (
     <motion.div

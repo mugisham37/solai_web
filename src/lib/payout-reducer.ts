@@ -25,6 +25,7 @@ export type PayoutAction =
       form: PayoutFormSnapshot;
       message: string;
       retryTarget: "verify" | "working" | "form";
+      holderName?: string;
     };
 
 export type PayoutReducerState = Readonly<{
@@ -144,6 +145,7 @@ export function payoutReducer(
           form: action.form,
           message: action.message,
           retryTarget: action.retryTarget,
+          holderName: action.holderName,
         },
       };
     default:

@@ -328,7 +328,11 @@
     }
   },
   "start": {
-    "stub": "[NEEDS TRANSLATION] The next onboarding screen is not built yet."
+    "eyebrow": "[NEEDS TRANSLATION] Step 1 of 5",
+    "title": "[NEEDS TRANSLATION] Setting up your draft",
+    "lede": "[NEEDS TRANSLATION] One moment — SolAI is reserving a draft for this item.",
+    "errorTitle": "[NEEDS TRANSLATION] That didn't start",
+    "retry": "[NEEDS TRANSLATION] Try again"
   },
   "moneyFlow": {
     "buyerPays": "[NEEDS TRANSLATION] Buyer pays",

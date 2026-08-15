@@ -29,6 +29,8 @@ import { PAYOUT_PROGRESS } from "@/lib/payout-reducer";
 import { usePayoutState } from "@/hooks/usePayoutState";
 import type { Draft } from "@/types/build";
 import type {
+  CheckPhoneResult,
+  ExistingShopSummary,
   HolderInfo,
   PayoutFormSnapshot,
   PayoutRail,
@@ -67,6 +69,14 @@ function destinationForAccount(snapshot: PayoutFormSnapshot, holderName: string)
     verifiedAt: new Date().toISOString(),
     bankId: snapshot.bankId,
     bankName: snapshot.bankName,
+  };
+}
+
+function existingShopFrom(check: CheckPhoneResult): ExistingShopSummary {
+  return {
+    shopName: check.shopName ?? "",
+    productCount: check.productCount ?? 0,
+    joinedAt: check.joinedAt ?? "",
   };
 }
 
@@ -128,6 +138,7 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
           form,
           message: result.message,
           retryTarget: "working",
+          holderName,
         });
         return;
       }
@@ -144,20 +155,23 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
     [dispatch, draftId, t],
   );
 
+  /** The failed attempt already resolved a holder name; only ask the rail
+   * again if that attempt died before it got one. */
+  const retryAccountCreation = useCallback(
+    async (form: PayoutFormSnapshot, knownHolderName?: string) => {
+      const holderName =
+        knownHolderName ?? (await payoutNameEnquiry(nameEnquiryFromSnapshot(form))).holderName;
+      await runAccountCreation(form, holderName);
+    },
+    [runAccountCreation],
+  );
+
   const startOtpFlow = useCallback(
     async (form: PayoutFormSnapshot, holder?: HolderInfo) => {
       setBusy(true);
       const reg = await checkSellerPhone(form.phoneE164);
       if (reg.registered && reg.shopName) {
-        dispatch({
-          type: "GO_INUSE",
-          form,
-          existingShop: {
-            shopName: reg.shopName,
-            productCount: 3,
-            joinedLabel: "12 June",
-          },
-        });
+        dispatch({ type: "GO_INUSE", form, existingShop: existingShopFrom(reg) });
         setBusy(false);
         return;
       }
@@ -174,16 +188,12 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
       }
       const send = await requestPayoutOtp(form.phoneE164, "sms");
       if (!send.ok) {
-        if (send.code === "in_use" && send.message) {
-          dispatch({
-            type: "GO_INUSE",
-            form,
-            existingShop: {
-              shopName: send.message,
-              productCount: 3,
-              joinedLabel: "12 June",
-            },
-          });
+        if (send.code === "in_use") {
+          // The check above said this number was free, so the shop was
+          // created between the two calls: ask again rather than dressing up
+          // the OTP error message as a shop name.
+          const latest = await checkSellerPhone(form.phoneE164);
+          dispatch({ type: "GO_INUSE", form, existingShop: existingShopFrom(latest) });
         } else if (send.code === "unsupported") {
           dispatch({ type: "GO_UNSUPPORTED", form, networkName: net?.name ?? t("unsupported.unknownNet") });
         } else {
@@ -324,6 +334,7 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
         {payoutState.state === "inuse" ? (
           <AlreadyRegisteredState
             t={t}
+            locale={locale}
             shop={payoutState.existingShop}
             onSignIn={() => dispatch({ type: "GO_VERIFY", form: payoutState.form })}
             onDifferentNumber={() => dispatch({ type: "GO_FORM" })}
@@ -340,7 +351,7 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
             message={payoutState.message}
             onRetry={() => {
               if (payoutState.retryTarget === "working") {
-                void runAccountCreation(payoutState.form, "U. AMARA");
+                void retryAccountCreation(payoutState.form, payoutState.holderName);
               } else if (payoutState.retryTarget === "verify") {
                 dispatch({ type: "GO_VERIFY", form: payoutState.form });
               } else {

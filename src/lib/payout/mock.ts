@@ -14,7 +14,9 @@ import type {
 import { OTP_LOCKOUT_MINUTES, OTP_MAX_ATTEMPTS } from "@/types/payout";
 
 const MOCK_VALID_CODE = "508312";
-const registeredPhones = new Map<string, { shopName: string; productCount: number; joinedLabel: string }>();
+type RegisteredShop = { shopName: string; productCount: number; joinedAt: string };
+
+const registeredPhones = new Map<string, RegisteredShop>();
 
 type OtpRecord = {
   hash: string;
@@ -73,7 +75,14 @@ function resolveDestinationLabel(input: NameEnquiryInput): { label: string; mask
 export const mockPayoutService: PayoutService = {
   async checkPhoneRegistered(phoneE164) {
     const hit = registeredPhones.get(phoneE164);
-    if (hit) return { registered: true, shopName: hit.shopName };
+    if (hit) {
+      return {
+        registered: true,
+        shopName: hit.shopName,
+        productCount: hit.productCount,
+        joinedAt: hit.joinedAt,
+      };
+    }
     return { registered: false };
   },
 
@@ -160,7 +169,7 @@ export const mockPayoutService: PayoutService = {
     registeredPhones.set(params.phoneE164, {
       shopName: params.shopName,
       productCount: 1,
-      joinedLabel: new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long" }),
+      joinedAt: new Date().toISOString(),
     });
 
     saveDraftMemory({ ...draft, updatedAt: new Date().toISOString() });
@@ -177,10 +186,7 @@ export const mockPayoutService: PayoutService = {
 };
 
 /** Test helper: mark a phone as already registered */
-export function mockRegisterPhone(
-  phoneE164: string,
-  shop: { shopName: string; productCount: number; joinedLabel: string },
-) {
+export function mockRegisterPhone(phoneE164: string, shop: RegisteredShop) {
   registeredPhones.set(phoneE164, shop);
 }
 

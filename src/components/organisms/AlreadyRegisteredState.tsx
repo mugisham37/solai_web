@@ -10,9 +10,17 @@ import type { ExistingShopSummary } from "@/types/payout";
 
 type PayoutT = (key: string, values?: Record<string, string | number>) => string;
 
+function formatJoined(iso: string, locale: string): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Intl.DateTimeFormat(locale, { day: "numeric", month: "long" }).format(date);
+}
+
 type AlreadyRegisteredStateProps = {
   t: PayoutT;
   shop: ExistingShopSummary;
+  locale: string;
   onSignIn: () => void;
   onDifferentNumber: () => void;
 };
@@ -20,9 +28,11 @@ type AlreadyRegisteredStateProps = {
 export function AlreadyRegisteredState({
   t,
   shop,
+  locale,
   onSignIn,
   onDifferentNumber,
 }: AlreadyRegisteredStateProps) {
+  const joined = formatJoined(shop.joinedAt, locale);
   return (
     <div className="mx-auto flex max-w-[600px] flex-col gap-4 px-3.5 py-4 md:px-6 md:py-8">
       <IconTile variant="sea" className="size-[52px] rounded-2xl">
@@ -39,9 +49,11 @@ export function AlreadyRegisteredState({
           </IconTile>
           <div className="flex-1">
             <p className="font-bold">{shop.shopName}</p>
-            <Text className="text-xs text-ink-45">
-              {t("inuse.meta", { count: shop.productCount, joined: shop.joinedLabel })}
-            </Text>
+            {joined ? (
+              <Text className="text-xs text-ink-45">
+                {t("inuse.meta", { count: shop.productCount, joined })}
+              </Text>
+            ) : null}
           </div>
           <Chip variant="live">{t("inuse.active")}</Chip>
         </div>
