@@ -24,6 +24,8 @@ type VerifyStateProps = {
   onVerify: (code: string) => void;
   onResend: () => void;
   onVoice: () => void;
+  resendSeconds: number;
+  resendKey: number;
   error?: string;
   verifying?: boolean;
 };
@@ -36,6 +38,8 @@ export function VerifyState({
   onVerify,
   onResend,
   onVoice,
+  resendSeconds,
+  resendKey,
   error,
   verifying,
 }: VerifyStateProps) {
@@ -102,8 +106,10 @@ export function VerifyState({
         <div className="rounded-xl bg-sea/10 p-3 text-sm text-sea-deep-text">{t("verify.voiceTip")}</div>
 
         <ResendControl
+          key={resendKey}
           onResend={onResend}
           onVoice={onVoice}
+          seconds={resendSeconds}
           resendLabel={t("verify.resend")}
           voiceLabel={t("verify.voice")}
           countdownTemplate={(s) => t("verify.countdown", { time: s })}

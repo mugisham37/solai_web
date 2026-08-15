@@ -30,6 +30,10 @@ async function saveDraftToServer(draft: Draft): Promise<boolean> {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ draft }),
+      // Lets the request outlive a page unload/navigation — the failure mode
+      // this guards against is an edit typed just before the user leaves,
+      // still inside the debounce window, that would otherwise never be sent.
+      keepalive: true,
     });
     return res.ok;
   } catch {
@@ -100,6 +104,21 @@ export function useAutosave({
     window.addEventListener("online", onOnline);
     return () => window.removeEventListener("online", onOnline);
   }, [persist]);
+
+  // A pending debounced save is otherwise cancelled outright when this
+  // component unmounts (route change) or the tab is backgrounded/closed —
+  // flushing it here is what turns "lost if you leave within 900ms" into
+  // "sent, and likely to complete" (paired with `keepalive` above).
+  useEffect(() => {
+    const flush = () => debouncedSave.flush();
+    document.addEventListener("visibilitychange", flush);
+    window.addEventListener("pagehide", flush);
+    return () => {
+      document.removeEventListener("visibilitychange", flush);
+      window.removeEventListener("pagehide", flush);
+      debouncedSave.flush();
+    };
+  }, [debouncedSave]);
 
   const saveNow = useCallback(() => {
     debouncedSave.cancel();

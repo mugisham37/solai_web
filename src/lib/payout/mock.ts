@@ -11,7 +11,7 @@ import type {
   SendOtpResult,
   VerifyOtpResult,
 } from "@/types/payout";
-import { OTP_LOCKOUT_MINUTES, OTP_MAX_ATTEMPTS } from "@/types/payout";
+import { OTP_LOCKOUT_MINUTES, OTP_MAX_ATTEMPTS, OTP_RESEND_SECONDS } from "@/types/payout";
 
 const MOCK_VALID_CODE = "508312";
 type RegisteredShop = { shopName: string; productCount: number; joinedAt: string };
@@ -102,7 +102,7 @@ export const mockPayoutService: PayoutService = {
       expiresAt: Date.now() + 5 * 60 * 1000,
       attempts: 0,
     });
-    return { ok: true };
+    return { ok: true, resendAfterSeconds: OTP_RESEND_SECONDS };
   },
 
   async verifyOtp(phoneE164, code): Promise<VerifyOtpResult> {

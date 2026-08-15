@@ -145,7 +145,7 @@ export type AccountResult =
   | { ok: false; code: "partial" | "conflict" | "unknown"; message: string };
 
 export type SendOtpResult =
-  | { ok: true }
+  | { ok: true; resendAfterSeconds: number }
   | { ok: false; code: "rate_limited" | "in_use" | "unsupported" | "error"; message?: string };
 
 export type VerifyOtpResult =

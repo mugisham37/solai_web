@@ -36,7 +36,7 @@ import type {
   PayoutRail,
   StoredPayoutDestination,
 } from "@/types/payout";
-import { OTP_MAX_ATTEMPTS, PAYOUT_TERMS_VERSION } from "@/types/payout";
+import { OTP_MAX_ATTEMPTS, OTP_RESEND_SECONDS, PAYOUT_TERMS_VERSION } from "@/types/payout";
 import { maskPhoneE164 } from "@/lib/phone/format";
 
 type PayoutShellProps = {
@@ -90,6 +90,10 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [verifyError, setVerifyError] = useState<string | undefined>();
+  // Server-authoritative resend cooldown: `seconds` comes from the OTP send
+  // response, `nonce` changes on every new send so ResendControl restarts
+  // its countdown instead of only ever running once on mount.
+  const [resendCooldown, setResendCooldown] = useState({ seconds: OTP_RESEND_SECONDS, nonce: 0 });
 
   const draft = useMemo(() => getDraftMemory(draftId) ?? null, [draftId]);
   const suggestedShop = draft?.title.en ?? draft?.title[Object.keys(draft?.title ?? {})[0] ?? "en"] ?? "";
@@ -207,10 +211,25 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
         setBusy(false);
         return;
       }
+      setResendCooldown((prev) => ({ seconds: send.resendAfterSeconds, nonce: prev.nonce + 1 }));
       dispatch({ type: "GO_VERIFY", form, holder: holder ?? undefined });
       setBusy(false);
     },
     [dispatch, t],
+  );
+
+  const handleResend = useCallback(
+    async (channel: "sms" | "voice") => {
+      if (payoutState.state !== "verify") return;
+      const result = await requestPayoutOtp(payoutState.form.phoneE164, channel);
+      if (!result.ok) {
+        setVerifyError(result.message ?? t("error.lede"));
+        return;
+      }
+      setVerifyError(undefined);
+      setResendCooldown((prev) => ({ seconds: result.resendAfterSeconds, nonce: prev.nonce + 1 }));
+    },
+    [payoutState, t],
   );
 
   const onSubmitForm = useCallback(
@@ -310,8 +329,10 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
             verifying={busy}
             onWrongNumber={() => dispatch({ type: "GO_FORM" })}
             onVerify={(code) => void onVerify(code)}
-            onResend={() => void requestPayoutOtp(payoutState.form.phoneE164, "sms")}
-            onVoice={() => void requestPayoutOtp(payoutState.form.phoneE164, "voice")}
+            onResend={() => void handleResend("sms")}
+            onVoice={() => void handleResend("voice")}
+            resendSeconds={resendCooldown.seconds}
+            resendKey={resendCooldown.nonce}
           />
         ) : null}
 

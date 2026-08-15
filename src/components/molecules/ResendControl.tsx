@@ -3,11 +3,15 @@
 import { useEffect, useState } from "react";
 import { ActionButton } from "@/components/atoms/ActionButton";
 import { Icon } from "@/components/atoms/Icon";
-import { OTP_RESEND_SECONDS } from "@/types/payout";
 
 type ResendControlProps = {
   onResend: () => void;
   onVoice: () => void;
+  /** Server-authoritative cooldown length, from the OTP send response. Give
+   * this component a `key` that changes on every new send (e.g. a send
+   * counter) so a resend gets a fresh countdown instead of reusing stale
+   * mounted state. */
+  seconds: number;
   resendLabel: string;
   voiceLabel: string;
   countdownTemplate: (seconds: string) => string;
@@ -16,11 +20,12 @@ type ResendControlProps = {
 export function ResendControl({
   onResend,
   onVoice,
+  seconds,
   resendLabel,
   voiceLabel,
   countdownTemplate,
 }: ResendControlProps) {
-  const [left, setLeft] = useState(OTP_RESEND_SECONDS);
+  const [left, setLeft] = useState(seconds);
   const [showActions, setShowActions] = useState(false);
 
   useEffect(() => {
