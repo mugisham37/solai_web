@@ -1,6 +1,5 @@
 "use client";
 
-import { formatMoney } from "@/lib/money";
 import type { BuyerDeliveryArea } from "@/types/buyer";
 import { cn } from "@/lib/cn";
 
@@ -8,7 +7,10 @@ type AreaSelectProps = {
   areas: readonly BuyerDeliveryArea[];
   value: string;
   onChange: (areaId: string) => void;
-  locale: string;
+  /** Accessible name — the visible label callers render next to this
+   * select is a plain `<span>`, not a `<label htmlFor>`, so it isn't
+   * programmatically associated without this. */
+  label: string;
   formatOption: (area: BuyerDeliveryArea) => string;
   className?: string;
 };
@@ -17,7 +19,7 @@ export function AreaSelect({
   areas,
   value,
   onChange,
-  locale,
+  label,
   formatOption,
   className,
 }: AreaSelectProps) {
@@ -35,7 +37,7 @@ export function AreaSelect({
       }}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      aria-label={formatMoney(areas[0]?.fee ?? { amountMinor: 0, currency: "RWF" }, locale)}
+      aria-label={label}
     >
       {areas.map((area) => (
         <option key={area.id} value={area.id}>

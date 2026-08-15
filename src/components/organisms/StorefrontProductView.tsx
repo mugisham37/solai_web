@@ -148,7 +148,7 @@ export function StorefrontProductView({
                     areas={shop.deliveryAreas}
                     value={areaId}
                     onChange={setAreaId}
-                    locale={locale}
+                    label={t("deliverTo")}
                     formatOption={(a) =>
                       a.fee.amountMinor === 0
                         ? t("areaPickup")

@@ -321,7 +321,7 @@ function CheckoutShellInner({ shop, product, session }: CheckoutShellProps) {
                           areas={deliverAreas}
                           value={areaId}
                           onChange={setAreaId}
-                          locale={locale}
+                          label={t("area")}
                           formatOption={(a) =>
                             t("areaFee", {
                               area: a.label,
