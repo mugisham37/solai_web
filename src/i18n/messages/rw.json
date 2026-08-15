@@ -618,6 +618,7 @@
       "digit5": "[NEEDS TRANSLATION] Digit 5",
       "digit6": "[NEEDS TRANSLATION] Digit 6",
       "invalid": "[NEEDS TRANSLATION] That code isn't right. Check the SMS and try again.",
+      "notFound": "[NEEDS TRANSLATION] We couldn't find a shop for this number.",
       "voiceTip": "[NEEDS TRANSLATION] No SMS after two tries? Choose Call me instead — you'll get a call and the last digits of the number are your code.",
       "resend": "[NEEDS TRANSLATION] Send it again",
       "voice": "[NEEDS TRANSLATION] Call me instead",

@@ -6,7 +6,9 @@ import type {
   HolderInfo,
   NameEnquiryInput,
   PayoutService,
+  SendOtpPurpose,
   SendOtpResult,
+  SignInResult,
   VerifyOtpResult,
 } from "@/types/payout";
 
@@ -59,10 +61,10 @@ export const httpPayoutService: PayoutService = {
   async checkPhoneRegistered(phoneE164) {
     return api(`/v1/payout/phone/${encodeURIComponent(phoneE164)}`);
   },
-  async sendOtp(phoneE164, channel) {
+  async sendOtp(phoneE164, channel, purpose: SendOtpPurpose = "signup") {
     return api<SendOtpResult>("/v1/payout/otp/send", {
       method: "POST",
-      body: JSON.stringify({ phoneE164, channel }),
+      body: JSON.stringify({ phoneE164, channel, purpose }),
     });
   },
   async verifyOtp(phoneE164, code) {
@@ -82,6 +84,12 @@ export const httpPayoutService: PayoutService = {
       method: "POST",
       body: JSON.stringify(params),
       withDraftToken: true,
+    });
+  },
+  async signIn(phoneE164, code) {
+    return api<SignInResult>("/v1/payout/session", {
+      method: "POST",
+      body: JSON.stringify({ phoneE164, code }),
     });
   },
 };

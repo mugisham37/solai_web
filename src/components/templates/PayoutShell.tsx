@@ -7,6 +7,7 @@ import {
   createSellerAccount,
   payoutNameEnquiry,
   requestPayoutOtp,
+  signInSeller,
   verifyPayoutOtp,
 } from "@/app/actions/payout";
 import { PanelErrorBoundary } from "@/components/build/PanelErrorBoundary";
@@ -24,6 +25,7 @@ import { VerifyState } from "@/components/organisms/VerifyState";
 import { BUILD_STEPS } from "@/data/build";
 import { getCountryByCode } from "@/data/countries";
 import { getDraftMemory } from "@/lib/draft-store";
+import { useRouter } from "@/i18n/navigation";
 import { nameEnquiryFromSnapshot, requiresHolderConfirm } from "@/lib/payout/form-utils";
 import { PAYOUT_PROGRESS } from "@/lib/payout-reducer";
 import { usePayoutState } from "@/hooks/usePayoutState";
@@ -86,6 +88,7 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
   const tRoot = useTranslations();
   const tCommon = useTranslations("common");
   const locale = useLocale();
+  const router = useRouter();
   const { payoutState, dispatch } = usePayoutState();
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -221,7 +224,11 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
   const handleResend = useCallback(
     async (channel: "sms" | "voice") => {
       if (payoutState.state !== "verify") return;
-      const result = await requestPayoutOtp(payoutState.form.phoneE164, channel);
+      const result = await requestPayoutOtp(
+        payoutState.form.phoneE164,
+        channel,
+        payoutState.mode === "signin" ? "signin" : "signup",
+      );
       if (!result.ok) {
         setVerifyError(result.message ?? t("error.lede"));
         return;
@@ -230,6 +237,27 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
       setResendCooldown((prev) => ({ seconds: result.resendAfterSeconds, nonce: prev.nonce + 1 }));
     },
     [payoutState, t],
+  );
+
+  const handleSignIn = useCallback(
+    async (form: PayoutFormSnapshot) => {
+      setBusy(true);
+      const send = await requestPayoutOtp(form.phoneE164, "sms", "signin");
+      if (!send.ok) {
+        dispatch({
+          type: "GO_ERROR",
+          form,
+          message: send.message ?? t("error.lede"),
+          retryTarget: "form",
+        });
+        setBusy(false);
+        return;
+      }
+      setResendCooldown((prev) => ({ seconds: send.resendAfterSeconds, nonce: prev.nonce + 1 }));
+      dispatch({ type: "GO_VERIFY", form, mode: "signin" });
+      setBusy(false);
+    },
+    [dispatch, t],
   );
 
   const onSubmitForm = useCallback(
@@ -262,6 +290,30 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
       setBusy(true);
       setVerifyError(undefined);
       const form = payoutState.form;
+
+      if (payoutState.mode === "signin") {
+        const signIn = await signInSeller(form.phoneE164, code);
+        if (!signIn.ok) {
+          if (signIn.code === "locked" && signIn.lockoutUntil) {
+            dispatch({ type: "GO_LOCKED", form, lockoutUntil: signIn.lockoutUntil });
+          } else if (signIn.code === "not_found") {
+            setVerifyError(t("verify.notFound"));
+          } else {
+            const nextAttempt = payoutState.otpAttempts + 1;
+            dispatch({ type: "OTP_FAILED", attempts: nextAttempt });
+            if (nextAttempt >= OTP_MAX_ATTEMPTS && signIn.lockoutUntil) {
+              dispatch({ type: "GO_LOCKED", form, lockoutUntil: signIn.lockoutUntil });
+            } else {
+              setVerifyError(t("verify.invalid"));
+            }
+          }
+          setBusy(false);
+          return;
+        }
+        router.push("/dashboard");
+        return;
+      }
+
       const holderName =
         payoutState.holder?.holderName ??
         (await payoutNameEnquiry(nameEnquiryFromSnapshot(form))).holderName;
@@ -284,7 +336,7 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
       await runAccountCreation(form, holderName);
       setBusy(false);
     },
-    [dispatch, payoutState, runAccountCreation, t],
+    [dispatch, payoutState, router, runAccountCreation, t],
   );
 
   return (
@@ -357,7 +409,7 @@ export function PayoutShell({ draftId }: PayoutShellProps) {
             t={t}
             locale={locale}
             shop={payoutState.existingShop}
-            onSignIn={() => dispatch({ type: "GO_VERIFY", form: payoutState.form })}
+            onSignIn={() => void handleSignIn(payoutState.form)}
             onDifferentNumber={() => dispatch({ type: "GO_FORM" })}
           />
         ) : null}

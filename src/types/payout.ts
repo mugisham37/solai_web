@@ -85,6 +85,9 @@ export type PayoutState =
       holder?: HolderInfo;
       otpAttempts: number;
       lockoutUntil?: string;
+      /** "signin" reuses this same screen for a returning seller resuming
+       * an existing shop session instead of creating a new one. */
+      mode?: "signup" | "signin";
     }
   | {
       state: "working";
@@ -146,13 +149,27 @@ export type AccountResult =
 
 export type SendOtpResult =
   | { ok: true; resendAfterSeconds: number }
-  | { ok: false; code: "rate_limited" | "in_use" | "unsupported" | "error"; message?: string };
+  | {
+      ok: false;
+      code: "rate_limited" | "in_use" | "unsupported" | "error" | "not_found";
+      message?: string;
+    };
 
 export type VerifyOtpResult =
   | { ok: true }
   | {
       ok: false;
       code: "invalid" | "locked" | "expired" | "rate_limited";
+      attemptsRemaining?: number;
+      lockoutUntil?: string;
+    };
+
+export type SignInResult =
+  | { ok: true; shopSlug: string; accountId: string; sessionToken: string }
+  | {
+      ok: false;
+      code: "invalid" | "locked" | "expired" | "rate_limited" | "not_found";
+      message?: string;
       attemptsRemaining?: number;
       lockoutUntil?: string;
     };
@@ -176,10 +193,17 @@ export const OTP_MAX_ATTEMPTS = 5;
 export const OTP_LOCKOUT_MINUTES = 15;
 export const OTP_RESEND_SECONDS = 30;
 
+export type SendOtpPurpose = "signup" | "signin";
+
 export type PayoutService = Readonly<{
   checkPhoneRegistered(phoneE164: string): Promise<CheckPhoneResult>;
-  sendOtp(phoneE164: string, channel: "sms" | "voice"): Promise<SendOtpResult>;
+  sendOtp(
+    phoneE164: string,
+    channel: "sms" | "voice",
+    purpose?: SendOtpPurpose,
+  ): Promise<SendOtpResult>;
   verifyOtp(phoneE164: string, code: string): Promise<VerifyOtpResult>;
   nameEnquiry(input: NameEnquiryInput): Promise<HolderInfo>;
   createAccount(params: CreateAccountParams): Promise<AccountResult>;
+  signIn(phoneE164: string, code: string): Promise<SignInResult>;
 }>;

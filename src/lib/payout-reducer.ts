@@ -12,7 +12,12 @@ export type PayoutAction =
   | { type: "UPDATE_FORM"; form: PayoutFormSnapshot }
   | { type: "GO_FORM" }
   | { type: "GO_CONFIRM"; form: PayoutFormSnapshot; holder: HolderInfo }
-  | { type: "GO_VERIFY"; form: PayoutFormSnapshot; holder?: HolderInfo }
+  | {
+      type: "GO_VERIFY";
+      form: PayoutFormSnapshot;
+      holder?: HolderInfo;
+      mode?: "signup" | "signin";
+    }
   | { type: "OTP_FAILED"; attempts: number; lockoutUntil?: string }
   | { type: "GO_LOCKED"; form: PayoutFormSnapshot; lockoutUntil: string }
   | { type: "GO_WORKING"; form: PayoutFormSnapshot; phase?: "verify" | "link" | "migrate" }
@@ -95,6 +100,7 @@ export function payoutReducer(
           form: action.form,
           holder: action.holder,
           otpAttempts: 1,
+          mode: action.mode ?? "signup",
         },
       };
     case "OTP_FAILED":

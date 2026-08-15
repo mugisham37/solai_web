@@ -7,7 +7,9 @@ import type {
   AccountResult,
   CreateAccountParams,
   NameEnquiryInput,
+  SendOtpPurpose,
   SendOtpResult,
+  SignInResult,
   VerifyOtpResult,
 } from "@/types/payout";
 import type { HolderInfo } from "@/types/payout";
@@ -20,6 +22,7 @@ async function clientIp(): Promise<string> {
 export async function requestPayoutOtp(
   phoneE164: string,
   channel: "sms" | "voice" = "sms",
+  purpose: SendOtpPurpose = "signup",
 ): Promise<SendOtpResult> {
   const ip = await clientIp();
   const phoneLimit = checkRateLimit({
@@ -36,7 +39,7 @@ export async function requestPayoutOtp(
   if (!ipLimit.allowed) {
     return { ok: false, code: "rate_limited", message: "Too many requests." };
   }
-  return getPayoutService().sendOtp(phoneE164, channel);
+  return getPayoutService().sendOtp(phoneE164, channel, purpose);
 }
 
 export async function verifyPayoutOtp(phoneE164: string, code: string): Promise<VerifyOtpResult> {
@@ -61,4 +64,16 @@ export async function checkSellerPhone(phoneE164: string) {
 
 export async function createSellerAccount(params: CreateAccountParams): Promise<AccountResult> {
   return getPayoutService().createAccount(params);
+}
+
+export async function signInSeller(phoneE164: string, code: string): Promise<SignInResult> {
+  const ip = await clientIp();
+  const limit = checkRateLimit({
+    key: `otp-verify:phone:${phoneE164}:${ip}`,
+    ...RATE_LIMITS.otpVerifyPerPhone,
+  });
+  if (!limit.allowed) {
+    return { ok: false, code: "rate_limited" };
+  }
+  return getPayoutService().signIn(phoneE164, code);
 }
