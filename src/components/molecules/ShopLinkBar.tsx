@@ -3,7 +3,7 @@
 import { ActionButton } from "@/components/atoms/ActionButton";
 import { CopyButton } from "@/components/atoms/CopyButton";
 import { Icon } from "@/components/atoms/Icon";
-import { isExternalHref } from "@/lib/buyer";
+import { isExternalHref } from "@/lib/buyer/paths";
 
 type ShopLinkBarProps = {
   /** Display host, e.g. `solai.shop/`. */

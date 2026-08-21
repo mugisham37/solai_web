@@ -25,8 +25,7 @@ export {
   isExternalHref,
 } from "./paths";
 export { buyerAskWhatsAppUrl } from "./whatsapp";
-
-export const MOMO_TIMEOUT_SECONDS = 119;
+export { MOMO_TIMEOUT_SECONDS } from "./constants";
 
 const useHttp = process.env.SOLAI_USE_HTTP_BUYER !== "0";
 

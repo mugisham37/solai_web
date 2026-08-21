@@ -11,7 +11,7 @@ import { MoneyFlow } from "@/components/molecules/MoneyFlow";
 import { QrPanel } from "@/components/molecules/QrPanel";
 import { ShopLinkBar } from "@/components/molecules/ShopLinkBar";
 import { formatMoney } from "@/lib/money";
-import { isExternalHref } from "@/lib/buyer";
+import { isExternalHref } from "@/lib/buyer/paths";
 import { DURATION, MOTION_EASE } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 import type { LiveSummary } from "@/types/live";

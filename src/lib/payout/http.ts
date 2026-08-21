@@ -1,5 +1,4 @@
-import { cookies } from "next/headers";
-import { getSolaiApiBaseUrl } from "@/lib/api/solai-server";
+import { createSolaiClient, unwrap, unwrapResult } from "@/lib/api/solai-server";
 import type {
   AccountResult,
   CreateAccountParams,
@@ -12,84 +11,46 @@ import type {
   VerifyOtpResult,
 } from "@/types/payout";
 
-const DRAFT_COOKIE = "solai_draft_token";
-const SHOP_COOKIE = "solai_shop_session";
-
-async function api<T>(
-  path: string,
-  init: RequestInit & { withDraftToken?: boolean } = {},
-): Promise<T> {
-  const { withDraftToken, headers: initHeaders, ...rest } = init;
-  const headers = new Headers(initHeaders);
-  headers.set("Content-Type", "application/json");
-  if (withDraftToken) {
-    const cookieStore = await cookies();
-    const token = cookieStore.get(DRAFT_COOKIE)?.value;
-    if (token) {
-      headers.set("X-Solai-Draft-Token", token);
-      headers.set("Cookie", `${DRAFT_COOKIE}=${token}`);
-    }
-  }
-  const res = await fetch(`${getSolaiApiBaseUrl()}${path}`, {
-    ...rest,
-    headers,
-    cache: "no-store",
-  });
-  if (!res.ok && res.headers.get("content-type")?.includes("application/json")) {
-    return (await res.json()) as T;
-  }
-  if (!res.ok) {
-    throw new Error(`Payout API ${path} failed (${res.status})`);
-  }
-
-  // Persist shop session cookie from account creation.
-  const shopToken = res.headers.get("X-Solai-Shop-Session");
-  if (shopToken) {
-    const cookieStore = await cookies();
-    cookieStore.set(SHOP_COOKIE, shopToken, {
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30,
-    });
-  }
-
-  return (await res.json()) as T;
-}
+// Most payout calls need no identity yet (the phone number itself is the
+// subject); createAccount needs the draft token to prove ownership of the
+// draft being migrated, and mints a shop session that must be written back
+// to a cookie for the browser's next request.
+const anon = () => createSolaiClient("none");
+const minting = () => createSolaiClient("draft", { persistShopSession: true });
 
 export const httpPayoutService: PayoutService = {
   async checkPhoneRegistered(phoneE164) {
-    return api(`/v1/payout/phone/${encodeURIComponent(phoneE164)}`);
+    const res = await anon().GET("/v1/payout/phone/{phone_e164}", {
+      params: { path: { phone_e164: phoneE164 } },
+    });
+    return unwrap(res, "checkPhoneRegistered");
   },
   async sendOtp(phoneE164, channel, purpose: SendOtpPurpose = "signup") {
-    return api<SendOtpResult>("/v1/payout/otp/send", {
-      method: "POST",
-      body: JSON.stringify({ phoneE164, channel, purpose }),
+    const res = await anon().POST("/v1/payout/otp/send", {
+      body: { phoneE164, channel, purpose },
     });
+    return unwrapResult<SendOtpResult>(res, "sendOtp");
   },
   async verifyOtp(phoneE164, code) {
-    return api<VerifyOtpResult>("/v1/payout/otp/verify", {
-      method: "POST",
-      body: JSON.stringify({ phoneE164, code }),
-    });
+    const res = await anon().POST("/v1/payout/otp/verify", { body: { phoneE164, code } });
+    return unwrapResult<VerifyOtpResult>(res, "verifyOtp");
   },
   async nameEnquiry(input: NameEnquiryInput) {
-    return api<HolderInfo>("/v1/payout/name-enquiry", {
-      method: "POST",
-      body: JSON.stringify(input),
-    });
+    const res = await anon().POST("/v1/payout/name-enquiry", { body: input });
+    return unwrap<HolderInfo>(res, "nameEnquiry");
   },
   async createAccount(params: CreateAccountParams) {
-    return api<AccountResult>("/v1/payout/account", {
-      method: "POST",
-      body: JSON.stringify(params),
-      withDraftToken: true,
-    });
+    // Draft-token ownership check happens here, so this is the one call
+    // that actually needs "draft" auth mode; signIn doesn't (it resumes an
+    // existing shop by phone, no draft involved).
+    const res = await minting().POST("/v1/payout/account", { body: params });
+    return unwrapResult<AccountResult>(res, "createAccount");
   },
   async signIn(phoneE164, code) {
-    return api<SignInResult>("/v1/payout/session", {
-      method: "POST",
-      body: JSON.stringify({ phoneE164, code }),
-    });
+    // Resumes an existing shop by phone — no draft involved, unlike
+    // createAccount — but still mints (and must persist) a shop session.
+    const client = createSolaiClient("none", { persistShopSession: true });
+    const res = await client.POST("/v1/payout/session", { body: { phoneE164, code } });
+    return unwrapResult<SignInResult>(res, "signIn");
   },
 };

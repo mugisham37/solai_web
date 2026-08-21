@@ -25,11 +25,8 @@ import { PaymentMethodOption } from "@/components/molecules/PaymentMethodOption"
 import { PriceLedger } from "@/components/molecules/PriceLedger";
 import { BuyerProtectionSheet } from "@/components/organisms/BuyerProtectionSheet";
 import { ToastProvider, useToastContext } from "@/components/providers/ToastProvider";
-import {
-  calcLineTotal,
-  findArea,
-  productPublicPath,
-} from "@/lib/buyer";
+import { calcLineTotal, findArea } from "@/lib/buyer/pricing";
+import { productPublicPath } from "@/lib/buyer/store";
 import { formatMoney } from "@/lib/money";
 import { useRouter } from "@/i18n/navigation";
 import type {

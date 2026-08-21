@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MOMO_TIMEOUT_SECONDS } from "@/lib/buyer";
+import { MOMO_TIMEOUT_SECONDS } from "@/lib/buyer/constants";
 import { cn } from "@/lib/cn";
 
 type PaymentCountdownProps = {

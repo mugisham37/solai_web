@@ -30,7 +30,7 @@ import {
   SheetDescription,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { shopPublicUrl } from "@/lib/buyer";
+import { shopPublicUrl } from "@/lib/buyer/store";
 import { copyText } from "@/lib/clipboard";
 import { formatMoney } from "@/lib/money";
 import { BUYER_MOTION } from "@/lib/motion";

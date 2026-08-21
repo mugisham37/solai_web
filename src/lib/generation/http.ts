@@ -1,3 +1,4 @@
+import { SSE, type SSEvent, type ReadyStateEvent } from "sse.js";
 import { JOB_ID_HEADER } from "@/lib/generation/protocol";
 import type {
   AnalyseAndBuildResult,
@@ -18,75 +19,108 @@ const MAX_RESUME_ATTEMPTS = 6;
 const RESUME_BASE_DELAY_MS = 400;
 const RESUME_MAX_DELAY_MS = 5000;
 
+const GENERATION_EVENT_TYPES = ["stage", "progress", "allowance"] as const;
+
 type SsePosition = { lastEventId: number };
 
 /**
- * Reads one SSE response to completion.
+ * Opens one SSE connection and follows it to completion.
  *
  * Returns null when the connection ended before the job did — that is a
  * resumable drop, not a failure, so it is the caller's cue to reattach from
- * `position.lastEventId` rather than start over.
+ * `position.lastEventId` rather than start over. sse.js's own autoReconnect
+ * stays off deliberately: it only knows how to retry the same URL, but a
+ * resumed generation must move to a different one
+ * (/jobs/{jobId}/events?lastEventId=...) — that resume decision belongs to
+ * streamGeneration's own loop below, not this function.
+ *
+ * sse.js has no public "stream finished successfully" event — its internal
+ * `_onStreamLoaded` runs off the raw XHR "load" event and never redispatches
+ * through its own `addEventListener`. The one signal that reliably covers
+ * both a clean finish and a server-side error is the readystatechange
+ * transition to CLOSED, so completion is detected off that instead.
  */
-async function consumeSse(
-  response: Response,
+function consumeSse(
+  url: string,
+  init: { method: "GET" | "POST"; body?: string },
   onEvent: (event: GenerationStreamEvent) => void,
   position: SsePosition,
   signal?: AbortSignal,
+  onJobId?: (jobId: string) => void,
 ): Promise<StreamResult | null> {
-  if (!response.ok || !response.body) {
-    const text = await response.text();
-    throw new Error(`Generation failed (${response.status}): ${text}`);
-  }
-
-  const reader = response.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
-  let finalResult: StreamResult | null = null;
-
-  const abort = () => {
-    void reader.cancel();
-  };
-  signal?.addEventListener("abort", abort, { once: true });
-
-  try {
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-      const chunks = buffer.split("\n\n");
-      buffer = chunks.pop() ?? "";
-      for (const chunk of chunks) {
-        const lines = chunk.split("\n");
-        let eventName = "message";
-        const dataLines: string[] = [];
-        for (const line of lines) {
-          if (line.startsWith("id:")) {
-            const id = Number.parseInt(line.slice(3).trim(), 10);
-            if (Number.isFinite(id)) position.lastEventId = id;
-          }
-          if (line.startsWith("event:")) eventName = line.slice(6).trim();
-          if (line.startsWith("data:")) dataLines.push(line.slice(5).trim());
-        }
-        if (!dataLines.length) continue;
-        const payload = JSON.parse(dataLines.join("\n")) as Record<string, unknown>;
-        if (eventName === "result" || payload.type === "result") {
-          finalResult = (payload.result ?? payload) as StreamResult;
-          continue;
-        }
-        if (
-          payload.type === "stage" ||
-          payload.type === "progress" ||
-          payload.type === "allowance"
-        ) {
-          onEvent(payload as GenerationStreamEvent);
-        }
-      }
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(new DOMException("Aborted", "AbortError"));
+      return;
     }
-  } finally {
-    signal?.removeEventListener("abort", abort);
-  }
 
-  return finalResult;
+    const source = new SSE(url, {
+      method: init.method,
+      payload: init.body,
+      headers: init.body ? { "Content-Type": "application/json" } : undefined,
+      withCredentials: true,
+      autoReconnect: false,
+    });
+
+    let finalResult: StreamResult | null = null;
+    let settled = false;
+
+    const finish = (value: StreamResult | null) => {
+      if (settled) return;
+      settled = true;
+      signal?.removeEventListener("abort", onAbort);
+      source.close();
+      resolve(value);
+    };
+    const onAbort = () => {
+      if (settled) return;
+      settled = true;
+      source.close();
+      reject(new DOMException("Aborted", "AbortError"));
+    };
+    signal?.addEventListener("abort", onAbort, { once: true });
+
+    if (onJobId) {
+      source.addEventListener("readystatechange", (event: ReadyStateEvent) => {
+        if (event.readyState === SSE.OPEN && source.xhr) {
+          const header = source.xhr.getResponseHeader(JOB_ID_HEADER);
+          if (header) onJobId(header);
+        }
+      });
+    }
+
+    for (const type of GENERATION_EVENT_TYPES) {
+      source.addEventListener(type, (event: SSEvent) => {
+        if (event.id) {
+          const id = Number.parseInt(event.id, 10);
+          if (Number.isFinite(id)) position.lastEventId = id;
+        }
+        try {
+          onEvent(JSON.parse(event.data) as GenerationStreamEvent);
+        } catch {
+          // Malformed frame — skip rather than tear down the whole stream.
+        }
+      });
+    }
+    source.addEventListener("result", (event: SSEvent) => {
+      if (event.id) {
+        const id = Number.parseInt(event.id, 10);
+        if (Number.isFinite(id)) position.lastEventId = id;
+      }
+      try {
+        const payload = JSON.parse(event.data) as Record<string, unknown>;
+        finalResult = (payload.result ?? payload) as StreamResult;
+      } catch {
+        // Fall through to the readystatechange handler with finalResult still null.
+      }
+    });
+    source.addEventListener("readystatechange", (event: ReadyStateEvent) => {
+      if (event.readyState === SSE.CLOSED) finish(finalResult);
+    });
+    source.addEventListener("error", () => finish(finalResult));
+
+    source.stream();
+  });
 }
 
 /** Waits out the backoff, but cuts it short the moment the tab comes back or
@@ -125,19 +159,21 @@ async function streamGeneration(
   onEvent: (event: GenerationStreamEvent) => void,
   signal?: AbortSignal,
 ): Promise<StreamResult> {
-  const response = await fetch(startPath, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-    signal,
-    credentials: "same-origin",
-  });
-  const jobId = response.headers.get(JOB_ID_HEADER);
   const position: SsePosition = { lastEventId: 0 };
+  let jobId: string | null = null;
 
-  let result = await consumeSse(response, onEvent, position, signal);
-  if (result) return result;
+  const firstResult = await consumeSse(
+    startPath,
+    { method: "POST", body: JSON.stringify(body) },
+    onEvent,
+    position,
+    signal,
+    (id) => {
+      jobId = id;
+    },
+  );
 
+  if (firstResult) return firstResult;
   if (!jobId) {
     throw new Error("Generation stream ended without a result");
   }
@@ -147,19 +183,15 @@ async function streamGeneration(
     await waitBeforeResume(attempt, signal);
     if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
 
-    let resumed: Response;
+    let result: StreamResult | null;
     try {
-      resumed = await fetch(
+      result = await consumeSse(
         `/api/generation/jobs/${encodeURIComponent(jobId)}/events?lastEventId=${position.lastEventId}`,
-        { signal, credentials: "same-origin" },
+        { method: "GET" },
+        onEvent,
+        position,
+        signal,
       );
-    } catch (error) {
-      if (signal?.aborted) throw error;
-      continue;
-    }
-
-    try {
-      result = await consumeSse(resumed, onEvent, position, signal);
     } catch (error) {
       if (signal?.aborted) throw error;
       continue;

@@ -24,7 +24,7 @@ import {
   productEditSchema,
   type ProductEditValues,
 } from "@/lib/schemas/product-edit";
-import { inAppProductPath } from "@/lib/buyer";
+import { inAppProductPath } from "@/lib/buyer/paths";
 import type { DashboardProduct, DashboardShop } from "@/types/dashboard";
 
 type ProductEditorProps = {

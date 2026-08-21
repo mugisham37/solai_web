@@ -8,7 +8,12 @@ import { OutOfStockView } from "@/components/organisms/OutOfStockView";
 import { ShopCatalogueView } from "@/components/organisms/ShopCatalogueView";
 import { StorefrontProductView } from "@/components/organisms/StorefrontProductView";
 import { ToastProvider, useToastContext } from "@/components/providers/ToastProvider";
-import { buyerAskWhatsAppUrl, shopPublicUrl } from "@/lib/buyer";
+// Import directly from these submodules, not the "@/lib/buyer" barrel —
+// that barrel also re-exports getBuyerService(), whose http.ts pulls in
+// next/headers (server-only); Turbopack can't tree-shake that out of a
+// "use client" bundle just because this component never calls it.
+import { shopPublicUrl } from "@/lib/buyer/store";
+import { buyerAskWhatsAppUrl } from "@/lib/buyer/whatsapp";
 import { copyText } from "@/lib/clipboard";
 import type {
   BuyerCatalogueItem,

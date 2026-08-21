@@ -1,14 +1,12 @@
-import { getSolaiApiBaseUrl } from "@/lib/api/solai-server";
+import { createSolaiClient, unwrap } from "@/lib/api/solai-server";
 import type {
   AddDisputeDetailResult,
   AdvanceOrderResult,
   BuyerCheckoutPage,
   BuyerCheckoutSession,
   BuyerOrder,
-  BuyerProductPage,
   BuyerRating,
   BuyerService,
-  BuyerShopPage,
   CancelHeldOrderResult,
   ConfirmReceivedInput,
   ConfirmReceivedResult,
@@ -26,111 +24,108 @@ import type {
   StartMomoPaymentResult,
 } from "@/types/buyer";
 
-async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${getSolaiApiBaseUrl()}${path}`, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...(init?.headers ?? {}),
-    },
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Buyer API ${path} failed (${res.status}): ${text}`);
-  }
-  if (res.status === 204) return null as T;
-  const text = await res.text();
-  if (!text) return null as T;
-  return JSON.parse(text) as T;
-}
+// Buyer flows are anonymous — identity lives in the checkout session id in
+// the URL/body, not a cookie — so this is the one domain with auth "none".
+const client = () => createSolaiClient("none");
 
 export const httpBuyerService: BuyerService = {
-  getShopBySlug: (slug) => api(`/v1/buyer/shops/${encodeURIComponent(slug)}`),
-  getProduct: (slug, productId) =>
-    api(
-      `/v1/buyer/shops/${encodeURIComponent(slug)}/products/${encodeURIComponent(productId)}`,
-    ),
-  getProductOrGone: (slug, productId) =>
-    api(
-      `/v1/buyer/shops/${encodeURIComponent(slug)}/products/${encodeURIComponent(productId)}/or-gone`,
-    ),
-  createCheckoutSession: (input: CreateCheckoutSessionInput) =>
-    api<CreateCheckoutSessionResult>("/v1/buyer/checkout-sessions", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  getCheckoutSession: (sessionId) =>
-    api<BuyerCheckoutSession | null>(
-      `/v1/buyer/checkout-sessions/${encodeURIComponent(sessionId)}`,
-    ),
-  getCheckoutPage: (slug, sessionId) =>
-    api<BuyerCheckoutPage | null>(
-      `/v1/buyer/shops/${encodeURIComponent(slug)}/checkout/${encodeURIComponent(sessionId)}`,
-    ),
-  notifyRestock: (input: NotifyRestockInput) =>
-    api<NotifyRestockResult>("/v1/buyer/notify-restock", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  reportListing: (input: ReportListingInput) =>
-    api<ReportListingResult>("/v1/buyer/report-listing", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  startMomoPayment: (input: PlaceBuyerOrderInput) =>
-    api<StartMomoPaymentResult>("/v1/buyer/payments/momo/start", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  cancelMomoPayment: (sessionId) =>
-    api<{ ok: true }>(
-      `/v1/buyer/payments/momo/cancel/${encodeURIComponent(sessionId)}`,
-      { method: "POST" },
-    ),
-  confirmPayment: (input: PlaceBuyerOrderInput) =>
-    api<PlaceBuyerOrderResult>("/v1/buyer/payments/confirm", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  placeCodOrder: (input: PlaceBuyerOrderInput) =>
-    api<PlaceBuyerOrderResult>("/v1/buyer/orders/cod", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  getOrder: (orderId) =>
-    api<BuyerOrder | null>(`/v1/buyer/orders/${encodeURIComponent(orderId)}`),
-  confirmReceived: (input: ConfirmReceivedInput) =>
-    api<ConfirmReceivedResult>("/v1/buyer/orders/confirm-received", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  reportProblem: (input: ReportBuyerProblemInput) =>
-    api<ReportBuyerProblemResult>("/v1/buyer/orders/report-problem", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
-  cancelHeldOrder: (orderId) =>
-    api<CancelHeldOrderResult>(
-      `/v1/buyer/orders/${encodeURIComponent(orderId)}/cancel`,
-      { method: "POST" },
-    ),
-  rateOrder: (orderId, rating: BuyerRating) =>
-    api<RateOrderResult>(`/v1/buyer/orders/${encodeURIComponent(orderId)}/rate`, {
-      method: "POST",
-      body: JSON.stringify({ rating }),
-    }),
-  addDisputeDetail: (orderId, detail) =>
-    api<AddDisputeDetailResult>(
-      `/v1/buyer/orders/${encodeURIComponent(orderId)}/dispute-detail`,
-      {
-        method: "POST",
-        body: JSON.stringify({ detail }),
-      },
-    ),
-  markCourierCollected: (orderId) =>
-    api<AdvanceOrderResult>(
-      `/v1/buyer/orders/${encodeURIComponent(orderId)}/courier-collected`,
-      { method: "POST" },
-    ),
+  async getShopBySlug(slug) {
+    const res = await client().GET("/v1/buyer/shops/{slug}", { params: { path: { slug } } });
+    return unwrap(res, "getShopBySlug");
+  },
+  async getProduct(slug, productId) {
+    const res = await client().GET("/v1/buyer/shops/{slug}/products/{product_id}", {
+      params: { path: { slug, product_id: productId } },
+    });
+    return unwrap(res, "getProduct");
+  },
+  async getProductOrGone(slug, productId) {
+    const res = await client().GET(
+      "/v1/buyer/shops/{slug}/products/{product_id}/or-gone",
+      { params: { path: { slug, product_id: productId } } },
+    );
+    return unwrap(res, "getProductOrGone");
+  },
+  async createCheckoutSession(input: CreateCheckoutSessionInput) {
+    const res = await client().POST("/v1/buyer/checkout-sessions", { body: input });
+    return unwrap<CreateCheckoutSessionResult>(res, "createCheckoutSession");
+  },
+  async getCheckoutSession(sessionId) {
+    const res = await client().GET("/v1/buyer/checkout-sessions/{session_id}", {
+      params: { path: { session_id: sessionId } },
+    });
+    return unwrap<BuyerCheckoutSession | null>(res, "getCheckoutSession");
+  },
+  async getCheckoutPage(slug, sessionId) {
+    const res = await client().GET("/v1/buyer/shops/{slug}/checkout/{session_id}", {
+      params: { path: { slug, session_id: sessionId } },
+    });
+    return unwrap<BuyerCheckoutPage | null>(res, "getCheckoutPage");
+  },
+  async notifyRestock(input: NotifyRestockInput) {
+    const res = await client().POST("/v1/buyer/notify-restock", { body: input });
+    return unwrap<NotifyRestockResult>(res, "notifyRestock");
+  },
+  async reportListing(input: ReportListingInput) {
+    const res = await client().POST("/v1/buyer/report-listing", { body: input });
+    return unwrap<ReportListingResult>(res, "reportListing");
+  },
+  async startMomoPayment(input: PlaceBuyerOrderInput) {
+    const res = await client().POST("/v1/buyer/payments/momo/start", { body: input });
+    return unwrap<StartMomoPaymentResult>(res, "startMomoPayment");
+  },
+  async cancelMomoPayment(sessionId) {
+    const res = await client().POST("/v1/buyer/payments/momo/cancel/{session_id}", {
+      params: { path: { session_id: sessionId } },
+    });
+    return unwrap<{ ok: true }>(res, "cancelMomoPayment");
+  },
+  async confirmPayment(input: PlaceBuyerOrderInput) {
+    const res = await client().POST("/v1/buyer/payments/confirm", { body: input });
+    return unwrap<PlaceBuyerOrderResult>(res, "confirmPayment");
+  },
+  async placeCodOrder(input: PlaceBuyerOrderInput) {
+    const res = await client().POST("/v1/buyer/orders/cod", { body: input });
+    return unwrap<PlaceBuyerOrderResult>(res, "placeCodOrder");
+  },
+  async getOrder(orderId) {
+    const res = await client().GET("/v1/buyer/orders/{order_id}", {
+      params: { path: { order_id: orderId } },
+    });
+    return unwrap<BuyerOrder | null>(res, "getOrder");
+  },
+  async confirmReceived(input: ConfirmReceivedInput) {
+    const res = await client().POST("/v1/buyer/orders/confirm-received", { body: input });
+    return unwrap<ConfirmReceivedResult>(res, "confirmReceived");
+  },
+  async reportProblem(input: ReportBuyerProblemInput) {
+    const res = await client().POST("/v1/buyer/orders/report-problem", { body: input });
+    return unwrap<ReportBuyerProblemResult>(res, "reportProblem");
+  },
+  async cancelHeldOrder(orderId) {
+    const res = await client().POST("/v1/buyer/orders/{order_id}/cancel", {
+      params: { path: { order_id: orderId } },
+    });
+    return unwrap<CancelHeldOrderResult>(res, "cancelHeldOrder");
+  },
+  async rateOrder(orderId, rating: BuyerRating) {
+    const res = await client().POST("/v1/buyer/orders/{order_id}/rate", {
+      params: { path: { order_id: orderId } },
+      body: { rating },
+    });
+    return unwrap<RateOrderResult>(res, "rateOrder");
+  },
+  async addDisputeDetail(orderId, detail) {
+    const res = await client().POST("/v1/buyer/orders/{order_id}/dispute-detail", {
+      params: { path: { order_id: orderId } },
+      body: { detail },
+    });
+    return unwrap<AddDisputeDetailResult>(res, "addDisputeDetail");
+  },
+  async markCourierCollected(orderId) {
+    const res = await client().POST("/v1/buyer/orders/{order_id}/courier-collected", {
+      params: { path: { order_id: orderId } },
+    });
+    return unwrap<AdvanceOrderResult>(res, "markCourierCollected");
+  },
 };

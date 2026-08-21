@@ -6,7 +6,7 @@ import { Icon } from "@/components/atoms/Icon";
 import { StatusChip } from "@/components/atoms/StatusChip";
 import { BuyerProductCard } from "@/components/molecules/BuyerProductCard";
 import { formatMoney } from "@/lib/money";
-import { productPublicPath } from "@/lib/buyer";
+import { productPublicPath } from "@/lib/buyer/store";
 import type { BuyerCatalogueItem, BuyerShop } from "@/types/buyer";
 import { cn } from "@/lib/cn";
 

@@ -20,11 +20,7 @@ import { BuyerFaqSheet } from "@/components/organisms/BuyerFaqSheet";
 import { BuyerProtectionSheet } from "@/components/organisms/BuyerProtectionSheet";
 import { ReportListingSheet } from "@/components/organisms/ReportListingSheet";
 import { useToastContext } from "@/components/providers/ToastProvider";
-import {
-  calcLineTotal,
-  defaultAreaId,
-  findArea,
-} from "@/lib/buyer";
+import { calcLineTotal, defaultAreaId, findArea } from "@/lib/buyer/pricing";
 import { formatMoney } from "@/lib/money";
 import { useRouter } from "@/i18n/navigation";
 import type { BuyerProduct, BuyerShop } from "@/types/buyer";

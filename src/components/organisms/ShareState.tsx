@@ -14,7 +14,7 @@ import { FirstFiveChecklist } from "@/components/molecules/FirstFiveChecklist";
 import { StoryPreview } from "@/components/molecules/StoryPreview";
 import { WhatsAppCard } from "@/components/molecules/WhatsAppCard";
 import { DURATION, MOTION_EASE } from "@/lib/motion";
-import { isExternalHref } from "@/lib/buyer";
+import { isExternalHref } from "@/lib/buyer/paths";
 import type { StoryRenderData } from "@/lib/share/story-renderer";
 import type {
   CaptionLanguage,

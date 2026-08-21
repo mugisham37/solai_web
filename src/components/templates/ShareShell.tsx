@@ -13,7 +13,7 @@ import { SharedDoneState } from "@/components/organisms/SharedDoneState";
 import { ToastProvider, useToastContext } from "@/components/providers/ToastProvider";
 import { BUILD_STEPS } from "@/data/build";
 import { useShareState } from "@/hooks/useShareState";
-import { inAppShopPath } from "@/lib/buyer";
+import { inAppShopPath } from "@/lib/buyer/paths";
 import { formatMoney } from "@/lib/money";
 import { SHARE_PROGRESS } from "@/lib/share-reducer";
 import { emailSubject } from "@/lib/share/caption-data";

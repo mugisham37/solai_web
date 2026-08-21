@@ -14,7 +14,7 @@ import { SlugSheet } from "@/components/organisms/SlugSheet";
 import { ToastProvider, useToastContext } from "@/components/providers/ToastProvider";
 import { BUILD_STEPS } from "@/data/build";
 import { useLiveState } from "@/hooks/useLiveState";
-import { inAppShopPath } from "@/lib/buyer";
+import { inAppShopPath } from "@/lib/buyer/paths";
 import { LIVE_PROGRESS } from "@/lib/live-reducer";
 
 /** Display host for the link. The canonical absolute URL comes from the server. */
