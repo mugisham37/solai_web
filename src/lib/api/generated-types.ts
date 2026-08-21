@@ -1254,6 +1254,8 @@ export interface components {
             images: components["schemas"]["BuyerProductImage"][];
             /** Shortlabel */
             shortLabel: string;
+            /** Hasoriginalphoto */
+            hasOriginalPhoto: boolean;
         };
         /** BuyerProductImage */
         BuyerProductImage: {

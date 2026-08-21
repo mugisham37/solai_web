@@ -1,6 +1,10 @@
 import type { BankOption } from "@/types/payout";
 
-/** Illustrative list — production loads from payment provider API (cached). */
+// assumed default — confirm before public launch (§10: live bank list
+// source/TTL). Illustrative list below; production loads from Flutterwave's
+// `/v3/banks` instead, cached 24h (CACHE_MS already matches that TTL, so the
+// real adapter only needs to swap where `cache` is populated, not the
+// caching policy itself).
 const MOCK_BANKS: BankOption[] = [
   { id: "bok", name: "Bank of Kigali", countryCode: "RW" },
   { id: "bpr", name: "BPR Bank Rwanda", countryCode: "RW" },
@@ -17,7 +21,7 @@ const MOCK_BANKS: BankOption[] = [
 
 let cache: BankOption[] | null = null;
 let cacheAt = 0;
-const CACHE_MS = 60 * 60 * 1000;
+const CACHE_MS = 24 * 60 * 60 * 1000;
 
 export async function fetchBanksForCountry(countryCode: BankOption["countryCode"]): Promise<BankOption[]> {
   const now = Date.now();

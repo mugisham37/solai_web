@@ -120,6 +120,9 @@ export function filterOrders(
 /**
  * Stock at zero → out of stock. Off sale → draft.
  * Never let a seller believe something is buyable when it is not.
+ *
+ * assumed default — confirm before public launch (§10: stock-at-zero
+ * mid-order auto-hides to OOS; no backorder path exists).
  */
 export function resolveProductStatus(stock: number, onSale: boolean): ProductStatus {
   if (!onSale) return "draft";

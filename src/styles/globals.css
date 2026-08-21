@@ -371,7 +371,12 @@
    --------------------------------------------------------------- */
 
 @media print {
+  /* assumed default — confirm before public launch (§10: paper size for
+     copy-shop flyers). Pinned explicitly rather than left to the browser's
+     locale-dependent default, which is Letter in the US and A4 almost
+     everywhere else — this poster is designed to A4 proportions. */
   @page {
+    size: A4;
     margin: 14mm;
   }
 

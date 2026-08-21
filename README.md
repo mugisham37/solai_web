@@ -74,11 +74,12 @@ Payoff screen after payout: publishing runs as a transactional five-stage job, t
 - **Slug:** one free change; sanitise/validate client-side; reserved list stays server-side (`reserved-slugs.ts`). Old slug keeps resolving permanently.
 - **Print:** `PrintablePoster` + `@media print` in `globals.css` hides app chrome; QR sized in mm (~78mm).
 
-### Live screen — outstanding product decisions
+### Live screen — confirmed MVP defaults (assumed — confirm before public launch)
 
-- Confirmed **paper size** for copy-shop flyers (A4 vs A5).
-- Owner of the full **reserved-word list** (profanity EN/RW/SW/FR, routes, brand lookalikes).
-- Whether **old slugs expire**, or redirect forever.
+- **Paper size** for copy-shop flyers: A4 (`@page { size: A4 }` in `globals.css`).
+- **Reserved-word list** owner: Engineering seeds and maintains it (profanity EN/RW/SW/FR, routes,
+  brand lookalikes — `reserved-slugs.ts`); Product reviews quarterly.
+- **Old slugs**: redirect forever, never expire (`_resolve_shop` in `app/services/buyer.py`).
 
 ## Screen 5 — Share (`/build/[draftId]/share`)
 
@@ -92,23 +93,33 @@ Last setup step: WhatsApp-first sharing, caption composer (EN/RW × three tones)
 
 ### Share screen — outstanding product decisions
 
-- **Kinyarwanda captions** need a native-speaker pass before launch.
+- **Kinyarwanda captions**: confirmed default — native-speaker QA pass gates any production AI
+  live-flip (`AI_PROVIDER_MODE=live`), not staging; not yet scheduled.
 - Whether the first-five checklist drives a **day-two notification**.
 - Android versions where **`navigator.share({ files })`** was verified for WhatsApp hand-off.
 
-### Payout screen — outstanding product decisions
+### Payout screen — confirmed MVP defaults (assumed — confirm before public launch)
 
-- **Account recovery** without email: choose secondary number after first sale vs support proof of payout wallet (record decision before launch).
-- **Shop slug collisions:** suffix with number vs prompt seller (implement consistently in `createAccount`).
-- **Name-enquiry coverage** per rail per market (MTN, Airtel, M-Pesa, bank).
-- **Live bank list** source and cache TTL from payment provider.
-- **Rate-limit values** (sends per number, cooldown, lockout window) for production hosting.
+- **Account recovery** without email: add a secondary phone number after the first sale.
+- **Shop slug collisions**: numeric suffix (`amara` → `amara-2`), never an extra seller-facing
+  prompt — implemented in `PayoutService._unique_slug`.
+- **Name-enquiry / payout coverage**: MTN + Airtel, Rwanda, at launch; bank and M-Pesa deferred.
+  `app/payments/providers/pawapay.py`'s correspondent table and `src/data/countries.ts` already
+  cover UG/KE/TZ and M-Pesa — that's ahead-of-schedule backend capability, gated by this decision
+  rather than removed.
+- **Live bank list**: Flutterwave `/v3/banks`, cached 24h (`src/lib/payout/banks.ts`).
+- **Production OTP rate limits**: 3 sends/number/hour, 5 verify attempts, 15-minute lockout
+  (`app/otp/service.py`, `app/schemas/payout.py`, mirrored in `src/lib/rate-limit.ts`).
 
-### Build screen — outstanding product decisions
+### Build screen — confirmed MVP defaults (assumed — confirm before public launch)
 
-- Real **generation allowance** per seller per day (currently `5` in mock data).
-- **Anonymous draft retention** TTL and cleanup of generated assets.
-- Whether **description-only** drafts may accept orders without an original photo (UI allows draft; orders blocked until photo exists).
+- **Generation allowance**: 5/seller/day (`generation_allowance_per_day` in `Settings`).
+- **Anonymous draft retention**: 30 days (`draft_cookie_max_age_seconds`), cleaned up nightly by
+  an Arq cron job (`app/workers/cleanup.py::purge_expired_drafts`, registered in
+  `app/workers/settings.py`) that deletes the draft row and its S3/R2 uploads together.
+- **Description-only drafts**: may reach the draft/live/share screens, but orders are blocked
+  until a real seller photo replaces the placeholder — enforced server-side in
+  `BuyerService._is_purchasable` via `BuyerProduct.hasOriginalPhoto`, not just a client-side rule.
 
 ## Outstanding items (landing)
 
@@ -174,12 +185,15 @@ Framer Motion only (`DASHBOARD_MOTION`): view rise on pathname change, nav pill,
 | Section navigation first paint | &lt; 200 ms | Shell is shared; pages are RSC |
 | INP on filters/toggles | &lt; 200 ms | URL filters + server actions; no chart library |
 
-### Dashboard — outstanding product decisions
+### Dashboard — confirmed MVP defaults (assumed — confirm before public launch), and what's still open
 
-- Whether a **manual withdrawal** is needed beyond auto-release to the linked wallet (product default: no).
-- **Order-history retention** and pagination policy beyond the current page size of 20.
-- Whether **“report a problem”** opens a dispute case or a support conversation (UI: support-first reason sheet; money stays held).
-- **Stock-at-zero** behaviour mid-order: editor assumes auto-hide / OOS (no backorder).
+- **Manual withdrawal**: no — auto-release to the linked wallet only. No withdrawal endpoint
+  exists anywhere in `solai_server`; this is the absence of a feature, not a disabled one.
+- **Stock-at-zero** mid-order: auto-hide / OOS, no backorder (`resolveProductStatus` in
+  `src/lib/dashboard/derive.ts`).
+- Still outstanding: **order-history retention** and pagination policy beyond the current page
+  size of 20; whether **"report a problem"** opens a dispute case or a support conversation (UI:
+  support-first reason sheet; money stays held).
 
 ## Screen 13–15 — Buyer (`/{slug}`, checkout, `/order/{id}`)
 
@@ -216,12 +230,17 @@ Framer Motion only (`BUYER_MOTION`): view rise on mode/screen/status change. She
 
 Namespaces `storefront`, `checkout`, `protected` (+ buyer `moneyFlow` labels). English complete; fr / rw / sw stubbed with `[NEEDS TRANSLATION]` where needed.
 
-### Buyer — outstanding product decisions
+### Buyer — confirmed MVP defaults (assumed — confirm before public launch), and what's still open
 
-- Soft-reserve duration and whether cancelled MoMo windows restock immediately vs brief cooldown.
-- Auto-release window after delivery if the buyer never confirms (informational copy today).
-- Whether seller dashboard and buyer mock stores stay dual-seeded or merge into one adapter before launch.
-- CoD refund rail: support-arranged credit (no automatic MoMo reverse) — keep copy honest per market.
+- **Soft-reserve duration**: keep `momo_timeout_seconds=119`; no cooldown on cancel — a released
+  reservation is immediately re-checkoutable.
+- **CoD refund rail**: support-arranged credit, no automatic MoMo/bank reversal — a COD order has
+  no payment rail to auto-reverse in the first place (`BuyerRefund` in `src/types/buyer.ts`).
+  Keep copy honest about this per market.
+- **Seller dashboard / buyer mock stores**: moot now — both were replaced by the real generated
+  HTTP client this round (Phase 5), so there's nothing left to merge.
+- Still outstanding: **auto-release window** after delivery if the buyer never confirms
+  (informational copy today, no timer enforced).
 
 ## Screen A — Admin console (`/console`)
 

@@ -3,8 +3,10 @@
  * an attacker the exact shape of the moderation rules and the brand-protection
  * list. It is imported solely by the publish service, which server actions call.
  *
- * Owner: Trust & Safety. Needs a real profanity corpus for English, Kinyarwanda,
- * Swahili and French before launch — the entries below are a working starting set.
+ * assumed default — confirm before public launch (§10: reserved-word list
+ * ownership). Engineering seeds and maintains this EN/RW/SW/FR profanity +
+ * brand-lookalike list; Product reviews it quarterly. The entries below are
+ * a working starting set, not a final corpus.
  */
 
 /** Anything that would collide with a platform route. */

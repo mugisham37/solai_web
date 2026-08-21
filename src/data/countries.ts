@@ -21,6 +21,13 @@ export type CountryConfig = Readonly<{
   networks: readonly MobileNetwork[];
 }>;
 
+// assumed default — confirm before public launch (§10: name-enquiry / payout
+// coverage per rail per market). MTN + Airtel, Rwanda only, is the confirmed
+// at-launch default; bank and M-Pesa rails stay deferred. UG/KE/TZ and
+// M-Pesa entries below already exist because app/payments/providers/
+// pawapay.py's correspondent table covers them (pawaPay itself supports all
+// four markets) — that's ahead-of-schedule backend capability, not a signal
+// to expose them in the UI before the launch-market decision says so.
 export const COUNTRIES: readonly CountryConfig[] = [
   {
     code: "RW",

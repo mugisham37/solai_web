@@ -45,6 +45,24 @@ async function publishedShop(
   const draftToken = create.headers()["x-solai-draft-token"];
   const draftHeaders = { "X-Solai-Draft-Token": draftToken };
 
+  // This fixture never runs generation, so the skeleton draft's `original`
+  // is still the `data:image/svg` placeholder — which now makes the
+  // resulting product unpurchasable (§10: description-only listings block
+  // checkout until a real photo exists). Give it a real-looking URL so this
+  // fixture still represents a normal, buyable listing.
+  const draftGet = await request.get(`${BACKEND_URL}/v1/draft/${draftId}`, {
+    headers: draftHeaders,
+  });
+  const { draft } = (await draftGet.json()) as {
+    draft: { images: { original: { url: string; thumbnailUrl: string } } };
+  };
+  draft.images.original.url = `https://cdn.example.com/${draftId}.jpg`;
+  draft.images.original.thumbnailUrl = `https://cdn.example.com/${draftId}-thumb.jpg`;
+  await request.put(`${BACKEND_URL}/v1/draft/${draftId}`, {
+    headers: draftHeaders,
+    data: { draft },
+  });
+
   await request.post(`${BACKEND_URL}/v1/payout/otp/send`, {
     data: { phoneE164: phone, channel: "sms" },
   });

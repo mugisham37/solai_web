@@ -161,6 +161,10 @@ export type BuyerDispute = Readonly<{
   detail?: string;
 }>;
 
+// assumed default — confirm before public launch (§10: CoD refund rail).
+// A COD order has no payment rail to auto-reverse, so every refund here is
+// support-arranged credit, never an automated MoMo/bank reversal. Copy
+// referencing `refund` must stay honest about that per market.
 export type BuyerRefund = Readonly<{
   toLabel: string;
   sentLabel: string;

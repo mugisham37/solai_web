@@ -22,8 +22,11 @@ export function checkRateLimit(config: RateLimitConfig): { allowed: true } | { a
   return { allowed: true };
 }
 
+// assumed default — confirm before public launch (§10: production OTP rate
+// limits). Matches backend app/otp/service.py's OTP_SEND_PER_PHONE/WINDOW —
+// keep both in sync.
 export const RATE_LIMITS = {
-  otpSendPerPhone: { limit: 5, windowMs: 15 * 60 * 1000 },
+  otpSendPerPhone: { limit: 3, windowMs: 60 * 60 * 1000 },
   otpSendPerIp: { limit: 20, windowMs: 15 * 60 * 1000 },
   otpVerifyPerPhone: { limit: 10, windowMs: 15 * 60 * 1000 },
   /** Delivery-code attempts per order (and IP) before lockout. */
